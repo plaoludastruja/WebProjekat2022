@@ -36,106 +36,74 @@ Vue.component("register", {
             </nav>
         
 
-            <section class="h-100 bg-dark">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col">
-                <div class="card card-registration my-4">
-                    <div class="row g-0">
-                        <div class="col-xl-6 d-none d-xl-block">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
-                            alt="Sample photo" class="img-fluid"
-                            style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="card-body p-md-5 text-black">
-                                <h3 class="mb-5">Registrujte se</h3>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <input type="text" id="form3Example1m" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example1m">Ime</label>
+        <section class="h-100 bg-dark">
+            <div class="container py-5 h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col">
+                        <div class="card card-registration my-4">
+                            <div class="row g-0">
+                                <div class="col-xl-6 d-none d-xl-block">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                                    alt="Sample photo" class="img-fluid"
+                                    style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="card-body p-md-5 text-black">
+                                        <h3 class="mb-5">Registrujte se</h3>
+        
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input v-model="user.name" type="text" class="form-control form-control-lg" />
+                                                    <label class="form-label">Ime</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="form-outline">
+                                                    <input v-model="user.surname" type="text" class="form-control form-control-lg" />
+                                                    <label class="form-label">Prezime</label>
+                                                </div>
+                                            </div>
+                                        </div>
+        
+                                        <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                                            <h6 class="mb-0 me-4">Pol: </h6>
+                                            <div class="form-check form-check-inline mb-0 me-4">
+                                                <input v-model="user.gender" value="0" class="form-check-input" type="radio"/>
+                                                <label class="form-check-label">Žensko</label>
+                                            </div>
+                                            <div class="form-check form-check-inline mb-0 me-4">
+                                                <input v-model="user.gender" value="1" class="form-check-input" type="radio"/>
+                                                <label class="form-check-label">Muško</label>
+                                            </div>
+                                        </div>
+        
+                                        <div class="form-outline mb-4">
+                                            <input v-model="user.birthDate" type="date" class="form-control form-control-lg" />
+                                            <label class="form-label">Datum rođenja</label>
+                                        </div>
+        
+                                        <div class="form-outline mb-4">
+                                            <input v-model="user.username" type="text" class="form-control form-control-lg" />
+                                            <label class="form-label">Korisničko ime</label>
+                                        </div>
+        
+                                        <div class="form-outline mb-4">
+                                            <input v-model="user.password" type="password" class="form-control form-control-lg" />
+                                            <label class="form-label">Šifra</label>
+                                        </div>
+        
+                                        <div class="d-flex justify-content-end pt-3">
+                                            <button @click="registerUser()" type="button" class="btn btn-warning btn-lg ms-2">Registracija</button>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <input type="text" id="form3Example1n" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example1n">Prezime</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <input type="text" id="form3Example1m1" class="form-control form-control-lg" />
-                                        <label class="form-label" for="form3Example1m1">Mother's name</label>
-                                    </div>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                    <div class="form-outline">
-                                        <input type="text" id="form3Example1n1" class="form-control form-control-lg" />
-                                        <label class="form-label" for="form3Example1n1">Father's name</label>
-                                    </div>
-                                    </div>
-                                </div>
-                                -->
-                                
-
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example8" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example8">E-mail</label>
-                                </div>
-
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example8" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example8">Korisničko ime</label>
-                                </div>
-
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example8" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example8">Šifra</label>
-                                </div>
-
-                                <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
-                                    <h6 class="mb-0 me-4">Pol: </h6>
-                                    <div class="form-check form-check-inline mb-0 me-4">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                                            value="option1" />
-                                        <label class="form-check-label" for="femaleGender">Žensko</label>
-                                    </div>
-                                    <div class="form-check form-check-inline mb-0 me-4">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                                            value="option2" />
-                                        <label class="form-check-label" for="maleGender">Muško</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example9" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example9">Adresa</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example90" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example90">Grad</label>
-                                </div>
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example99" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example99">Država</label>
-                                </div>
-                                <div class="d-flex justify-content-end pt-3">
-                                    <button type="button" class="btn btn-light btn-lg">Poništi</button>
-                                    <button type="button" class="btn btn-warning btn-lg ms-2">Registracija</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
+        </section>
 
     <!-- Footer-->
             <footer class="py-5 bg-black">
@@ -151,28 +119,14 @@ Vue.component("register", {
             .then(response => (this.products = response.data))*/
     },
     methods: {
-        checkUser: function() {
+        registerUser: function() {
             axios
-            .post('/FitiBiti/rest/users/login', this.user)
+            .post('/FitiBiti/rest/users/register', this.user)
             .then(response=> {
-                if(response.data.blocked === false){
-                    if(response.data.role=='ADMINISTRATOR'){
-                        this.$router.push("/homeLoginAdministrator/" + this.user.username);
-                    } else if(response.data.role=='MANAGER'){
-                        this.$router.push("/homeLoginManager/" + this.user.username);
-                    }else if(response.data.role=='TRAINER'){
-                        this.$router.push("/homeLoginTrainer/" + this.user.username);
-                    }else {
-                        this.$router.push("/homeLoginBuyer/" + this.user.username);
-                    }
-                }else if(response.data.blocked === true) {
-                    this.greska="Your account is blocked!"
-                }else{
-                    this.greska="Wrong password or username!"
-                }
+                this.$router.push("/login")
             })
             .catch(err => {
-                this.greska = "Wrong password or username!";
+                this.greska = "Nesto ne valja!";
             })
         }
     }
