@@ -3,7 +3,33 @@ Vue.component("homepage", {
 	// podaci
 	data: function () {
 	    return {
-	        products: null
+            sortedbyASC: true,
+            search: '',
+            nameSearch:'',
+		    typeSearch:'',
+		    locationSearch:'',
+		    gradeSearch:'',
+            sportObjects: [],
+	        sportObjects1:[
+                {
+                    name: 'dsa',
+                    objectType: dsa,
+                    items: [],
+                    status: null,
+                    location: {
+                        longitude: 'dsa',
+                        latitude: 'das',
+                        address:
+                            {
+                            street: 'das',
+                            number: 'das',
+                            town: 'dsa',
+                            zipCode: 'dsa'
+                            },
+                    },
+                    averageGrade: 10,
+                }
+            ],
 	    }
 	},
 	// html bootstrap
@@ -31,29 +57,60 @@ Vue.component("homepage", {
             <header class="masthead text-center text-black">
                 <div class="masthead-content">
                     <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">One Page Wonder</h1>
-                        <h2 class="masthead-subheading mb-0">Will Rock Your Socks Off</h2>
+                        <h1 class="masthead-heading mb-0">Najbolji sajt na svijetu</h1>
+                        <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
                         <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn More</a>
                     </div>
                 </div>
             </header>
 
-    <!-- Content section 1-->
-            <section id="scroll">
-                <div class="container px-5">
-                    <div class="row gx-5 align-items-center">
-                        <div class="col-lg-6 order-lg-2">
-                            <div class="p-5"><img class="img-fluid rounded-circle" src="assets/img/01.jpg" alt="..." /></div>
-                        </div>
-                        <div class="col-lg-6 order-lg-1">
-                            <div class="p-5">
-                                <h2 class="display-4">For those about to rock...</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
-                            </div>
-                        </div>
+    <!-- pretraga -->
+        <section class="bg-dark">
+            <div class="container py-5">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-lg-3 mb-4">
+                        <input type="text" v-model="nameSearch" placeholder="Naziv">
+                    </div>
+                    <div class="col-lg-3 mb-4">
+                        <input type="text" v-model="typeSearch" placeholder="Tip" >
+                    </div>
+                    <div class="col-lg-3 mb-4">
+                        <input type="text" v-model="locationSearch" placeholder="Lokacija" >
+                    </div>
+                    <div class="col-lg-3 mb-4">
+                        <input type="text" v-model="gradeSearch" placeholder="Ocjena">
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
+
+    <!-- tabela -->
+        <section id="scroll">
+            <div class="container px-5">
+                <div class="row gx-5 align-items-center">
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                        <label v-on:click="sortList('name')">Naziv</label>
+                        </th>
+                        <th>Tip</th>
+                        <th v-on:click="sortList('location.address.town')">Lokacija</th>
+                        <th v-on:click="sortList('averageGrade')">Prosječna ocjena</th>
+                    </tr>
+                </thead>
+                <tbody v-for="object in filteredSportObjects">
+                    <tr>
+                        <td>{{object.name}}</td>
+                        <td>{{object.objectType}}</td>
+                        <td>{{object.location.address.town}}</td>
+                        <td>{{object.averageGrade}}</td>
+                    </tr>
+                </tbody>
+            </table>
+                </div>
+            </div>
+        </section>
 
     <!-- Footer-->
             <footer class="py-5 bg-black">
@@ -62,14 +119,33 @@ Vue.component("homepage", {
 </div>`,
 	// na pocetku
     mounted () {
-        axios
-          .get('rest/products/')
-          .then(response => (this.products = response.data))
+        this.getAllSportObject();
     },
+    computed: {
+        // ovo prepraviti da bude kao pretraga, sa svim ifovima u zavisnosti sta je ukucano
+		filteredSportObjects() {
+			if (!this.sportObjects) return null;
+			return this.sportObjects.filter(letPom => {
+				return letPom.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+			})
+		},
+
+	},
 	// funkcije
     methods: {
-    	login : function() {
-    		this.$router.push("/login")	
-    	}
+    	getAllSportObject: function () {
+			axios
+			.get('/BitiFiti/rest/sportObjects/findAllSportObjects')
+			.then(response=> {this.sportObjects=response.data})
+		},
+        sortList(sortBy) {
+			if (this.sortedbyASC) {
+				this.sportObjects.sort((x, y) => (x[sortBy] > y[sortBy] ? -1 : 1));
+				this.sortedbyASC = false;
+			} else {
+				this.sportObjects.sort((x, y) => (x[sortBy] < y[sortBy] ? -1 : 1));
+				this.sortedbyASC = true;
+			}
+		},
     }
 });

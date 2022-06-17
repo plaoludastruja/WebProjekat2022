@@ -27,6 +27,199 @@
 </nav>
 
 
+<!-- OVO JE MESTO ZA PRETRAGUUUUUUUUUUUUU-->
+
+<div class="header bg-opacity-75 bg-success">
+    <form>
+        <h1>
+            Search restaurants
+        </h1>
+        <div class="form-box">
+
+            <input type="text" class="search-field" placeholder="RESTAURANT NAME" :value="searchName" @input="searchName = $event.target.value.toUpperCase()">
+                <button @click="sortNameAToZ()" type="button" class="btn btn-outline-light" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
+                        <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
+                    </svg>
+                </button>
+                <button  @click="sortNameZToA()" type="button" class="btn btn-outline-light">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-sort-alpha-down-alt" viewBox="0 0 16 16">
+                        <path d="M12.96 7H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V7z"/>
+                        <path fill-rule="evenodd" d="M10.082 12.629 9.664 14H8.598l1.789-5.332h1.234L13.402 14h-1.12l-.419-1.371h-1.781zm1.57-.785L11 9.688h-.047l-.652 2.156h1.351z"/>
+                        <path d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
+                    </svg>
+                </button>
+            
+            <select v-model="searchType" class="search-select" placeholder="Type">
+                <option disabled value="">SELECT TYPE</option>
+                <option  selected>SERBIAN</option>
+                <option >ITALIAN</option>
+                <option >CHINESE</option>
+                <option >AMERICAN</option>
+            </select>
+
+            <select  v-model="searchRating" class="search-select" placeholder="Rating">
+                <option disabled value="">SELECT RATING</option>
+                <option v-bind:value=5 >FIVE STARS</option>
+                <option v-bind:value=4 >FOUR STARS</option>
+                <option v-bind:value=3 >THREE STARS</option>
+                <option v-bind:value=2 >TWO STARS</option>
+                <option v-bind:value=1 >ONE STAR</option> 
+            </select>
+
+            <button @click="sortRA()" type="button" class="btn btn-outline-light" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-sort-down" viewBox="0 0 16 16">
+                <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+                </svg>
+            </button>
+            <button  @click="sortRD()" type="button" class="btn btn-outline-light">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"/>
+                </svg>
+            </button>
+
+
+            <input type="text" class="search-field" placeholder="LOCATION" :value="searchLocation" @input="searchLocation = $event.target.value.toUpperCase()">
+                <button @click="sortLA()" type="button" class="btn btn-outline-light" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
+                        <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
+                    </svg>
+                </button>
+                <button  @click="sortLD()" type="button" class="btn btn-outline-light">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-sort-alpha-down-alt" viewBox="0 0 16 16">
+                        <path d="M12.96 7H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V7z"/>
+                        <path fill-rule="evenodd" d="M10.082 12.629 9.664 14H8.598l1.789-5.332h1.234L13.402 14h-1.12l-.419-1.371h-1.781zm1.57-.785L11 9.688h-.047l-.652 2.156h1.351z"/>
+                        <path d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
+                    </svg>
+                </button>
+
+            <select  v-model="filterStatus" class="search-select" placeholder="STATUS">
+                <option disabled value="">SELECT STATUS</option>
+                <option >ALL</option>
+                <option >OPEN</option>
+            </select>
+
+            <button @click="resetSearch()" type="button" class="btn btn-outline-light" >RESET SEARCH</button>
+
+
+            <br>
+            <br>
+            <button  @click="setFlagg()" type="button" class="btn btn-outline-light"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          </svg> SEARCH BY MAPS
+            </button>
+
+            <div v-if="flagg === true" align="center" vertical-align="center" style="border-style:solid; width:100%; height:200px;">
+                    <map-container
+                    :coordinates="[this.restaurant.location.longitude,this.restaurant.location.latitude]"
+                        ></map-container>
+            </div>
+            <div v-else></div>
+
+
+           
+
+        </div>
+
+            
+        
+        
+    </form>
+</div>
+<section class="bg-dark">
+    <div class="container py-5">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-3 mb-4">
+                <input type="text" v-model="nameSearch" placeholder="Naziv">
+            </div>
+            <div class="col-lg-3 mb-4">
+                <input type="text" v-model="typeSearch" placeholder="Tip" >
+            </div>
+            <div class="col-lg-3 mb-4">
+                <input type="text" v-model="locationSearch" placeholder="Lokacija" >
+            </div>
+            <div class="col-lg-3 mb-4">
+                <input type="text" v-model="gradeSearch" placeholder="Ocjena">
+            </div>
+        </div>
+    </div>
+</section>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+			<label v-on:click="sortList('name')">Naziv</label>
+			</th>
+			<th>Tip</th>
+			<th v-on:click="sortList('location.address.town')">Lokacija</th>
+			<th v-on:click="sortList('averageGrade')">Prosecna ocena</th>
+		</tr>
+	</thead>
+    <tbody v-for="object in filteredSportObjects">
+        <tr>
+            <td>{{object.name}}</td>
+            <td>{{object.objectType}}</td>
+            <td>{{object.location.address.town}}</td>
+            <td>{{object.averageGrade}}</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- OVO JE MESTO ZA PRETRAGUUUUUUUUUUUUU-->
+
+<!-- Carousel wrapper -->
+<div
+id="carouselMultiItemExample"
+class="carousel slide carousel-dark text-center"
+data-mdb-ride="carousel"
+>
+
+<!-- Inner -->
+<div class="carousel-inner py-4">
+<!-- Single item -->
+<div class="carousel-item active">
+<div class="container">
+<div class="row">
+  <div v-if="restaurant.deleted === false" v-for="restaurant in filteredRestaurants" class="col-lg-4">
+    <div class="card">
+    <img v-bind:src="restaurant.logo"
+      />
+      <div class="card-body">
+        <h4 class="card-title">{{restaurant.name}}</h4>
+        <h6 v-if="restaurant.status === 'OPEN'" style="color: green;">{{restaurant.status }}</h6>
+        <h6 v-else style="color: red;">{{restaurant.status}}</h6>
+        <h6>{{restaurant.location.address.town}}<p>{{restaurant.location.address.street}} {{restaurant.location.address.number}}</p></h6>
+        <h6 >Rating: <svg xmlns="http://www.w3.org/2000/svg" v-for="p in restaurant.avg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+      </svg></h6>
+        <button @click="saveRestaurantId(restaurant.name)" type="button" class="btn btn-outline-dark">SEE ITEMS</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Inner -->
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <section class="h-100 bg-dark">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
