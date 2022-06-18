@@ -4,13 +4,6 @@ Vue.component("login", {
 	        user: {
 				username: '',
                 password: '',
-                name: '',
-                surname: '',
-                gender: 0,
-                birthDate: '',
-                role: 0,
-                deleted: false,
-                blocked: false
 		  	},
             greska: "",
 	    }
@@ -99,23 +92,17 @@ Vue.component("login", {
     methods: {
         checkUser: function() {
             axios
-            .post('/FitiBiti/rest/users/login', this.user)
+            .post('rest/users/login', this.user)
             .then(response=> {
-                if(response.data.blocked === false){
-                    if(response.data.role=='ADMINISTRATOR'){
+                    if(response.data.userType=='ADMINISTRATOR'){
                         this.$router.push("/homeLoginAdministrator/" + this.user.username);
-                    } else if(response.data.role=='MANAGER'){
+                    } else if(response.data.rouserTypele=='MANAGER'){
                         this.$router.push("/homeLoginManager/" + this.user.username);
-                    }else if(response.data.role=='TRAINER'){
+                    }else if(response.data.userType=='TRAINER'){
                         this.$router.push("/homeLoginTrainer/" + this.user.username);
                     }else {
                         this.$router.push("/homeLoginBuyer/" + this.user.username);
                     }
-                }else if(response.data.blocked === true) {
-                    this.greska="Your account is blocked!"
-                }else{
-                    this.greska="Wrong password or username!"
-                }
             })
             .catch(err => {
                 this.greska = "Wrong password or username!";

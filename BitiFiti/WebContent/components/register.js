@@ -1,16 +1,14 @@
 Vue.component("register", { 
     data: function () {
 	    return {
-	        user: {
+            user: {
 				username: '',
                 password: '',
-                name: '',
-                surname: '',
-                gender: 0,
-                birthDate: '',
-                role: 0,
-                deleted: false,
-                blocked: false
+                firstName: '',
+                lastName: '',
+                gender: null,
+                dateOfBirth: '',
+                userType: 3
 		  	},
             greska: "",
 	    }
@@ -54,13 +52,13 @@ Vue.component("register", {
                                         <div class="row">
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-outline">
-                                                    <input v-model="user.name" type="text" class="form-control form-control-lg" />
+                                                    <input v-model="user.firstName" type="text" class="form-control form-control-lg" />
                                                     <label class="form-label">Ime</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <div class="form-outline">
-                                                    <input v-model="user.surname" type="text" class="form-control form-control-lg" />
+                                                    <input v-model="user.lastName" type="text" class="form-control form-control-lg" />
                                                     <label class="form-label">Prezime</label>
                                                 </div>
                                             </div>
@@ -79,7 +77,7 @@ Vue.component("register", {
                                         </div>
         
                                         <div class="form-outline mb-4">
-                                            <input v-model="user.birthDate" type="date" class="form-control form-control-lg" />
+                                            <input v-model="user.dateOfBirth" type="date" class="form-control form-control-lg" />
                                             <label class="form-label">Datum rođenja</label>
                                         </div>
         
@@ -92,6 +90,8 @@ Vue.component("register", {
                                             <input v-model="user.password" type="password" class="form-control form-control-lg" />
                                             <label class="form-label">Šifra</label>
                                         </div>
+
+                                        <div style="color: red;" id="greska">{{greska}}</div>
         
                                         <div class="d-flex justify-content-end pt-3">
                                             <button @click="registerUser()" type="button" class="btn btn-warning btn-lg ms-2">Registracija</button>
@@ -121,7 +121,7 @@ Vue.component("register", {
     methods: {
         registerUser: function() {
             axios
-            .post('/FitiBiti/rest/users/register', this.user)
+            .post('rest/users/register', this.user)
             .then(response=> {
                 this.$router.push("/login")
             })
