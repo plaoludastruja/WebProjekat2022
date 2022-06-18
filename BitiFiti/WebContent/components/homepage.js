@@ -135,7 +135,7 @@ Vue.component("homepage", {
     methods: {
     	getAllSportObject: function () {
 			axios
-			.get('/BitiFiti/rest/sportObjects/findAllSportObjects')
+			.get('rest/sportObjects/')
 			.then(response=> {this.sportObjects=response.data})
 		},
         sortList(sortBy) {
