@@ -16,23 +16,19 @@ import beans.User;
 import dao.UserDAO;
 
 @Path("")
-public class LoginService {
+public class UserService {
 	
 	@Context
 	ServletContext ctx;
 	
-	public LoginService() {
+	public UserService() {
 		
 	}
 	
 	@PostConstruct
-	// ctx polje je null u konstruktoru, mora se pozvati nakon konstruktora (@PostConstruct anotacija)
 	public void init() {
-		// Ovaj objekat se instancira vi�e puta u toku rada aplikacije
-		// Inicijalizacija treba da se obavi samo jednom
 		if (ctx.getAttribute("userDAO") == null) {
-	    	String contextPath = ctx.getRealPath("");
-			ctx.setAttribute("userDAO", new UserDAO(contextPath));
+			ctx.setAttribute("userDAO", new UserDAO());
 		}
 	}
 	
@@ -42,7 +38,7 @@ public class LoginService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response login(User user, @Context HttpServletRequest request) {
 		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
-		User loggedUser = userDao.find(user.getUsername(), user.getPassword());
+		User loggedUser = userDao.getByUsername(user.getUsername());
 		if (loggedUser != null) {
 			return Response.status(400).entity("Invalid username and/or password").build();
 		}
@@ -50,6 +46,17 @@ public class LoginService {
 		return Response.status(200).build();
 	}
 	
+	@POST
+	@Path("/register")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response newCustomer(User user, @Context HttpServletRequest request) {
+		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+		if(!userDao.addUser(user)) {
+			return Response.status(400).entity("Korisnicko ime je zauzeto").build();
+		}
+		return Response.status(200).build();
+	}
 	
 	@POST
 	@Path("/logout")
