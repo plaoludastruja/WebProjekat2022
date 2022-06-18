@@ -10,26 +10,6 @@ Vue.component("homepage", {
 		    locationSearch:'',
 		    gradeSearch:'',
             sportObjects: [],
-	        sportObjects1:[
-                {
-                    name: 'dsa',
-                    objectType: dsa,
-                    items: [],
-                    status: null,
-                    location: {
-                        longitude: 'dsa',
-                        latitude: 'das',
-                        address:
-                            {
-                            street: 'das',
-                            number: 'das',
-                            town: 'dsa',
-                            zipCode: 'dsa'
-                            },
-                    },
-                    averageGrade: 10,
-                }
-            ],
 	    }
 	},
 	// html bootstrap
@@ -94,17 +74,17 @@ Vue.component("homepage", {
                         <th>
                         <label v-on:click="sortList('name')">Naziv</label>
                         </th>
-                        <th>Tip</th>
-                        <th v-on:click="sortList('location.address.town')">Lokacija</th>
-                        <th v-on:click="sortList('averageGrade')">Prosječna ocjena</th>
+                        <th v-on:click="sortList('sportObjectType')">Tip</th>
+                        <th v-on:click="sortList('location.city')">Lokacija</th>
+                        <th v-on:click="sortList('averageScore')">Prosječna ocjena</th>
                     </tr>
                 </thead>
                 <tbody v-for="object in filteredSportObjects">
                     <tr>
                         <td>{{object.name}}</td>
-                        <td>{{object.objectType}}</td>
-                        <td>{{object.location.address.town}}</td>
-                        <td>{{object.averageGrade}}</td>
+                        <td>{{object.sportObjectType}}</td>
+                        <td>{{object.location.city}}</td>
+                        <td>{{object.averageScore}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -126,7 +106,8 @@ Vue.component("homepage", {
 		filteredSportObjects() {
 			if (!this.sportObjects) return null;
 			return this.sportObjects.filter(letPom => {
-				return letPom.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+				return true
+                //return letPom.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
 			})
 		},
 

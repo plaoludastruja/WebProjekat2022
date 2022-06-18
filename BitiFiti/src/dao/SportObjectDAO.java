@@ -15,7 +15,7 @@ import beans.SportObject;
 
 public class SportObjectDAO {
 	private List<SportObject> sportObjects;
-	private String path = "D:\\Fax\\WEB\\Projekat\\WebProjekat2022\\BitiFiti\\WebContent\\sport_objects.json";
+	private String path = "D:\\Fax\\WEB\\Projekat\\WebProjekat2022\\BitiFiti\\WebContent\\data\\sport_objects.json";
 	
 	public SportObjectDAO() {
 		if (sportObjects == null)
