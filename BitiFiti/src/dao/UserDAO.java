@@ -30,6 +30,7 @@ public class UserDAO {
 	public UserDAO() {
 		if(users == null) {
 			users = new ArrayList<User>();
+			loadUsers();
 		}
 	}
 	
