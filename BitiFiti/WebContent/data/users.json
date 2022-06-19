@@ -1,21 +1,62 @@
 [
     {
-        "username": "das",
-        "password": "ads",
-        "firstName": "das",
-        "lastName": "dsa",
-        "gender": "MALE",
-        "dateOfBirth": "2022-06-22",
+        "username": "plaoludastruja",
+        "password": "p",
+        "firstName": "",
+        "lastName": "",
+        "gender": null,
+        "dateOfBirth": "",
         "userType": "CUSTOMER",
-        "trainings": [],
+        "trainings": null,
         "fee": 0.0,
-        "sportsObject": "",
-        "visitedSportsObjects": [],
+        "sportsObject": null,
+        "visitedSportsObjects": null,
         "points": 0,
-        "customerType": {
-            "name": "",
-            "discount": 0.0,
-            "requiredPoints": 0
-        }
+        "customerType": null
+    },
+    {
+        "username": "p",
+        "password": "p",
+        "firstName": "",
+        "lastName": "",
+        "gender": null,
+        "dateOfBirth": "",
+        "userType": "CUSTOMER",
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "pl",
+        "password": "p",
+        "firstName": "",
+        "lastName": "",
+        "gender": null,
+        "dateOfBirth": "",
+        "userType": "CUSTOMER",
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "ploaludastruja",
+        "password": "s",
+        "firstName": "",
+        "lastName": "",
+        "gender": null,
+        "dateOfBirth": "",
+        "userType": "CUSTOMER",
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
     }
 ]

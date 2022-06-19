@@ -67,11 +67,11 @@ Vue.component("register", {
                                         <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
                                             <h6 class="mb-0 me-4">Pol: </h6>
                                             <div class="form-check form-check-inline mb-0 me-4">
-                                                <input v-model="user.gender" value="0" class="form-check-input" type="radio"/>
+                                                <input v-model="user.gender" value="1" class="form-check-input" type="radio"/>
                                                 <label class="form-check-label">Žensko</label>
                                             </div>
                                             <div class="form-check form-check-inline mb-0 me-4">
-                                                <input v-model="user.gender" value="1" class="form-check-input" type="radio"/>
+                                                <input v-model="user.gender" value="0" class="form-check-input" type="radio"/>
                                                 <label class="form-check-label">Muško</label>
                                             </div>
                                         </div>

@@ -8,7 +8,7 @@ Vue.component("homepage", {
             nameSearch:'',
 		    typeSearch:'',
 		    locationSearch:'',
-		    gradeSearch:'',
+		    scoreSearch:'',
             sportObjects: [],
 	    }
 	},
@@ -51,7 +51,7 @@ Vue.component("homepage", {
                     <input class="col-lg-2 mx-2" type="text" v-model="nameSearch" placeholder="Naziv">
                     <input class="col-lg-2 mx-2" type="text" v-model="typeSearch" placeholder="Tip" >
                     <input class="col-lg-2 mx-2" type="text" v-model="locationSearch" placeholder="Lokacija" >
-                    <input class="col-lg-2 mx-2" type="text" v-model="gradeSearch" placeholder="Ocjena">
+                    <input class="col-lg-2 mx-2" type="text" v-model="scoreSearch" placeholder="Ocjena">
                 </div>
             </div>
         </section>
@@ -67,7 +67,7 @@ Vue.component("homepage", {
                         <label v-on:click="sortList('name')">Naziv</label>
                         </th>
                         <th v-on:click="sortList('sportObjectType')">Tip</th>
-                        <th v-on:click="sortList('location.city')">Lokacija</th>
+                        <th v-on:click="sortList('location')">Lokacija</th>
                         <th v-on:click="sortList('averageScore')">Prosječna ocjena</th>
                     </tr>
                 </thead>
@@ -96,13 +96,17 @@ Vue.component("homepage", {
     computed: {
         // ovo prepraviti da bude kao pretraga, sa svim ifovima u zavisnosti sta je ukucano
 		filteredSportObjects() {
-			if (!this.sportObjects) return null;
-			return this.sportObjects.filter(letPom => {
-				return true
-                //return letPom.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+            return this.sportObjects.filter((sportsObject) => {
+				searchObject =  sportsObject.name.toLowerCase().match(this.nameSearch.toLowerCase()) &&
+                                sportsObject.sportObjectType.toLowerCase().match(this.typeSearch.toLowerCase()) &&
+                                sportsObject.averageScore.toString().toLowerCase().match(this.scoreSearch.toLowerCase()) &&
+                                (sportsObject.location.streetName.toLowerCase().match(this.locationSearch.toLowerCase()) || 
+                                sportsObject.location.streetNumber.toString().toLowerCase().match(this.locationSearch.toLowerCase()) ||
+                                sportsObject.location.city.toLowerCase().match(this.locationSearch.toLowerCase()) ||
+                                sportsObject.location.zipCode.toString().toLowerCase().match(this.locationSearch.toLowerCase()));
+				return searchObject;
 			})
 		},
-
 	},
 	// funkcije
     methods: {

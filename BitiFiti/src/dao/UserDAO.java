@@ -27,9 +27,11 @@ public class UserDAO {
 	private List<User> users;
 	private String path = "D:\\Fax\\WEB\\Projekat\\WebProjekat2022\\BitiFiti\\WebContent\\data\\users.json";
 	
+	
 	public UserDAO() {
 		if(users == null) {
 			users = new ArrayList<User>();
+			loadUsers();
 		}
 	}
 	
