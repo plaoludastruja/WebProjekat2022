@@ -6,7 +6,13 @@
         "lastName": "Lipovčić",
         "gender": "MALE",
         "dateOfBirth": "",
-        "userType": "ADMINISTRATOR"
+        "userType": "ADMINISTRATOR",
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
     },
     {
         "username": "m",
@@ -16,7 +22,12 @@
         "gender": "MALE",
         "dateOfBirth": "",
         "userType": "MANAGER",
-        "sportsObject": null
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
     },
     {
         "username": "t",
@@ -26,7 +37,12 @@
         "gender": "MALE",
         "dateOfBirth": "",
         "userType": "TRAINER",
-        "trainings": null
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
     },
     {
         "username": "k",
@@ -36,7 +52,9 @@
         "gender": "FEMALE",
         "dateOfBirth": "",
         "userType": "CUSTOMER",
+        "trainings": null,
         "fee": 0.0,
+        "sportsObject": null,
         "visitedSportsObjects": null,
         "points": 0,
         "customerType": null

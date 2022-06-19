@@ -4,7 +4,6 @@ Vue.component("homepage", {
 	data: function () {
 	    return {
             sortedbyASC: true,
-            search: '',
             nameSearch:'',
 		    typeSearch:'',
 		    locationSearch:'',
