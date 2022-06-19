@@ -93,20 +93,25 @@ Vue.component("login", {
         checkUser: function() {
             axios
             .post('rest/users/login', this.user)
-            .then(response=> {
+            .then(
+                axios
+                .get('rest/users/currentUser')
+                .then(response => {
                     if(response.data.userType=='ADMINISTRATOR'){
-                        this.$router.push("/homeLoginAdministrator/" + this.user.username);
-                    } else if(response.data.rouserTypele=='MANAGER'){
-                        this.$router.push("/homeLoginManager/" + this.user.username);
+                        this.$router.push("/homeAdministrator/" + this.user.username);
+                    } else if(response.data.userType=='MANAGER'){
+                        this.$router.push("/homeManager/" + this.user.username);
                     }else if(response.data.userType=='TRAINER'){
-                        this.$router.push("/homeLoginTrainer/" + this.user.username);
-                    }else {
-                        this.$router.push("/homeLoginBuyer/" + this.user.username);
+                        this.$router.push("/homeTrainer/" + this.user.username);
+                    }else if(response.data.userType=='CUSTOMER'){
+                        this.$router.push("/homeCustomer/" + this.user.username);
                     }
-            })
+                })
+            )
             .catch(err => {
                 this.greska = "Wrong password or username!";
             })
         }
+        
     }
 });
