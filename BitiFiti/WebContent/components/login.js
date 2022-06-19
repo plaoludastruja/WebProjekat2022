@@ -36,8 +36,8 @@ Vue.component("login", {
                         <div class="card" style="border-radius: 1rem;">
                             <div class="row g-0">
                                 <div class="col-md-6 col-lg-5 d-none d-md-block">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-                                    alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                                    <img src="https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
+                                    alt="login form" class="img-fluid w-100 h-100" style="border-radius: 1rem 0 0 1rem;" />
                                 </div>
                                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                     <div class="card-body p-4 p-lg-5 text-black">
@@ -64,7 +64,7 @@ Vue.component("login", {
                                             <div class="pt-1 mb-4">
                                                 <button @click="checkUser()" class="btn btn-warning btn-lg btn-block" type="button">Prijava</button>
                                             </div>
-                                            <p class="mb-5 pb-lg-2" style="color: #393f81;">Nemate nalog? <a href="http://localhost:8080/BitiFiti/#/signin"
+                                            <p class="mb-5 pb-lg-2" style="color: #393f81;">Nemate nalog? <a href="http://localhost:8080/BitiFiti/#/register"
                                             style="color: #393f81;">Registujte se</a></p>
         
                                     </div>
@@ -84,29 +84,30 @@ Vue.component("login", {
 
 
 </div>`,
-    mounted () {/*
-        axios
-            .get('rest/products/')
-            .then(response => (this.products = response.data))*/
-    },
+
     methods: {
         checkUser: function() {
             axios
             .post('rest/users/login', this.user)
-            .then(response=> {
+            .then(
+                axios
+                .get('rest/users/currentUser')
+                .then(response => {
                     if(response.data.userType=='ADMINISTRATOR'){
-                        this.$router.push("/homeLoginAdministrator/" + this.user.username);
-                    } else if(response.data.rouserTypele=='MANAGER'){
-                        this.$router.push("/homeLoginManager/" + this.user.username);
+                        this.$router.push("/homeAdministrator/" + this.user.username);
+                    } else if(response.data.userType=='MANAGER'){
+                        this.$router.push("/homeManager/" + this.user.username);
                     }else if(response.data.userType=='TRAINER'){
-                        this.$router.push("/homeLoginTrainer/" + this.user.username);
-                    }else {
-                        this.$router.push("/homeLoginBuyer/" + this.user.username);
+                        this.$router.push("/homeTrainer/" + this.user.username);
+                    }else if(response.data.userType=='CUSTOMER'){
+                        this.$router.push("/homeCustomer/" + this.user.username);
                     }
-            })
+                })
+            )
             .catch(err => {
                 this.greska = "Wrong password or username!";
             })
         }
+        
     }
 });
