@@ -1,1 +1,62 @@
-[{"username":"das","password":"ads","firstName":"das","lastName":"dsa","gender":"MALE","dateOfBirth":"2022-06-22","userType":"CUSTOMER","trainings":[],"fee":0.0,"sportsObject":"","visitedSportsObjects":[],"points":0,"customerType":{"name":"","discount":0.0,"requiredPoints":0}},{"username":"skabo","password":"123","firstName":"Skabo","lastName":"Maestro","gender":"FEMALE","dateOfBirth":"2000-08-21","userType":"CUSTOMER","trainings":null,"fee":0.0,"sportsObject":null,"visitedSportsObjects":null,"points":0,"customerType":null}]
+[
+    {
+        "username": "a",
+        "password": "a",
+        "firstName": "Đorđe",
+        "lastName": "Lipovčić",
+        "gender": "MALE",
+        "dateOfBirth": "",
+        "userType": "ADMINISTRATOR",
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "m",
+        "password": "m",
+        "firstName": "Boško",
+        "lastName": "Ristović",
+        "gender": "MALE",
+        "dateOfBirth": "",
+        "userType": "MANAGER",
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "t",
+        "password": "t",
+        "firstName": "Ratko",
+        "lastName": "Ružičić",
+        "gender": "MALE",
+        "dateOfBirth": "",
+        "userType": "TRAINER",
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "k",
+        "password": "k",
+        "firstName": "Sandra",
+        "lastName": "Brkić",
+        "gender": "FEMALE",
+        "dateOfBirth": "",
+        "userType": "CUSTOMER",
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
+    }
+]
