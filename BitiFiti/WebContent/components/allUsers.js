@@ -39,8 +39,13 @@ Vue.component("allUsers", {
                 <div class="masthead-content">
                     <div class="container px-5">
                         <h1 class="masthead-heading mb-0">SVI KORISNICI</h1>
-                        <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
-                        <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn More</a>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
+                                <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
+                                <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </header>
@@ -68,12 +73,14 @@ Vue.component("allUsers", {
                         <label v-on:click="sortList('name')">Korisnicko ime</label>
                         </th>
                         <th v-on:click="sortList('sportObjectType')">Sifra</th>
+                        <th v-on:click="sortList('sportObjectType')">Tip korisnika</th>
                     </tr>
                 </thead>
                 <tbody v-for="object in filteredUsers">
                     <tr>
                         <td>{{object.username}}</td>
                         <td>{{object.password}}</td>
+                        <td>{{object.userType}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -116,6 +123,15 @@ Vue.component("allUsers", {
         },
         openAllUsersPage: function(){
             this.$router.push("/allUsers")
+        },
+        addSportObject: function(){
+            this.$router.push("/addSportObject")
+        },
+        addManager: function(){
+            this.$router.push("/addManager")
+        },
+        addTrainer: function(){
+            this.$router.push("/addTrainer")
         },
     }
 });

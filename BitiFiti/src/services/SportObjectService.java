@@ -45,4 +45,16 @@ public class SportObjectService {
 		SportObjectDAO sportObjectDAO = (SportObjectDAO)ctx.getAttribute("sportObjectDAO");
 		return sportObjectDAO.getAll();
 	}
+
+	@POST
+	@Path("/addSportObject")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response newSportObject(SportObject sportObject, @Context HttpServletRequest request) {
+		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");
+		if(!sportObjectDAO.addSportObject(sportObject)) {
+			return Response.status(400).entity("Korisnicko ime je zauzeto").build();
+		}
+		return Response.status(200).build();
+	}
 }

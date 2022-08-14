@@ -26,7 +26,75 @@
                         </div>
                     </div>
                 </nav>
-    
+
+                
+                <section class="h-100 bg-dark">
+                    <div class="container py-5 h-100">
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col col-xl-6">
+                                <div class="card card-registration my-2">
+                                    <div class="row g-0">
+                                        <div class="d-flex align-items-center">
+                                            <div class="card-body p-md-5 text-black">
+                                                <h3 class="mb-3">Registrujte se</h3>
+                
+                                                <div class="row mb-0">
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="form-outline">
+                                                            <input v-model="user.firstName" type="text" class="form-control form-control-lg" />
+                                                            <label class="form-label">Ime</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="form-outline">
+                                                            <input v-model="user.lastName" type="text" class="form-control form-control-lg" />
+                                                            <label class="form-label">Prezime</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                
+                                                <div class="d-md-flex justify-content-start align-items-center mb-2 pb-2">
+                                                    <h6 class="mb-0 me-4">Pol: </h6>
+                                                    <div class="form-check form-check-inline mb-0 me-4">
+                                                        <input v-model="user.gender" value="1" class="form-check-input" type="radio"/>
+                                                        <label class="form-check-label">Žensko</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline mb-0 me-4">
+                                                        <input v-model="user.gender" value="0" class="form-check-input" type="radio"/>
+                                                        <label class="form-check-label">Muško</label>
+                                                    </div>
+                                                </div>
+                
+                                                <div class="form-outline mb-2">
+                                                    <input v-model="user.dateOfBirth" type="date" class="form-control form-control-lg" />
+                                                    <label class="form-label">Datum rođenja</label>
+                                                </div>
+                
+                                                <div class="form-outline mb-2">
+                                                    <input v-model="user.username" type="text" class="form-control form-control-lg" />
+                                                    <label class="form-label">Korisničko ime</label>
+                                                </div>
+                
+                                                <div class="form-outline mb-2">
+                                                    <input v-model="user.password" type="time" class="form-control form-control-lg" />
+                                                    <label class="form-label">Šifra</label>
+                                                </div>
+        
+                                                <div style="color: red;" id="greska">{{greska}}</div>
+        
+                                                <div class="d-flex justify-content-end pt-3">
+                                                    <button @click="registerUser()" type="button" class="btn btn-warning btn-lg ms-2">Registracija</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
 <!-- Info-->
     <div class="container">
         <div class="main-body">
