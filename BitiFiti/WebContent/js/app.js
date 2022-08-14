@@ -21,7 +21,7 @@ const router = new VueRouter({
 		{ path: '/homeManager/:username', component: HomeManagerPage},
 		{ path: '/homeTrainer/:username', component: HomeTrainerPage},
 		{ path: '/allUsers', component: AllUsersPage},
-		{ path: '/myProfile', component: MyProfilePage},
+		{ path: '/myProfile/:username', component: MyProfilePage},
 
 		// ne prelaziti
 	]

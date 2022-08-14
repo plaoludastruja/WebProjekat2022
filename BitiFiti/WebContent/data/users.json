@@ -5,7 +5,7 @@
         "firstName": "Đorđe",
         "lastName": "Lipovčić",
         "gender": "MALE",
-        "dateOfBirth": "",
+        "dateOfBirth": "29.02.2000.",
         "userType": "ADMINISTRATOR",
         "trainings": null,
         "fee": 0.0,

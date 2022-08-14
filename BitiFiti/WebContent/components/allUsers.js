@@ -106,7 +106,6 @@ Vue.component("allUsers", {
 			.post('rest/users/logout')
 			.then(response=> {this.$router.push("/login")})
 		},
-        // TODO1 saljem upit ali dobijam 500
         getAllUsers: function () {
 			axios
 			.get('rest/users/allUsers')

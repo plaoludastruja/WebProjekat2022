@@ -1,5 +1,5 @@
 // naziv komponente kao u app.js
-Vue.component("homeAdministrator", { 
+Vue.component("myProfile", { 
 	// podaci
 	data: function () {
 	    return {
@@ -10,6 +10,7 @@ Vue.component("homeAdministrator", {
 		    locationSearch:'',
 		    scoreSearch:'',
             sportObjects: [],
+            user:'',
 	    }
 	},
 	// html bootstrap
@@ -21,69 +22,77 @@ Vue.component("homeAdministrator", {
                 <div class="container px-5">
                     <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
                         <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                        BitiFiti - {{id}}
+                        BitiFiti - {{user.username}}
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item" @click="openAllUsersPage()" class="nav-item">Svi korisnici</li>
-                            <li class="nav-item" @click="openMyProfilePage()" class="nav-item">Moj profil</li>
+                            <li class="nav-item" @click="openHomepage()" class="nav-item">Pocetna</li>
                             <li class="nav-item" @click="logOut()" class="nav-item">Odjavi se</li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
-            <!-- Header-->
-            <header class="masthead text-center text-black">
-                <div class="masthead-content">
-                    <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">Najbolji sajt na svijetu</h1>
-                        <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
-                        <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn More</a>
+
+    <!-- Info-->
+    <section>
+        <div class="container">
+            <div class="main-body">
+                <div class="row gutters-sm">
+
+                    <div class="col-md-4 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex flex-column align-items-center text-center">
+                                    <img v-if="user.userType === 'ADMINISTRATOR'" src="components/Resources/administrator.png"  class="rounded-circle" width="150">
+                                    <img v-else-if="user.userType === 'MANAGER'" src="components/Resources/manager.png"  class="rounded-circle" width="150">
+                                    <img v-else-if="user.userType === 'BUYER'" src="components/Resources/customer.png"  class="rounded-circle" width="150">
+                                    <img v-else src="components/Resources/trainer.png" class="rounded-circle" width="150">
+                                    <div class="mt-3">
+                                        <h4>{{user.username}}</h4>
+                                        <p class="text-secondary mb-1">{{user.userType}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </header>
 
-    <!-- pretraga -->
-        <section class="bg-dark">
-            <div class="container py-3">
-                <div class="row d-flex justify-content-center">
-                    <input class="col-lg-2 mx-2" type="text" v-model="nameSearch" placeholder="Naziv">
-                    <input class="col-lg-2 mx-2" type="text" v-model="typeSearch" placeholder="Tip" >
-                    <input class="col-lg-2 mx-2" type="text" v-model="locationSearch" placeholder="Lokacija" >
-                    <input class="col-lg-2 mx-2" type="text" v-model="scoreSearch" placeholder="Ocjena">
-                </div>
-            </div>
-        </section>
-
-    <!-- Carousel wrapper -->
-        <section id="carousel">
-            <div
-                id="carouselMultiItemExample"
-                class="carousel slide carousel-dark text-center"
-                data-mdb-ride="carousel">
-
-                <!-- Inner -->
-                <div class="carousel-inner py-4">
-                    <!-- Single item -->
-                    <div class="carousel-item active">
-                        <div class="container">
-                            <div class="row">
-                                <div v-for="object in filteredSportObjects" class="col-lg-4">
-                                    <div class="card">
-                                        <img v-bind:src="object.name"/>
-                                        <div class="card-body">
-                                            <h4 class="card-title">{{object.name}}</h4>
-                                            <h6 v-if="object.isWorking" style="color: green;">Otvoreno</h6>
-                                            <h6 v-else style="color: red;">Zatvoreno</h6>
-                                            <h6>{{object.location.city}}<p>{{object.location.streetName}} {{object.location.streetNumber}}</p></h6>
-                                            <h6 >Ocjena: <svg xmlns="http://www.w3.org/2000/svg" v-for="p in object.averageScore" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-                                                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                            </svg></h6>
-                                            <button @click="openSportObjectPage(object.name)" type="button" class="btn btn-outline-dark">Pregledaj</button>
-                                            <button @click="deleteSportObject(object)" type="button" class="btn btn-outline-danger">Obriši</button>
+                    <div class="col-md-8">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Ime</h6>
                                         </div>
+                                        <div class="col-sm-9 text-secondary">{{user.firstName}}</div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Prezime</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">{{user.lastName}}</div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Pol</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">{{user.gender}}</div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Datum rodjenja</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">{{user.dateOfBirth}}</div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <a @click="editData()" class="btn btn-outline-dark" target="__blank">Izmijeni profil</a>
+                                        <a @click="changePassword()" class="btn btn-outline-dark" target="__blank" >Promjeni sifru</a>
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +100,8 @@ Vue.component("homeAdministrator", {
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
     <!-- Footer-->
             <footer class="py-5 bg-black">
@@ -100,23 +110,8 @@ Vue.component("homeAdministrator", {
 </div>`,
 	// na pocetku
     mounted () {
-        this.getAllSportObject();
+        this.getCurrentUser();
     },
-    computed: {
-        // ovo prepraviti da bude kao pretraga, sa svim ifovima u zavisnosti sta je ukucano
-		filteredSportObjects() {
-            return this.sportObjects.filter((sportsObject) => {
-				searchObject =  sportsObject.name.toLowerCase().match(this.nameSearch.toLowerCase()) &&
-                                sportsObject.sportObjectType.toLowerCase().match(this.typeSearch.toLowerCase()) &&
-                                sportsObject.averageScore.toString().toLowerCase().match(this.scoreSearch.toLowerCase()) &&
-                                (sportsObject.location.streetName.toLowerCase().match(this.locationSearch.toLowerCase()) || 
-                                sportsObject.location.streetNumber.toString().toLowerCase().match(this.locationSearch.toLowerCase()) ||
-                                sportsObject.location.city.toLowerCase().match(this.locationSearch.toLowerCase()) ||
-                                sportsObject.location.zipCode.toString().toLowerCase().match(this.locationSearch.toLowerCase()));
-				return searchObject;
-			})
-		},
-	},
 	// funkcije
     methods: {
         logOut: function () {
@@ -124,16 +119,13 @@ Vue.component("homeAdministrator", {
 			.post('rest/users/logout')
 			.then(response=> {this.$router.push("/login")})
 		},
-        getAllSportObject: function () {
+        getCurrentUser: function () {
 			axios
-			.get('rest/sportObjects/')
-			.then(response=> {this.sportObjects=response.data})
+			.get('rest/users/currentUser')
+			.then(response=> {this.user=response.data})
 		},
-        openMyProfilePage: function(){
+        openHomepage: function(){
             this.$router.push("/myProfile/"+this.id)
-        },
-        openAllUsersPage: function(){
-            this.$router.push("/allUsers")
         },
     }
 });

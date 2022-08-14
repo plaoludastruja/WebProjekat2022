@@ -76,13 +76,12 @@ public class UserService {
 		return (User) request.getSession().getAttribute("user");
 	}
 
-	// TODO1 nece da mi se prikazu korisnici kod admina
 	@GET
 	@Path("/allUsers")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> findAllUsers(@Context HttpServletRequest request){
-		UserDAO userDAO = (UserDAO)ctx.getAttribute("usersDAO");
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
 		return userDAO.getAll();
 	}
 }
