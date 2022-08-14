@@ -6,6 +6,8 @@ const HomeCustomerPage = {template: '<homeCustomer></homeCustomer>'}
 const HomeAdministratorPage = {template: '<homeAdministrator></homeAdministrator>'}
 const HomeManagerPage = {template: '<homeManager></homeManager>'}
 const HomeTrainerPage = {template: '<homeTrainer></homeTrainer>'}
+const AllUsersPage = {template: '<allUsers></allUsers>'}
+const MyProfilePage = {template: '<myProfile></myProfile>'}
 
 // ne prelaziti
 const router = new VueRouter({
@@ -17,7 +19,9 @@ const router = new VueRouter({
 		{ path: '/homeCustomer/:username', component: HomeCustomerPage},
 		{ path: '/homeAdministrator/:username', component: HomeAdministratorPage},
 		{ path: '/homeManager/:username', component: HomeManagerPage},
-		{ path: '/homeTrainer/:username', component: HomeTrainerPage}
+		{ path: '/homeTrainer/:username', component: HomeTrainerPage},
+		{ path: '/allUsers', component: AllUsersPage},
+		{ path: '/myProfile', component: MyProfilePage},
 
 		// ne prelaziti
 	]

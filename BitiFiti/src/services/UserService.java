@@ -1,5 +1,7 @@
 package services;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -72,5 +74,15 @@ public class UserService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public User login(@Context HttpServletRequest request) {
 		return (User) request.getSession().getAttribute("user");
+	}
+
+	// TODO1 nece da mi se prikazu korisnici kod admina
+	@GET
+	@Path("/allUsers")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<User> findAllUsers(@Context HttpServletRequest request){
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("usersDAO");
+		return userDAO.getAll();
 	}
 }
