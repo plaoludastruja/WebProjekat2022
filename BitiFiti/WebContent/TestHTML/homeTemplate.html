@@ -9,283 +9,73 @@
     <title>Document</title>
 </head>
 <body>
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
-    <div class="container px-5">
-        <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
-            <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
-            BitiFiti
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#!">Sign Up</a></li>
-                <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/login">Log In</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+    <div>
 
-
-<!-- OVO JE MESTO ZA PRETRAGUUUUUUUUUUUUU-->
-
-<div class="header bg-opacity-75 bg-success">
-    <form>
-        <h1>
-            Search restaurants
-        </h1>
-        <div class="form-box">
-
-            <input type="text" class="search-field" placeholder="RESTAURANT NAME" :value="searchName" @input="searchName = $event.target.value.toUpperCase()">
-                <button @click="sortNameAToZ()" type="button" class="btn btn-outline-light" >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
-                        <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
-                    </svg>
-                </button>
-                <button  @click="sortNameZToA()" type="button" class="btn btn-outline-light">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-sort-alpha-down-alt" viewBox="0 0 16 16">
-                        <path d="M12.96 7H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V7z"/>
-                        <path fill-rule="evenodd" d="M10.082 12.629 9.664 14H8.598l1.789-5.332h1.234L13.402 14h-1.12l-.419-1.371h-1.781zm1.57-.785L11 9.688h-.047l-.652 2.156h1.351z"/>
-                        <path d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
-                    </svg>
-                </button>
-            
-            <select v-model="searchType" class="search-select" placeholder="Type">
-                <option disabled value="">SELECT TYPE</option>
-                <option  selected>SERBIAN</option>
-                <option >ITALIAN</option>
-                <option >CHINESE</option>
-                <option >AMERICAN</option>
-            </select>
-
-            <select  v-model="searchRating" class="search-select" placeholder="Rating">
-                <option disabled value="">SELECT RATING</option>
-                <option v-bind:value=5 >FIVE STARS</option>
-                <option v-bind:value=4 >FOUR STARS</option>
-                <option v-bind:value=3 >THREE STARS</option>
-                <option v-bind:value=2 >TWO STARS</option>
-                <option v-bind:value=1 >ONE STAR</option> 
-            </select>
-
-            <button @click="sortRA()" type="button" class="btn btn-outline-light" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-sort-down" viewBox="0 0 16 16">
-                <path d="M3.5 2.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 11.293V2.5zm3.5 1a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zM7.5 6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 3a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
-                </svg>
-            </button>
-            <button  @click="sortRD()" type="button" class="btn btn-outline-light">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-sort-down-alt" viewBox="0 0 16 16">
-                <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"/>
-                </svg>
-            </button>
-
-
-            <input type="text" class="search-field" placeholder="LOCATION" :value="searchLocation" @input="searchLocation = $event.target.value.toUpperCase()">
-                <button @click="sortLA()" type="button" class="btn btn-outline-light" >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
-                        <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
-                    </svg>
-                </button>
-                <button  @click="sortLD()" type="button" class="btn btn-outline-light">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="22" fill="currentColor" class="bi bi-sort-alpha-down-alt" viewBox="0 0 16 16">
-                        <path d="M12.96 7H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V7z"/>
-                        <path fill-rule="evenodd" d="M10.082 12.629 9.664 14H8.598l1.789-5.332h1.234L13.402 14h-1.12l-.419-1.371h-1.781zm1.57-.785L11 9.688h-.047l-.652 2.156h1.351z"/>
-                        <path d="M4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
-                    </svg>
-                </button>
-
-            <select  v-model="filterStatus" class="search-select" placeholder="STATUS">
-                <option disabled value="">SELECT STATUS</option>
-                <option >ALL</option>
-                <option >OPEN</option>
-            </select>
-
-            <button @click="resetSearch()" type="button" class="btn btn-outline-light" >RESET SEARCH</button>
-
-
-            <br>
-            <br>
-            <button  @click="setFlagg()" type="button" class="btn btn-outline-light"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
-            <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
-            <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-          </svg> SEARCH BY MAPS
-            </button>
-
-            <div v-if="flagg === true" align="center" vertical-align="center" style="border-style:solid; width:100%; height:200px;">
-                    <map-container
-                    :coordinates="[this.restaurant.location.longitude,this.restaurant.location.latitude]"
-                        ></map-container>
-            </div>
-            <div v-else></div>
-
-
-           
-
-        </div>
-
-            
-        
-        
-    </form>
-</div>
-<section class="bg-dark">
-    <div class="container py-3">
-        <div class="row gx-2 d-flex justify-content-center">
-            <div class="col-lg-2">
-                <input type="text" v-model="nameSearch" placeholder="Naziv">
-            </div>
-            <div class="col-lg-2">
-                <input type="text" v-model="typeSearch" placeholder="Tip" >
-            </div>
-            <div class="col-lg-2">
-                <input type="text" v-model="locationSearch" placeholder="Lokacija" >
-            </div>
-            <div class="col-lg-2">
-                <input type="text" v-model="gradeSearch" placeholder="Ocjena">
-            </div>
-            
-            
-            
-            
-        </div>
-    </div>
-</section>
-
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-			<label v-on:click="sortList('name')">Naziv</label>
-			</th>
-			<th>Tip</th>
-			<th v-on:click="sortList('location.address.town')">Lokacija</th>
-			<th v-on:click="sortList('averageGrade')">Prosecna ocena</th>
-		</tr>
-	</thead>
-    <tbody v-for="object in filteredSportObjects">
-        <tr>
-            <td>{{object.name}}</td>
-            <td>{{object.objectType}}</td>
-            <td>{{object.location.address.town}}</td>
-            <td>{{object.averageGrade}}</td>
-        </tr>
-    </tbody>
-</table>
-
-<!-- OVO JE MESTO ZA PRETRAGUUUUUUUUUUUUU-->
-
-<!-- Carousel wrapper -->
-<div
-id="carouselMultiItemExample"
-class="carousel slide carousel-dark text-center"
-data-mdb-ride="carousel"
->
-
-<!-- Inner -->
-<div class="carousel-inner py-4">
-<!-- Single item -->
-<div class="carousel-item active">
-<div class="container">
-<div class="row">
-  <div v-if="restaurant.deleted === false" v-for="restaurant in filteredRestaurants" class="col-lg-4">
-    <div class="card">
-    <img v-bind:src="restaurant.logo"
-      />
-      <div class="card-body">
-        <h4 class="card-title">{{restaurant.name}}</h4>
-        <h6 v-if="restaurant.status === 'OPEN'" style="color: green;">{{restaurant.status }}</h6>
-        <h6 v-else style="color: red;">{{restaurant.status}}</h6>
-        <h6>{{restaurant.location.address.town}}<p>{{restaurant.location.address.street}} {{restaurant.location.address.number}}</p></h6>
-        <h6 >Rating: <svg xmlns="http://www.w3.org/2000/svg" v-for="p in restaurant.avg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-      </svg></h6>
-        <button @click="saveRestaurantId(restaurant.name)" type="button" class="btn btn-outline-dark">SEE ITEMS</button>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Inner -->
-</div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="h-100 bg-dark">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col">
-                <div class="card card-registration my-4">
-                    <div class="row g-0">
-                        <div class="col-xl-6 d-none d-xl-block">
-                            <img src="D:\Fax\WEB\Projekat\WebProjekat2022\BitiFiti\WebContent\Resources\registration.jpg"
-                            alt="Sample photo" class="img-fluid"
-                            style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+        <!-- Navigation-->
+                <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
+                    <div class="container px-5">
+                        <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
+                            <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                            BitiFiti - Admin
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarResponsive">
+                            <ul class="navbar-nav ms-auto">
+                                <li @click="logOut()" class="nav-item">Odjavi se</li>
+                            </ul>
                         </div>
-                        <div class="col-xl-6">
-                            <div class="card-body p-md-5 text-black">
-                                <h3 class="mb-5">Registrujte se</h3>
+                    </div>
+                </nav>
+    
+        <!-- Header-->
+        <header class="masthead text-center text-black">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-0">Najbolji sajt na svijetu</h1>
+                    <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn More</a>
+                </div>
+            </div>
+        </header>
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <input type="text" id="form3Example1m" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example1m">Ime</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            <input type="text" id="form3Example1n" class="form-control form-control-lg" />
-                                            <label class="form-label" for="form3Example1n">Prezime</label>
-                                        </div>
-                                    </div>
-                                </div>
+<!-- pretraga -->
+    <section class="bg-dark">
+        <div class="container py-3">
+            <div class="row d-flex justify-content-center">
+                <input class="col-lg-2 mx-2" type="text" v-model="nameSearch" placeholder="Naziv">
+                <input class="col-lg-2 mx-2" type="text" v-model="typeSearch" placeholder="Tip" >
+                <input class="col-lg-2 mx-2" type="text" v-model="locationSearch" placeholder="Lokacija" >
+                <input class="col-lg-2 mx-2" type="text" v-model="scoreSearch" placeholder="Ocjena">
+            </div>
+        </div>
+    </section>
 
-                                <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
-                                    <h6 class="mb-0 me-4">Pol: </h6>
-                                    <div class="form-check form-check-inline mb-0 me-4">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                                            value="option1" />
-                                        <label class="form-check-label" for="femaleGender">Žensko</label>
-                                    </div>
-                                    <div class="form-check form-check-inline mb-0 me-4">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                                            value="option2" />
-                                        <label class="form-check-label" for="maleGender">Muško</label>
-                                    </div>
-                                </div>
 
-                                <div class="form-outline mb-4">
-                                    <input type="date" id="form3Example8" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example8">Datum rođenja</label>
-                                </div>
+    <!-- Carousel wrapper -->
+    <div
+        id="carouselMultiItemExample"
+        class="carousel slide carousel-dark text-center"
+        data-mdb-ride="carousel">
 
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example8" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example8">Korisničko ime</label>
-                                </div>
-
-                                <div class="form-outline mb-4">
-                                    <input type="text" id="form3Example8" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example8">Šifra</label>
-                                </div>
-
-                                <div class="d-flex justify-content-end pt-3">
-                                    <button type="button" class="btn btn-light btn-lg">Poništi</button>
-                                    <button type="button" class="btn btn-warning btn-lg ms-2">Registracija</button>
+        <!-- Inner -->
+        <div class="carousel-inner py-4">
+            <!-- Single item -->
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row">
+                        <div v-for="object in filteredSportObjects" class="col-lg-4">
+                            <div class="card">
+                                <img v-bind:src="object.logo"/>
+                                <div class="card-body">
+                                    <h4 class="card-title">{{object.name}}</h4>
+                                    <h6 v-if="restaurant.status === 'OPEN'" style="color: green;">{{object.status }}</h6>
+                                    <h6 v-else style="color: red;">{{object.status}}</h6>
+                                    <h6>{{object.location.city}}<p>{{object.location.city}} {{object.location.city}}</p></h6>
+                                    <h6 >Ocjena: <svg xmlns="http://www.w3.org/2000/svg" v-for="p in object.avg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg></h6>
+                                    <button @click="openSportObjectPage(object.name)" type="button" class="btn btn-outline-dark">Pregledaj</button>
+                                    <button @click="deleteSportObject(object)" type="button" class="btn btn-outline-danger">Obriši</button>
                                 </div>
                             </div>
                         </div>
@@ -294,93 +84,41 @@ data-mdb-ride="carousel"
             </div>
         </div>
     </div>
-</section>
 
 
-
-
-
-
-
-
-
-<section class="vh-100" style="background-color: #f4a552;">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col col-xl-10">
-                <div class="card" style="border-radius: 1rem;">
-                    <div class="row g-0">
-                        <div class="col-md-6 col-lg-5 d-none d-md-block">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
-                            alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
-                        </div>
-                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                            <div class="card-body p-4 p-lg-5 text-black">
-
-                                <div class="d-flex align-items-center mb-3 pb-1">
-                                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                    <span class="h1 fw-bold mb-0">Logo</span>
-                                </div>
-
-                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Prijavite se</h5>
-
-                                <div class="form-outline mb-4">
-                                    <input v-model="user.username" type="text" class="form-control form-control-lg" />
-                                    <label class="form-label">Korisničko ime</label>
-                                </div>
-
-                                <div class="form-outline mb-4">
-                                    <input v-model="user.password" type="password" class="form-control form-control-lg" />
-                                    <label class="form-label">Šifra</label>
-                                </div>
-
-                                <div style="color: red;" id="greska">{{greska}}</div>
-
-                                <div class="pt-1 mb-4">
-                                <button class="btn btn-warning btn-lg btn-block" type="button">Prijava</button>
-                                </div>
-                                <p class="mb-5 pb-lg-2" style="color: #393f81;">Nemate nalog? <a href="#!"
-                                style="color: #393f81;">Registujte se</a></p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- tabela -->
+    <section id="scroll">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                    <label v-on:click="sortList('name')">Naziv</label>
+                    </th>
+                    <th v-on:click="sortList('sportObjectType')">Tip</th>
+                    <th v-on:click="sortList('location')">Lokacija</th>
+                    <th v-on:click="sortList('averageScore')">Prosječna ocjena</th>
+                </tr>
+            </thead>
+            <tbody v-for="object in filteredSportObjects">
+                <tr>
+                    <td>{{object.name}}</td>
+                    <td>{{object.sportObjectType}}</td>
+                    <td>{{object.location.city}}</td>
+                    <td>{{object.averageScore}}</td>
+                </tr>
+            </tbody>
+        </table>
             </div>
         </div>
+    </section>
+    
+        <!-- Footer-->
+                <footer class="py-5 bg-black">
+                    <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Đorđe & Boško doo</p></div>
+                </footer>
     </div>
-</section>
-
-
-<div class="container">
-    <form class="needs-validation" novalidate>
-        <div class="row justify-content-center">
-            <div class="col-lg-3">
-                <label for="validationCustom01" class="form-label">Korisničko ime</label>
-                <input type="text" class="form-control" id="validationCustom01" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-3">
-                <label for="validationCustom02" class="form-label">Šifra</label>
-                <input type="password" class="form-control" id="validationCustom02" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        </div>
-            <div class="col-12 mt-3">
-                <button class="btn btn-warning float-" type="submit">Prijava</button>
-            </div> 
-    </form>
-</div>
-    <!-- Footer-->
-    <footer class="py-5 bg-black">
-        <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Đorđe & Boško doo</p></div>
-    </footer>
 
   <!-- Bootstrap core JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

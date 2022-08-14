@@ -13,7 +13,7 @@
             "zipCode": 21000
         },
         "logo": null,
-        "averageScore": 0.0,
+        "averageScore": 4.0,
         "startTime": null,
         "endTime": null
     },
@@ -31,7 +31,7 @@
             "zipCode": 21000
         },
         "logo": null,
-        "averageScore": 10.0,
+        "averageScore": 3.0,
         "startTime": null,
         "endTime": null
     },
@@ -49,7 +49,25 @@
             "zipCode": 21000
         },
         "logo": null,
-        "averageScore": 10.0,
+        "averageScore": 5.0,
+        "startTime": null,
+        "endTime": null
+    },
+    {
+        "name": "NonStop2",
+        "sportObjectType": "SPORT_CENTER",
+        "services": [],
+        "working": true,
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "Maksima Gorkog",
+            "streetNumber": 1312,
+            "city": "Teslic",
+            "zipCode": 21000
+        },
+        "logo": null,
+        "averageScore": 1.0,
         "startTime": null,
         "endTime": null
     }
