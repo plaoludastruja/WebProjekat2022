@@ -15,6 +15,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import beans.Service;
 import beans.SportObject;
 import dao.SportObjectDAO;
 import dao.UserDAO;
@@ -46,6 +47,14 @@ public class SportObjectService {
 		return sportObjectDAO.getAll();
 	}
 
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public SportObject getSportObject(@PathParam("id") String id) {
+		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");
+		return sportObjectDAO.getByName(id);
+	}
+
 	@POST
 	@Path("/addSportObject")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -56,5 +65,24 @@ public class SportObjectService {
 			return Response.status(400).entity("Korisnicko ime je zauzeto").build();
 		}
 		return Response.status(200).build();
+	}
+
+	// nije mi trebala
+	@GET
+	@Path("/serviceBySportObject/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Service> service(@PathParam("id") String id) {
+		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");
+		return sportObjectDAO.findServicestBySportObject(id);
+	}
+	// nije mi trebala
+	@GET
+	@Path("/serviceBySportObject")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Service> service( @Context HttpServletRequest request) {
+		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO"); 
+		return sportObjectDAO.findServicestBySportObject(request.getParameter("name").replace("%20", " "));
 	}
 }

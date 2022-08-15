@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import beans.Service;
 import beans.SportObject;
 
 public class SportObjectDAO {
@@ -36,6 +37,10 @@ public class SportObjectDAO {
 			}
 		}
 		return null;
+	}
+
+	public List<Service> findServicestBySportObject(String sportsObjectName){
+		return getByName(sportsObjectName).getServices();
 	}
 	
 	public boolean addSportObject(SportObject o) {

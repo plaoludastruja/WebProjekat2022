@@ -159,5 +159,8 @@ Vue.component("homepage", {
 				this.sortedbyASC = true;
 			}
 		},
+        openSportObjectPage: function(sportObjectName){
+			this.$router.push("/sportObjectInfo/"+sportObjectName);
+		},
     }
 });
