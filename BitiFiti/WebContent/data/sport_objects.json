@@ -1,1 +1,236 @@
-[{"name":"24h fitness","sportObjectType":"GYM","services":[],"location":{"longitude":420.0,"latitude":69.0,"streetName":"Maksima Gorkog","streetNumber":"1312","city":"Novi Sad","zipCode":"21000"},"logo":null,"averageScore":4.0,"startTime":null,"endTime":null,"working":true},{"name":"Sajmiste","sportObjectType":"POOL","services":[],"location":{"longitude":420.0,"latitude":69.0,"streetName":"Maksima Gorkog","streetNumber":"1312","city":"Sajmiste","zipCode":"21000"},"logo":null,"averageScore":3.0,"startTime":null,"endTime":null,"working":true},{"name":"NonStop","sportObjectType":"SPORT_CENTER","services":[],"location":{"longitude":420.0,"latitude":69.0,"streetName":"Maksima Gorkog","streetNumber":"1312","city":"Teslic","zipCode":"21000"},"logo":null,"averageScore":5.0,"startTime":null,"endTime":null,"working":true},{"name":"NonStop2","sportObjectType":"SPORT_CENTER","services":[],"location":{"longitude":420.0,"latitude":69.0,"streetName":"Maksima Gorkog","streetNumber":"1312","city":"Teslic","zipCode":"21000"},"logo":null,"averageScore":1.0,"startTime":null,"endTime":null,"working":true},{"name":"lt89","sportObjectType":"GYM","services":[],"location":{"longitude":420.0,"latitude":69.0,"streetName":"","streetNumber":"","city":"","zipCode":""},"logo":null,"averageScore":0.0,"startTime":"13:42","endTime":"12:42","working":true},{"name":"lt89","sportObjectType":"GYM","services":[],"location":{"longitude":420.0,"latitude":69.0,"streetName":"kara","streetNumber":"69","city":"teslic","zipCode":"74270"},"logo":null,"averageScore":0.0,"startTime":"12:56","endTime":"13:56","working":true}]
+[
+    {
+        "name": "24h fitness",
+        "sportObjectType": "GYM",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "Maksima Gorkog",
+            "streetNumber": "1312",
+            "city": "Novi Sad",
+            "zipCode": "21000"
+        },
+        "logo": null,
+        "averageScore": 4.0,
+        "startTime": null,
+        "endTime": null,
+        "working": true
+    },
+    {
+        "name": "Sajmiste",
+        "sportObjectType": "POOL",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "Maksima Gorkog",
+            "streetNumber": "1312",
+            "city": "Sajmiste",
+            "zipCode": "21000"
+        },
+        "logo": null,
+        "averageScore": 3.0,
+        "startTime": null,
+        "endTime": null,
+        "working": true
+    },
+    {
+        "name": "NonStop",
+        "sportObjectType": "SPORT_CENTER",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "Maksima Gorkog",
+            "streetNumber": "1312",
+            "city": "Teslic",
+            "zipCode": "21000"
+        },
+        "logo": null,
+        "averageScore": 5.0,
+        "startTime": null,
+        "endTime": null,
+        "working": true
+    },
+    {
+        "name": "NonStop2",
+        "sportObjectType": "SPORT_CENTER",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "Maksima Gorkog",
+            "streetNumber": "1312",
+            "city": "Teslic",
+            "zipCode": "21000"
+        },
+        "logo": null,
+        "averageScore": 1.0,
+        "startTime": null,
+        "endTime": null,
+        "working": true
+    },
+    {
+        "name": "lt89",
+        "sportObjectType": "GYM",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "",
+            "streetNumber": "",
+            "city": "",
+            "zipCode": ""
+        },
+        "logo": null,
+        "averageScore": 0.0,
+        "startTime": "13:42",
+        "endTime": "12:42",
+        "working": true
+    },
+    {
+        "name": "lt89",
+        "sportObjectType": "GYM",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "kara",
+            "streetNumber": "69",
+            "city": "teslic",
+            "zipCode": "74270"
+        },
+        "logo": null,
+        "averageScore": 0.0,
+        "startTime": "12:56",
+        "endTime": "13:56",
+        "working": true
+    },
+    {
+        "name": "testslika",
+        "sportObjectType": "GYM",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "kds",
+            "streetNumber": "78",
+            "city": "yhuj",
+            "zipCode": "678"
+        },
+        "logo": null,
+        "averageScore": 0.0,
+        "startTime": "17:46",
+        "endTime": "14:50",
+        "working": true
+    },
+    {
+        "name": "jk",
+        "sportObjectType": "GYM",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "j",
+            "streetNumber": "k",
+            "city": "k",
+            "zipCode": "k"
+        },
+        "logo": null,
+        "averageScore": 0.0,
+        "startTime": "15:33",
+        "endTime": "15:03",
+        "working": true
+    },
+    {
+        "name": "jbk",
+        "sportObjectType": "GYM",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "sd",
+            "streetNumber": "d",
+            "city": "d",
+            "zipCode": "d"
+        },
+        "logo": null,
+        "averageScore": 0.0,
+        "startTime": "03:03",
+        "endTime": "02:00",
+        "working": true
+    },
+    {
+        "name": "ajde",
+        "sportObjectType": "GYM",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "",
+            "streetNumber": "",
+            "city": "",
+            "zipCode": ""
+        },
+        "logo": "C:\\fakepath\\admin.png",
+        "averageScore": 0.0,
+        "startTime": null,
+        "endTime": null,
+        "working": true
+    },
+    {
+        "name": "hnkjml",
+        "sportObjectType": "GYM",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "s",
+            "streetNumber": "s",
+            "city": "s",
+            "zipCode": "s"
+        },
+        "logo": null,
+        "averageScore": 0.0,
+        "startTime": "12:59",
+        "endTime": "12:58",
+        "working": true
+    },
+    {
+        "name": "kkjnkj",
+        "sportObjectType": "GYM",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "",
+            "streetNumber": "",
+            "city": "",
+            "zipCode": ""
+        },
+        "logo": "C:\\fakepath\\B-meal.jpeg",
+        "averageScore": 0.0,
+        "startTime": null,
+        "endTime": null,
+        "working": true
+    },
+    {
+        "name": "sadce",
+        "sportObjectType": "GYM",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "",
+            "streetNumber": "",
+            "city": "",
+            "zipCode": ""
+        },
+        "logo": "AmericanPancakes.jpeg",
+        "averageScore": 0.0,
+        "startTime": null,
+        "endTime": null,
+        "working": true
+    }
+]

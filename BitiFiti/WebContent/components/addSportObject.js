@@ -24,6 +24,8 @@ Vue.component("addSportObject", {
                 working: true,
             },
             greska: "",
+            managers: [],
+            file: null,
 	    }
 	},
 	// html bootstrap
@@ -140,6 +142,30 @@ Vue.component("addSportObject", {
                                                     <label class="form-label">Kraj</label>
                                                 </div>
 
+                                                <div class="row mb-0">
+                                                    <div class="col-md-8 mb-2">
+                                                        <div class="form-outline mb-2">
+                                                            <select class="form-select" v-model="managerValue">
+                                                                <option disabled>Nema mendjera</option>
+                                                                <option v-for="manager in managers" :value="manager.username">{{manager.firstName}} {{manager.lastName}}</option>
+                                                            </select>
+                                                            <label class="form-label">Izaberite menadjera</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 mb-2">
+                                                        <div class="btn btn-secondary">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                                            </svg>
+                                                        </div>
+                                                        <label class="form-label">Dodaj menadjera</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-outline mb-2">
+                                                    <input class="form-control" type="file" ref="image" accept="image/png, image/jpeg" id="formFile"><br>
+                                                    <label class="form-label">Logo</label>
+                                                </div>
 
                                                 <div style="color: red;" id="greska">{{greska}}</div>
         
@@ -162,7 +188,8 @@ Vue.component("addSportObject", {
 </div>`,
 	// na pocetku
     mounted () {
-        this.getAllUsers();
+        this.getFreeManagers();
+        
     },
 	// funkcije
     methods: {
@@ -171,10 +198,13 @@ Vue.component("addSportObject", {
 			.post('rest/users/logout')
 			.then(response=> {this.$router.push("/login")})
 		},
-        getAllUsers: function () {
+        // TODO : treba da mi vrati sve menadzere koji nemaju sportski objekat, mogu ciljati users,
+        // a moze se napraviti i odvojeni za menazdere
+        // ugl ocekujem listu menadzera
+        getFreeManagers: function () {
 			axios
-			.get('rest/users/allUsers')
-			.then(response=> {this.users=response.data})
+			.get('rest/users/freeManagers')
+			.then(response=> {this.managers=response.data})
 		},
         openMyProfilePage: function(){
             this.$router.push("/myProfile/"+this.id)
@@ -192,12 +222,16 @@ Vue.component("addSportObject", {
             this.$router.push("/addTrainer")
         },
         addNewSportObject: function() {
+            // TODO dodati sliku za logo
+            this.sportObject.logo= document.getElementById("formFile").files[0].name;
+
+
             axios
             .post('rest/sportObjects/addSportObject', this.sportObject)
             .then(this.$router.push("/allUsers"))
             .catch(err => {
                 this.greska = "Nesto ne valja!";
             })
-        }
+        },
     }
 });

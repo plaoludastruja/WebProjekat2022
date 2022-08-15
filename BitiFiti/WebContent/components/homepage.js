@@ -70,10 +70,10 @@ Vue.component("homepage", {
                             <div class="row">
                                 <div v-for="object in filteredSportObjects" class="col-lg-4">
                                     <div class="card">
-                                        <img v-bind:src="object.name"/>
+                                        <img v-bind:src="object.logo"/>
                                         <div class="card-body">
                                             <h4 class="card-title">{{object.name}}</h4>
-                                            <h6 v-if="object.isWorking" style="color: green;">Otvoreno</h6>
+                                            <h6 v-if="object.working" style="color: green;">Otvoreno</h6>
                                             <h6 v-else style="color: red;">Zatvoreno</h6>
                                             <h6>{{object.location.city}}<p>{{object.location.streetName}} {{object.location.streetNumber}}</p></h6>
                                             <h6 >Ocjena: <svg xmlns="http://www.w3.org/2000/svg" v-for="p in object.averageScore" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
