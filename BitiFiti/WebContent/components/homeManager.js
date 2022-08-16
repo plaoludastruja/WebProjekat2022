@@ -10,6 +10,8 @@ Vue.component("homeManager", {
 		    locationSearch:'',
 		    scoreSearch:'',
             sportObjects: [],
+            mySportObject: {},
+            user:{},
 	    }
 	},
 	// html bootstrap
@@ -26,7 +28,7 @@ Vue.component("homeManager", {
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item" @click="openMySportObject()" class="nav-item">Svi korisnici</li>
+                            <li class="nav-item" @click="openMySportObject()" class="nav-item">Moj sportski objekat</li>
                             <li class="nav-item" @click="openMyProfilePage()" class="nav-item">Moj profil</li>
                             <li class="nav-item" @click="logOut()" class="nav-item">Odjavi se</li>
                         </ul>
@@ -101,6 +103,7 @@ Vue.component("homeManager", {
 	// na pocetku
     mounted () {
         this.getAllSportObject();
+        this.getCurrentUser();
     },
     computed: {
         // ovo prepraviti da bude kao pretraga, sa svim ifovima u zavisnosti sta je ukucano
@@ -133,7 +136,12 @@ Vue.component("homeManager", {
             this.$router.push("/myProfile/"+this.id)
         },
         openMySportObject: function(){
-            this.$router.push("/mySportObject")
+            this.$router.push("/mySportObject/" + this.id + "/" + this.user.sportsObject)
         },
+        getCurrentUser: function () {
+			axios
+			.get('rest/users/currentUser')
+			.then(response=> {this.user=response.data})
+		},
     }
 });

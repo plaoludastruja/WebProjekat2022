@@ -14,13 +14,14 @@ public class SportObject {
 	private double averageScore;
 	private String startTime;
 	private String endTime;
+	private String manager;
 	
 	public SportObject() {
 		super();
 	}
 
 	public SportObject(String name, SportObjectType sportObjectType, List<Service> services, boolean isWorking,
-			Location location, String logo, double averageScore, String startTime, String endTime) {
+			Location location, String logo, double averageScore, String startTime, String endTime, String manager) {
 		super();
 		this.name = name;
 		this.sportObjectType = sportObjectType;
@@ -31,6 +32,7 @@ public class SportObject {
 		this.averageScore = averageScore;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.manager = manager;
 	}
 
 	public String getName() {
@@ -103,6 +105,14 @@ public class SportObject {
 
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
+	}
+
+	public String getManager() {
+		return manager;
+	}
+
+	public void setManager(String manager) {
+		this.manager = manager;
 	}
 	
 	

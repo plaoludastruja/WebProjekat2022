@@ -30,7 +30,7 @@ const router = new VueRouter({
 		{ path: '/addSportObject', component: AddSportObjectPage},
 		{ path: '/addManager', component: AddManagerPage},
 		{ path: '/addTrainer', component: AddTrainerPage},
-		{ path: '/mySportObject', component: MySportObjectPage},
+		{ path: '/mySportObject/:name/:sportObjectName', component: MySportObjectPage},
 		{ path: '/sportObjectInfo/:name', component: SportObjectInfoPage},
 
 		// ne prelaziti

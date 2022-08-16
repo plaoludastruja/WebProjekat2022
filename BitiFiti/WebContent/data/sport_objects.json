@@ -48,7 +48,35 @@
     {
         "name": "Sajmiste",
         "sportObjectType": "POOL",
-        "services": [],
+        "services": [
+            {
+                "name": "Igranka bez prestanka",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": {},
+                "duration": 50,
+                "trainer": null,
+                "description": "guzica",
+                "image": "jbs"
+            },
+            {
+                "name": "Igranka bez prestanka1",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": {},
+                "duration": 50,
+                "trainer": null,
+                "description": "guzica",
+                "image": "jbs"
+            },
+            {
+                "name": "Igranka bez prestanka2",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": {},
+                "duration": 50,
+                "trainer": null,
+                "description": "guzica",
+                "image": "jbs"
+            }
+        ],
         "location": {
             "longitude": 420.0,
             "latitude": 69.0,
