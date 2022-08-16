@@ -12,7 +12,7 @@ Vue.component("mySportObject", {
 		    scoreSearch:'',
             users: [],
             sportObject:{},
-            services:[],
+            services:[]
 	    }
 	},
 	// html bootstrap
@@ -43,7 +43,7 @@ Vue.component("mySportObject", {
                     <h1 class="masthead-heading mb-0">SVI KORISNICI</h1>
                     <div class="row">
                         <div class="col-sm-12">
-                            <a @click="addServicePage()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
+                            <a @click="addServicePage()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj trening</a>
                         </div>
                     </div>
                 </div>
@@ -132,6 +132,9 @@ Vue.component("mySportObject", {
         },
         addTrainer: function(){
             this.$router.push("/addTrainer")
+        },
+        addServicePage: function(){
+            this.$router.push("/addService/" + this.id1)
         },
     }
 });

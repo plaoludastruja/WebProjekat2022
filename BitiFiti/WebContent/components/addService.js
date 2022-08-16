@@ -1,10 +1,21 @@
 // naziv komponente kao u app.js
-Vue.component("addSportObject", { 
+Vue.component("addService", { 
 	// podaci
 	data: function () {
 	    return {
-            id: this.$route.params.username,
+            id: this.$route.params.name,
             users: [],
+            service: 
+                {
+                    name: '',
+                    serviceType: 0,
+                    sportObject: {},
+                    duration: 0,
+                    trainer: '',
+                    description: '',
+                    image: ''
+                },
+
             sportObject: {
                 name: '',
                 sportObjectType: 0,
@@ -24,7 +35,7 @@ Vue.component("addSportObject", {
                 working: true,
             },
             greska: "",
-            managers: [],
+            trainers: [],
             file: null,
 	    }
 	},
@@ -54,7 +65,7 @@ Vue.component("addSportObject", {
             <header class="masthead text-center text-black">
                 <div class="masthead-content">
                     <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">SVI KORISNICI</h1>
+                        <h1 class="masthead-heading mb-0">Moj sportski objekat</h1>
                         <div class="row">
                             <div class="col-sm-12">
                                 <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
@@ -75,82 +86,41 @@ Vue.component("addSportObject", {
                                     <div class="row g-0">
                                         <div class="d-flex align-items-center">
                                             <div class="card-body p-md-5 text-black">
-                                                <h3 class="mb-3">Dodaj novi sportski objekat</h3>
+                                                <h3 class="mb-3">Dodaj novi trening</h3>
                                                 <div class="form-outline mb-2">
-                                                    <input v-model="sportObject.name" type="text" class="form-control form-control-lg" />
+                                                    <input v-model="service.name" type="text" class="form-control form-control-lg" />
                                                     <label class="form-label">Ime</label>
                                                 </div>
 
                                                 <div class="form-outline mb-2">
-                                                    <select class="form-select" v-model="sportObjectType">
-                                                        <option value=GYM>Teretana</option>
-                                                        <option value=POOL>Bazen</option>
-                                                        <option value=SPORT_CENTER>Sportski centar</option>
-                                                        <option value=DANCE_STUDIO>Plesni studio</option>
+                                                    <select class="form-select" v-model="service.serviceType">
+                                                        <option value=PERSONAL_TRAINING>Personalni trening</option>
+                                                        <option value=GROUP_TRAINING>Grupni trening</option>
+                                                        <option value=SAUNA>Sauna</option>
+                                                        <option value=MASSAGE>Masaza</option>
                                                     </select>
-                                                    <label class="form-label">Tip sportskog objekta</label>
+                                                    <label class="form-label">Tip treninga</label>
+                                                </div>
+                
+                                                <div class="form-outline mb-2">
+                                                    <input v-model="service.duration" type="number" class="form-control form-control-lg" />
+                                                    <label class="form-label">Trajanje</label>
                                                 </div>
 
-                                                <div class="row mb-0">
-                                                    <div class="col-md-4 mb-2">
-                                                        <div class="form-outline">
-                                                            <input v-model="sportObject.location.streetName" type="text" class="form-control form-control-lg" />
-                                                            <label class="form-label">Ulica</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2 mb-2">
-                                                        <div class="form-outline">
-                                                            <input v-model="sportObject.location.streetNumber" type="text" class="form-control form-control-lg" />
-                                                            <label class="form-label">Broj</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-4 mb-2">
-                                                        <div class="form-outline">
-                                                            <input v-model="sportObject.location.city" type="text" class="form-control form-control-lg" />
-                                                            <label class="form-label">Grad</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2 mb-2">
-                                                        <div class="form-outline">
-                                                            <input v-model="sportObject.location.zipCode" type="text" class="form-control form-control-lg" />
-                                                            <label class="form-label">ZipCode</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-0">
-                                                    <div class="col-md-6 mb-2">
-                                                        <div class="form-outline">
-                                                            <input v-model="sportObject.location.longitude" type="number" class="form-control form-control-lg" />
-                                                            <label class="form-label">Longitude</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 mb-2">
-                                                        <div class="form-outline">
-                                                            <input v-model="sportObject.location.latitude" type="number" class="form-control form-control-lg" />
-                                                            <label class="form-label">Latitude</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                
                                                 <div class="form-outline mb-2">
-                                                    <input v-model="sportObject.startTime" type="time" class="form-control form-control-lg" />
-                                                    <label class="form-label">Pocetak</label>
-                                                </div>
-                
-                                                <div class="form-outline mb-2">
-                                                    <input v-model="sportObject.endTime" type="time" class="form-control form-control-lg" />
-                                                    <label class="form-label">Kraj</label>
+                                                    <input v-model="service.description" type="text" class="form-control form-control-lg" />
+                                                    <label class="form-label">Opis</label>
                                                 </div>
 
                                                 <div class="row mb-0">
                                                     <div class="col-md-8 mb-2">
                                                         <div class="form-outline mb-2">
-                                                        // TODO managerValue je username od menadzera kad ga dobijem
-                                                            <select class="form-select" v-model="managerValue">
-                                                                <option disabled>Nema mendjera</option>
-                                                                <option v-for="manager in managers" :value="manager.username">{{manager.firstName}} {{manager.lastName}}</option>
+                                                            // TODO trainerValue je string, username od trenera, al to kad ga dobijem 
+                                                            <select class="form-select" v-model="trainerValue">
+                                                                <option disabled>Nema trenera</option>
+                                                                <option v-for="trainer in trainers" :value="trainer.username">{{trainer.firstName}} {{trainer.lastName}}</option>
                                                             </select>
-                                                            <label class="form-label">Izaberite menadjera</label>
+                                                            <label class="form-label">Izaberite trenera</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 mb-2">
@@ -159,7 +129,7 @@ Vue.component("addSportObject", {
                                                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                                             </svg>
                                                         </div>
-                                                        <label class="form-label">Dodaj menadjera</label>
+                                                        <label class="form-label">Dodaj trenera</label>
                                                     </div>
                                                 </div>
 
@@ -171,7 +141,7 @@ Vue.component("addSportObject", {
                                                 <div style="color: red;" id="greska">{{greska}}</div>
         
                                                 <div class="d-flex justify-content-end pt-3">
-                                                    <button @click="addNewSportObject()" type="button" class="btn btn-warning btn-lg ms-2">Registracija</button>
+                                                    <button @click="addNewService()" type="button" class="btn btn-warning btn-lg ms-2">Registracija</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -189,7 +159,8 @@ Vue.component("addSportObject", {
 </div>`,
 	// na pocetku
     mounted () {
-        this.getFreeManagers();
+        this.getTrainers();
+        this.getCurrentUser();
         
     },
 	// funkcije
@@ -199,13 +170,13 @@ Vue.component("addSportObject", {
 			.post('rest/users/logout')
 			.then(response=> {this.$router.push("/login")})
 		},
-        // TODO : treba da mi vrati sve menadzere koji nemaju sportski objekat, mogu ciljati users,
-        // a moze se napraviti i odvojeni za menazdere
-        // ugl ocekujem listu menadzera
-        getFreeManagers: function () {
+        // TODO : treba da mi vrati sve trenere, mogu ciljati users,
+        // a moze se napraviti i odvojeni za trenere
+        // ugl ocekujem listu ttrenerea
+        getTrainers: function () {
 			axios
-			.get('rest/users/freeManagers')
-			.then(response=> {this.managers=response.data})
+			.get('rest/users/trainers')
+			.then(response=> {this.trainers=response.data})
 		},
         openMyProfilePage: function(){
             this.$router.push("/myProfile/"+this.id)
@@ -222,14 +193,19 @@ Vue.component("addSportObject", {
         addTrainer: function(){
             this.$router.push("/addTrainer")
         },
-        addNewSportObject: function() {
+        getCurrentUser: function () {
+			axios
+			.get('rest/users/currentUser')
+			.then(response=> {this.user=response.data})
+		},
+        addNewService: function() {
             // TODO dodati sliku za logo
-            this.sportObject.logo= document.getElementById("formFile").files[0].name;
+            this.service.logo= document.getElementById("formFile").files[0].name;
 
-
+            // TODO saljem addNewService/"IME SPORTSKOG OBJEKTA", i saljem trening, u bekendu dodati servis u taj sportsko objekat
             axios
-            .post('rest/sportObjects/addSportObject', this.sportObject)
-            .then(this.$router.push("/allUsers"))
+            .post('rest/sportObjects/addNewService/'+ this.id, this.service)
+            .then(this.$router.push("/mySportObject/" + this.user.username + "/" + this.this.id))
             .catch(err => {
                 this.greska = "Nesto ne valja!";
             })

@@ -13,6 +13,7 @@ const AddManagerPage = {template: '<addManager></addManager>'}
 const AddTrainerPage = {template: '<addTrainer></addTrainer>'}
 const MySportObjectPage = {template: '<mySportObject></mySportObject>'}
 const SportObjectInfoPage = {template: '<sportObjectInfo></sportObjectInfo>'}
+const AddServicePage = {template: '<addService></addService>'}
 
 // ne prelaziti
 const router = new VueRouter({
@@ -32,6 +33,7 @@ const router = new VueRouter({
 		{ path: '/addTrainer', component: AddTrainerPage},
 		{ path: '/mySportObject/:name/:sportObjectName', component: MySportObjectPage},
 		{ path: '/sportObjectInfo/:name', component: SportObjectInfoPage},
+		{ path: '/addService/:name', component: AddServicePage},
 
 		// ne prelaziti
 	]

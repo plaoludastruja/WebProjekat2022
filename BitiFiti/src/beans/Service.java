@@ -7,7 +7,7 @@ public class Service {
 	private ServiceType serviceType;
 	private SportObject sportObject;
 	private int duration;
-	private User trainer;
+	private String trainer;
 	private String description;
 	private String image;
 	
@@ -17,7 +17,7 @@ public class Service {
 	}
 
 
-	public Service(String name, ServiceType serviceType, SportObject sportObject, int duration, User trainer,
+	public Service(String name, ServiceType serviceType, SportObject sportObject, int duration, String trainer,
 			String description, String image) {
 		super();
 		this.name = name;
@@ -70,12 +70,12 @@ public class Service {
 	}
 
 
-	public User getTrainer() {
+	public String getTrainer() {
 		return trainer;
 	}
 
 
-	public void setTrainer(User trainer) {
+	public void setTrainer(String trainer) {
 		this.trainer = trainer;
 	}
 
