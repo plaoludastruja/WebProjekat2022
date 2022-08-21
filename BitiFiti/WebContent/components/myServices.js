@@ -1,10 +1,9 @@
 // naziv komponente kao u app.js
-Vue.component("mySportObject", { 
+Vue.component("myServices", { 
 	// podaci
 	data: function () {
 	    return {
-            id: this.$route.params.name,
-            id1: this.$route.params.sportObjectName,
+            id: this.$route.params.username,
             sortedbyASC: true,
             nameSearch:'',
 		    typeSearch:'',
@@ -24,7 +23,7 @@ Vue.component("mySportObject", {
                 <div class="container px-5">
                     <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
                         <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                        BitiFiti - Moj sportski objekat
+                        BitiFiti - Moji treninzi
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -40,10 +39,10 @@ Vue.component("mySportObject", {
         <header class="masthead text-center text-black">
             <div class="masthead-content">
                 <div class="container px-5">
-                    <h1 class="masthead-heading mb-0">SVI KORISNICI</h1>
+                    <h1 class="masthead-heading mb-0">MOJI TRENINZI, KAD BOSKO URADI BEKEND</h1>
                     <div class="row">
                         <div class="col-sm-12">
-                            <a @click="addServicePage()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj trening</a>
+                            <a @click="addServicePage()" class="btn btn-outline-dark rounded-pill" target="__blank">Trener moze otkazati personalni trening</a>
                         </div>
                     </div>
                 </div>
@@ -72,17 +71,17 @@ Vue.component("mySportObject", {
                         <th>
                         <label v-on:click="sortList('name')">Korisnicko ime</label>
                         </th>
-                        <th v-on:click="sortList('sportObjectType')">Sifra</th>
-                        <th v-on:click="sortList('sportObjectType')">Tip korisnika</th>
-                        <th v-on:click="sortList('sportObjectType')">Izmjeni</th>
+                        <th v-on:click="sortList('sportObjectType')">Tip</th>
+                        <th v-on:click="sortList('sportObjectType')">Sportski objekat</th>
+                        <th v-on:click="sortList('sportObjectType')">Obrisi personalni</th>
                     </tr>
                 </thead>
-                <tbody v-for="service in this.sportObject.services">
+                <tbody v-for="service in this.services">
                     <tr>
                         <td>{{service.name}}</td>
                         <td>{{service.serviceType}}</td>
-                        <td>{{service.sportObject}}</td>
-                        <td><div  class="btn btn-outline-dark rounded-pill" @click="editService(service.name)">Izmijeni</div></td>
+                        <td>{{service.sportObject.name}}</td>
+                        <td><div  class="btn btn-outline-dark rounded-pill" @click="editService(service.name)">ne treba, mozda</div></td>
                     </tr>
                 </tbody>
             </table>
@@ -97,7 +96,7 @@ Vue.component("mySportObject", {
 </div>`,
 	// na pocetku
     mounted () {
-        this.getSportObject();
+        this.getTrainersServices();
     },
     computed: {
         // ovo prepraviti da bude kao pretraga, sa svim ifovima u zavisnosti sta je ukucano
@@ -115,10 +114,10 @@ Vue.component("mySportObject", {
 			.post('rest/users/logout')
 			.then(response=> {this.$router.push("/login")})
 		},
-        getSportObject: function () {
+        getTrainersServices: function () {
 			axios
-			.get('rest/sportObjects/'+this.id1)
-			.then(response=> {this.sportObject=response.data})
+			.get('rest/user/'+this.id)
+			.then(response=> {this.services=response.data})
 		},
         openMyProfilePage: function(){
             this.$router.push("/myProfile/"+this.id)

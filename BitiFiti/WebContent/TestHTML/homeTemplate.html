@@ -28,6 +28,26 @@
                 </nav>
 
                 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                            <label v-on:click="sortList('name')">Korisnicko ime</label>
+                            </th>
+                            <th v-on:click="sortList('sportObjectType')">Sifra</th>
+                            <th v-on:click="sortList('sportObjectType')">Tip korisnika</th>
+                            <th v-on:click="sortList('sportObjectType')">Izmjeni</th>
+                        </tr>
+                    </thead>
+                    <tbody v-for="service in this.sportObject.services">
+                        <tr>
+                            <td>{{service.name}}</td>
+                            <td>{{service.serviceType}}</td>
+                            <td>{{service.sportObject}}</td>
+                            <td><div  class="btn btn-outline-dark rounded-pill">Izmijeni</div></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <section class="h-100 bg-dark">
                     <div class="container py-5 h-100">
                         <div class="row d-flex justify-content-center align-items-center h-100">

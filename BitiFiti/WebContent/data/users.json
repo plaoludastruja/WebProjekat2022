@@ -103,5 +103,35 @@
         "visitedSportsObjects": null,
         "points": 0,
         "customerType": null
+    },
+    {
+        "username": "ads",
+        "password": "fds",
+        "firstName": "dsa",
+        "lastName": "sad",
+        "gender": null,
+        "dateOfBirth": "",
+        "userType": "TRAINER",
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "pi",
+        "password": "dsa",
+        "firstName": "adsasdd",
+        "lastName": "dsa",
+        "gender": null,
+        "dateOfBirth": "",
+        "userType": "MANAGER",
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
     }
 ]
