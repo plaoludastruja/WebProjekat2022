@@ -35,7 +35,7 @@ Vue.component("myProfile", {
     <section>
         <div class="container">
             <div class="main-body">
-                <div class="row gutters-sm">
+                <div class="row gutters-sm my-4">
 
                     <div class="col-md-4 my-3">
                         <div class="card">
@@ -55,7 +55,7 @@ Vue.component("myProfile", {
                     </div>
 
                     <div class="col-md-8">
-                        <div class="card mb-3">
+                        <div class="card mb-1">
                             <div class="card-body">
                                 <div class="row">
                                         <div class="col-sm-3">
