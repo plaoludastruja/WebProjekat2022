@@ -3,7 +3,6 @@ Vue.component("addTrainer", {
 	// podaci
 	data: function () {
 	    return {
-            id: this.$route.params.username,
             users: [],
             user: {
 				username: '',
@@ -21,39 +20,41 @@ Vue.component("addTrainer", {
 	    template: ` 
 <div>
 
-	<!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
-                        <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                        BitiFiti - {{id}}
+    <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
+            <div class="container px-5">
+                <div>
+                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/homeAdministrator/a">
+                        <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
+                        BitiFiti
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item" @click="openAllUsersPage()" class="nav-item">Svi korisnici</li>
-                            <li class="nav-item" @click="openMyProfilePage()" class="nav-item">Moj profil</li>
-                            <li class="nav-item" @click="logOut()" class="nav-item">Odjavi se</li>
-                        </ul>
-                    </div>
+                </div> 
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-1" role="button" @click="openAllUsersPage()">Svi korisnici</li>
+                        <li class="nav-item mx-1" role="button" @click="openMyProfilePage()">Moj profil</li>
+                        <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
+                    </ul>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
-            <!-- Header-->
-            <header class="masthead text-center text-black">
-                <div class="masthead-content">
-                    <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">SVI KORISNICI</h1>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
-                                <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
-                                <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
-                            </div>
+    <!-- Header-->
+        <header class="masthead text-center text-black">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-1">Novi trener</h1>
+                    <div class="row">
+                        <div class="col-sm-12 mb-2">
+                            <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
+                            <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
+                            <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
                         </div>
                     </div>
                 </div>
-            </header>
+            </div>
+        </header>
 
     <!-- Dodavanje -->
     <section class="h-100 bg-dark">
@@ -64,7 +65,7 @@ Vue.component("addTrainer", {
                                     <div class="row g-0">
                                         <div class="d-flex align-items-center">
                                             <div class="card-body p-md-5 text-black">
-                                                <h3 class="mb-3">Registrujte se</h3>
+                                                <h3 class="mb-3">Dodaj novog trenera</h3>
                 
                                                 <div class="row mb-0">
                                                     <div class="col-md-6 mb-2">
@@ -111,7 +112,7 @@ Vue.component("addTrainer", {
                                                 <div style="color: red;" id="greska">{{greska}}</div>
         
                                                 <div class="d-flex justify-content-end pt-3">
-                                                    <button @click="registerUser()" type="button" class="btn btn-warning btn-lg ms-2">Registracija</button>
+                                                    <button @click="registerUser()" type="button" class="btn btn-warning btn-lg ms-2">Registruj</button>
                                                 </div>
                                             </div>
                                         </div>

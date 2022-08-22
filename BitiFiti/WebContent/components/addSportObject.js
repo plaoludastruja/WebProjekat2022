@@ -3,7 +3,6 @@ Vue.component("addSportObject", {
 	// podaci
 	data: function () {
 	    return {
-            id: this.$route.params.username,
             users: [],
             sportObject: {
                 name: '',
@@ -32,39 +31,41 @@ Vue.component("addSportObject", {
 	    template: `
 <div>
 
-	<!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
-                        <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                        BitiFiti - {{id}}
+    <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
+            <div class="container px-5">
+                <div>
+                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/homeAdministrator/a">
+                        <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
+                        BitiFiti
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item" @click="openAllUsersPage()" class="nav-item">Svi korisnici</li>
-                            <li class="nav-item" @click="openMyProfilePage()" class="nav-item">Moj profil</li>
-                            <li class="nav-item" @click="logOut()" class="nav-item">Odjavi se</li>
-                        </ul>
-                    </div>
+                </div> 
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-1" role="button" @click="openAllUsersPage()">Svi korisnici</li>
+                        <li class="nav-item mx-1" role="button" @click="openMyProfilePage()">Moj profil</li>
+                        <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
+                    </ul>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
-            <!-- Header-->
-            <header class="masthead text-center text-black">
-                <div class="masthead-content">
-                    <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">SVI KORISNICI</h1>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
-                                <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
-                                <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
-                            </div>
+    <!-- Header-->
+        <header class="masthead text-center text-black">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-1">Novi Sportski Objekat</h1>
+                    <div class="row">
+                        <div class="col-sm-12 mb-2">
+                            <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
+                            <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
+                            <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
                         </div>
                     </div>
                 </div>
-            </header>
+            </div>
+        </header>
 
     <!-- Dodavanje -->
     <section class="h-100 bg-dark">
@@ -145,7 +146,7 @@ Vue.component("addSportObject", {
                                                 <div class="row mb-0">
                                                     <div class="col-md-8 mb-2">
                                                         <div class="form-outline mb-2">
-                                                        // TODO managerValue je username od menadzera kad ga dobijem
+                                                        <p>// TODO managerValue je username od menadzera kad ga dobijem</p>
                                                             <select class="form-select" v-model="managerValue">
                                                                 <option disabled>Nema mendjera</option>
                                                                 <option v-for="manager in managers" :value="manager.username">{{manager.firstName}} {{manager.lastName}}</option>
@@ -168,10 +169,12 @@ Vue.component("addSportObject", {
                                                     <label class="form-label">Logo</label>
                                                 </div>
 
+                                                
+
                                                 <div style="color: red;" id="greska">{{greska}}</div>
         
                                                 <div class="d-flex justify-content-end pt-3">
-                                                    <button @click="addNewSportObject()" type="button" class="btn btn-warning btn-lg ms-2">Registracija</button>
+                                                    <button @click="addNewSportObject()" type="button" class="btn btn-warning btn-lg ms-2">Dodaj</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -224,15 +227,20 @@ Vue.component("addSportObject", {
         },
         addNewSportObject: function() {
             // TODO dodati sliku za logo
-            this.sportObject.logo= document.getElementById("formFile").files[0].name;
+            this.sportObject.logo= "components/Resources/" + document.getElementById("formFile").files[0].name;
 
 
             axios
             .post('rest/sportObjects/addSportObject', this.sportObject)
             .then(this.$router.push("/allUsers"))
             .catch(err => {
-                this.greska = "Nesto ne valja!";
+                this.greska = "Postoji objekat sa tim imenom!";
             })
+        },
+
+        loadFile: function(event) {
+            var image = document.getElementById('output');
+            image.src = URL.createObjectURL(event.target.files[0]);
         },
     }
 });

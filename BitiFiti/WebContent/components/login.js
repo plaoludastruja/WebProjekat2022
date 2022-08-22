@@ -15,14 +15,14 @@ Vue.component("login", {
             <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
                 <div class="container px-5">
                     <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/">
-                        <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                        <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/register">Sign Up</a></li>
-                            <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/login">Log In</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/register">Registracija</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/login">Prijava</a></li>
                         </ul>
                     </div>
                 </div>
@@ -37,33 +37,29 @@ Vue.component("login", {
                             <div class="row g-0">
                                 <div class="col-md-6 col-lg-5 d-none d-md-block">
                                     <img src="https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80"
-                                    alt="login form" class="img-fluid w-100 h-100" style="border-radius: 1rem 0 0 1rem;" />
+                                    alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
                                 </div>
                                 <div class="col-md-6 col-lg-7 d-flex align-items-center">
                                     <div class="card-body p-4 p-lg-5 text-black">
 
-                                            <div class="d-flex align-items-center mb-3 pb-1">
-                                                <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
-                                                <span class="h1 fw-bold mb-0">Logo</span>
-                                            </div>
+                                            <h3 class="mb-4">Prijavite se</h3>
 
-                                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Prijavite se</h5>
-
-                                            <div class="form-outline mb-4">
+                                            <div class="form-outline mb-2">
                                                 <input v-model="user.username" type="text" class="form-control form-control-lg" required/>
                                                 <label class="form-label">Korisničko ime</label>
                                             </div>
 
-                                            <div class="form-outline mb-4">
+                                            <div class="form-outline mb-2">
                                                 <input v-model="user.password" type="password" class="form-control form-control-lg" />
                                                 <label class="form-label">Šifra</label>
                                             </div>
 
                                             <div style="color: red;" id="greska">{{greska}}</div>
 
-                                            <div class="pt-1 mb-4">
-                                                <button @click="checkUser()" class="btn btn-warning btn-lg btn-block" type="button">Prijava</button>
+                                            <div class="d-flex justify-content-end pt-3">
+                                                <button @click="checkUser()" type="button" class="btn btn-warning btn-lg ms-2">Prijava</button>
                                             </div>
+
                                             <p class="mb-5 pb-lg-2" style="color: #393f81;">Nemate nalog? <a href="http://localhost:8080/BitiFiti/#/register"
                                             style="color: #393f81;">Registujte se</a></p>
         
@@ -105,7 +101,7 @@ Vue.component("login", {
                 })
             )
             .catch(err => {
-                this.greska = "Wrong password or username!";
+                this.greska = "Pogrešno korisničko ime ili šifra!";
             })
         }
         

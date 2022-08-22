@@ -3,36 +3,32 @@ Vue.component("myProfile", {
 	// podaci
 	data: function () {
 	    return {
-            id: this.$route.params.username,
-            sortedbyASC: true,
-            nameSearch:'',
-		    typeSearch:'',
-		    locationSearch:'',
-		    scoreSearch:'',
-            sportObjects: [],
-            user:'',
+            username: this.$route.params.username,
+            user:{},
 	    }
 	},
 	// html bootstrap
 	    template: ` 
 <div>
 
-	<!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
-                        <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                        BitiFiti - {{user.username}}
+    <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
+            <div class="container px-5">
+                <div>
+                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/">
+                        <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
+                        BitiFiti - {{username}}
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item" @click="openHomepage()" class="nav-item">Pocetna</li>
-                            <li class="nav-item" @click="logOut()" class="nav-item">Odjavi se</li>
-                        </ul>
-                    </div>
+                </div> 
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        
+                        <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
+                    </ul>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
 
     <!-- Info-->
@@ -41,7 +37,7 @@ Vue.component("myProfile", {
             <div class="main-body">
                 <div class="row gutters-sm">
 
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-4 my-3">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
@@ -92,7 +88,6 @@ Vue.component("myProfile", {
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <a @click="editData()" class="btn btn-outline-dark" target="__blank">Izmijeni profil</a>
-                                        <a @click="changePassword()" class="btn btn-outline-dark" target="__blank" >Promjeni sifru</a>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +120,10 @@ Vue.component("myProfile", {
 			.then(response=> {this.user=response.data})
 		},
         openHomepage: function(){
-            this.$router.push("/myProfile/"+this.id)
+            this.$router.push("/myProfile/" + this.username)
+        },
+        editData: function(){
+            this.$router.push("/editMyProfile/" + this.username)
         },
     }
 });

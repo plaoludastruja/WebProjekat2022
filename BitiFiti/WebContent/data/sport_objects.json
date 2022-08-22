@@ -72,7 +72,7 @@
             "city": "Novi Sad",
             "zipCode": "21000"
         },
-        "logo": null,
+        "logo": "components/Resources/customer.png",
         "averageScore": 4.0,
         "startTime": null,
         "endTime": null,
@@ -152,7 +152,7 @@
             "city": "Sajmiste",
             "zipCode": "21000"
         },
-        "logo": null,
+        "logo": "components/Resources/trainer.png",
         "averageScore": 3.0,
         "startTime": null,
         "endTime": null,
@@ -171,7 +171,7 @@
             "city": "Teslic",
             "zipCode": "21000"
         },
-        "logo": null,
+        "logo": "components/Resources/manager.png",
         "averageScore": 5.0,
         "startTime": null,
         "endTime": null,
@@ -190,7 +190,7 @@
             "city": "Teslic",
             "zipCode": "21000"
         },
-        "logo": null,
+        "logo": "components/Resources/administrator.png",
         "averageScore": 1.0,
         "startTime": null,
         "endTime": null,
@@ -209,181 +209,10 @@
             "city": "",
             "zipCode": ""
         },
-        "logo": null,
+        "logo": "components/Resources/administrator.png",
         "averageScore": 0.0,
         "startTime": "13:42",
         "endTime": "12:42",
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "lt89",
-        "sportObjectType": "GYM",
-        "services": [],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "kara",
-            "streetNumber": "69",
-            "city": "teslic",
-            "zipCode": "74270"
-        },
-        "logo": null,
-        "averageScore": 0.0,
-        "startTime": "12:56",
-        "endTime": "13:56",
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "testslika",
-        "sportObjectType": "GYM",
-        "services": [],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "kds",
-            "streetNumber": "78",
-            "city": "yhuj",
-            "zipCode": "678"
-        },
-        "logo": null,
-        "averageScore": 0.0,
-        "startTime": "17:46",
-        "endTime": "14:50",
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "jk",
-        "sportObjectType": "GYM",
-        "services": [],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "j",
-            "streetNumber": "k",
-            "city": "k",
-            "zipCode": "k"
-        },
-        "logo": null,
-        "averageScore": 0.0,
-        "startTime": "15:33",
-        "endTime": "15:03",
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "jbk",
-        "sportObjectType": "GYM",
-        "services": [],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "sd",
-            "streetNumber": "d",
-            "city": "d",
-            "zipCode": "d"
-        },
-        "logo": null,
-        "averageScore": 0.0,
-        "startTime": "03:03",
-        "endTime": "02:00",
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "ajde",
-        "sportObjectType": "GYM",
-        "services": [],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "",
-            "streetNumber": "",
-            "city": "",
-            "zipCode": ""
-        },
-        "logo": "C:\\fakepath\\admin.png",
-        "averageScore": 0.0,
-        "startTime": null,
-        "endTime": null,
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "hnkjml",
-        "sportObjectType": "GYM",
-        "services": [],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "s",
-            "streetNumber": "s",
-            "city": "s",
-            "zipCode": "s"
-        },
-        "logo": null,
-        "averageScore": 0.0,
-        "startTime": "12:59",
-        "endTime": "12:58",
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "kkjnkj",
-        "sportObjectType": "GYM",
-        "services": [],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "",
-            "streetNumber": "",
-            "city": "",
-            "zipCode": ""
-        },
-        "logo": "C:\\fakepath\\B-meal.jpeg",
-        "averageScore": 0.0,
-        "startTime": null,
-        "endTime": null,
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "sadce",
-        "sportObjectType": "GYM",
-        "services": [],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "",
-            "streetNumber": "",
-            "city": "",
-            "zipCode": ""
-        },
-        "logo": "AmericanPancakes.jpeg",
-        "averageScore": 0.0,
-        "startTime": null,
-        "endTime": null,
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "sport",
-        "sportObjectType": "GYM",
-        "services": [],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "jk",
-            "streetNumber": "j",
-            "city": "j",
-            "zipCode": "j"
-        },
-        "logo": "admin.png",
-        "averageScore": 0.0,
-        "startTime": "01:00",
-        "endTime": "01:00",
         "manager": null,
         "working": true
     }

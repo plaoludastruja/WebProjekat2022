@@ -18,15 +18,15 @@ Vue.component("homepage", {
 	<!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
                 <div class="container px-5">
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
-                        <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/">
+                        <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/register">Sign Up</a></li>
-                            <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/login">Log In</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/register">Registracija</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/login">Prijava</a></li>
                         </ul>
                     </div>
                 </div>
@@ -38,14 +38,14 @@ Vue.component("homepage", {
                     <div class="container px-5">
                         <h1 class="masthead-heading mb-0">Najbolji sajt na svijetu</h1>
                         <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
-                        <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn More</a>
+                        <a class="btn btn-primary btn-xl rounded-pill my-1" href="#scroll">Learn More</a>
                     </div>
                 </div>
             </header>
 
     <!-- pretraga -->
-        <section class="bg-dark">
-            <div class="container py-3">
+        <section class="bg-dark py-4">
+            <div class="container">
                 <div class="row d-flex justify-content-center">
                     <input class="col-lg-2 mx-2" type="text" v-model="nameSearch" placeholder="Naziv">
                     <input class="col-lg-2 mx-2" type="text" v-model="typeSearch" placeholder="Tip" >
@@ -70,7 +70,7 @@ Vue.component("homepage", {
                             <div class="row">
                                 <div v-for="object in filteredSportObjects" class="col-lg-4">
                                     <div class="card">
-                                        <img v-bind:src="object.logo"/>
+                                        <img v-bind:src="object.logo" class="mx-auto" width="200"/>
                                         <div class="card-body">
                                             <h4 class="card-title">{{object.name}}</h4>
                                             <h6 v-if="object.working" style="color: green;">Otvoreno</h6>
@@ -80,7 +80,6 @@ Vue.component("homepage", {
                                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                                             </svg></h6>
                                             <button @click="openSportObjectPage(object.name)" type="button" class="btn btn-outline-dark">Pregledaj</button>
-                                            <button @click="deleteSportObject(object)" type="button" class="btn btn-outline-danger">Obriši</button>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +101,7 @@ Vue.component("homepage", {
                         <label v-on:click="sortList('name')">Naziv</label>
                         </th>
                         <th v-on:click="sortList('sportObjectType')">Tip</th>
-                        <th v-on:click="sortList('location')">Lokacija</th>
+                        <th v-on:click="sortList('location.city')">Lokacija</th>
                         <th v-on:click="sortList('averageScore')">Prosječna ocjena</th>
                     </tr>
                 </thead>

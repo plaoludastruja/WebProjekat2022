@@ -3,7 +3,7 @@ Vue.component("homeAdministrator", {
 	// podaci
 	data: function () {
 	    return {
-            id: this.$route.params.username,
+            username: this.$route.params.username,
             sortedbyASC: true,
             nameSearch:'',
 		    typeSearch:'',
@@ -17,37 +17,39 @@ Vue.component("homeAdministrator", {
 <div>
 
 	<!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
-                        <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                        BitiFiti - {{id}}
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
+            <div class="container px-5">
+                <div>
+                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/homeAdministrator/a">
+                        <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
+                        BitiFiti - {{username}}
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item" @click="openAllUsersPage()" class="nav-item">Svi korisnici</li>
-                            <li class="nav-item" @click="openMyProfilePage()" class="nav-item">Moj profil</li>
-                            <li class="nav-item" @click="logOut()" class="nav-item">Odjavi se</li>
-                        </ul>
-                    </div>
+                </div> 
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-1" role="button" @click="openAllUsersPage()">Svi korisnici</li>
+                        <li class="nav-item mx-1" role="button" @click="openMyProfilePage()">Moj profil</li>
+                        <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
+                    </ul>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
-            <!-- Header-->
-            <header class="masthead text-center text-black">
-                <div class="masthead-content">
-                    <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">Najbolji sajt na svijetu</h1>
-                        <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
-                        <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn More</a>
-                    </div>
+    <!-- Header-->
+        <header class="masthead text-center text-black">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-0">Najbolji sajt na svijetu</h1>
+                    <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
+                    <a class="btn btn-primary btn-xl rounded-pill my-1" href="#scroll">Learn More</a>
                 </div>
-            </header>
+            </div>
+        </header>
 
     <!-- pretraga -->
-        <section class="bg-dark">
-            <div class="container py-3">
+        <section class="bg-dark py-4">
+            <div class="container">
                 <div class="row d-flex justify-content-center">
                     <input class="col-lg-2 mx-2" type="text" v-model="nameSearch" placeholder="Naziv">
                     <input class="col-lg-2 mx-2" type="text" v-model="typeSearch" placeholder="Tip" >
@@ -72,10 +74,10 @@ Vue.component("homeAdministrator", {
                             <div class="row">
                                 <div v-for="object in filteredSportObjects" class="col-lg-4">
                                     <div class="card">
-                                        <img v-bind:src="object.name"/>
+                                        <img v-bind:src="object.logo" class="mx-auto" width="200"/>
                                         <div class="card-body">
                                             <h4 class="card-title">{{object.name}}</h4>
-                                            <h6 v-if="object.isWorking" style="color: green;">Otvoreno</h6>
+                                            <h6 v-if="object.working" style="color: green;">Otvoreno</h6>
                                             <h6 v-else style="color: red;">Zatvoreno</h6>
                                             <h6>{{object.location.city}}<p>{{object.location.streetName}} {{object.location.streetNumber}}</p></h6>
                                             <h6 >Ocjena: <svg xmlns="http://www.w3.org/2000/svg" v-for="p in object.averageScore" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -130,10 +132,17 @@ Vue.component("homeAdministrator", {
 			.then(response=> {this.sportObjects=response.data})
 		},
         openMyProfilePage: function(){
-            this.$router.push("/myProfile/"+this.id)
+            this.$router.push("/myProfile/" + this.username)
         },
         openAllUsersPage: function(){
             this.$router.push("/allUsers")
         },
+        openSportObjectPage: function(sportObjectName){
+			this.$router.push("/sportObjectInfo/" + sportObjectName);
+		},
+        // TODO da se moze obrisati
+        deleteSportObject: function(object){
+			this.$router.push("/sportObjectInfo/");
+		},
     }
 });

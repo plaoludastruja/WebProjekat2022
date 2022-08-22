@@ -3,13 +3,12 @@ Vue.component("allUsers", {
 	// podaci
 	data: function () {
 	    return {
-            id: this.$route.params.username,
             sortedbyASC: true,
             nameSearch:'',
-		    typeSearch:'',
-		    locationSearch:'',
-		    scoreSearch:'',
+		    surnameSearch:'',
+		    usernameSearch:'',
             users: [],
+            user: {},
 	    }
 	},
 	// html bootstrap
@@ -17,47 +16,48 @@ Vue.component("allUsers", {
 <div>
 
 	<!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
-                        <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                        BitiFiti - Pregled svih korisnika
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
+            <div class="container px-5">
+                <div>
+                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/homeAdministrator/a">
+                        <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
+                        BitiFiti
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="mx-5" @click="openAllUsersPage()" class="nav-item">Svi korisnici</li>
-                            <li class="mx-5" @click="openMyProfilePage()" class="nav-item">Moj profil</li>
-                            <li class="mx-5" @click="logOut()" class="nav-item">Odjavi se</li>
-                        </ul>
-                    </div>
+                </div> 
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-1" role="button" @click="openAllUsersPage()">Svi korisnici</li>
+                        <li class="nav-item mx-1" role="button" @click="openMyProfilePage()">Moj profil</li>
+                        <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
+                    </ul>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
-            <!-- Header-->
-            <header class="masthead text-center text-black">
-                <div class="masthead-content">
-                    <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">SVI KORISNICI</h1>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
-                                <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
-                                <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
-                            </div>
+    <!-- Header-->
+        <header class="masthead text-center text-black">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-1">SVI KORISNICI</h1>
+                    <div class="row">
+                        <div class="col-sm-12 mb-2">
+                            <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
+                            <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
+                            <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
                         </div>
                     </div>
                 </div>
-            </header>
+            </div>
+        </header>
 
     <!-- pretraga -->
-        <section class="bg-dark">
-            <div class="container py-3">
+        <section class="bg-dark py-4">
+            <div class="container">
                 <div class="row d-flex justify-content-center">
-                    <input class="col-lg-2 mx-2" type="text" v-model="nameSearch" placeholder="Naziv">
-                    <input class="col-lg-2 mx-2" type="text" v-model="typeSearch" placeholder="Tip" >
-                    <input class="col-lg-2 mx-2" type="text" v-model="locationSearch" placeholder="Lokacija" >
-                    <input class="col-lg-2 mx-2" type="text" v-model="scoreSearch" placeholder="Ocjena">
+                    <input class="col-lg-2 mx-2" type="text" v-model="nameSearch" placeholder="Ime">
+                    <input class="col-lg-2 mx-2" type="text" v-model="surnameSearch" placeholder="Prezime" >
+                    <input class="col-lg-2 mx-2" type="text" v-model="usernameSearch" placeholder="Korisničko ime">
                 </div>
             </div>
         </section>
@@ -69,18 +69,22 @@ Vue.component("allUsers", {
                 <table class="table">
                 <thead>
                     <tr>
-                        <th>
-                        <label v-on:click="sortList('name')">Korisnicko ime</label>
-                        </th>
-                        <th v-on:click="sortList('sportObjectType')">Sifra</th>
-                        <th v-on:click="sortList('sportObjectType')">Tip korisnika</th>
+                        <th v-on:click="sortList('username')">Korisnicko ime</th>
+                        <th v-on:click="sortList('password')">Šifra</th>
+                        <th v-on:click="sortList('firstName')">Ime</th>
+                        <th v-on:click="sortList('lastName')">Prezime</th>
+                        <th v-on:click="sortList('userType')">Tip korisnika</th>
+                        <th v-on:click="sortList('TODO')">Broj sakupljenih bodova</th>
                     </tr>
                 </thead>
-                <tbody v-for="object in filteredUsers">
+                <tbody v-for="user in filteredUsers">
                     <tr>
-                        <td>{{object.username}}</td>
-                        <td>{{object.password}}</td>
-                        <td>{{object.userType}}</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.password}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.userType}}</td>
+                        <td>{{user.points}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -96,12 +100,15 @@ Vue.component("allUsers", {
 	// na pocetku
     mounted () {
         this.getAllUsers();
+        this.getCurrentUser();
     },
     computed: {
         // ovo prepraviti da bude kao pretraga, sa svim ifovima u zavisnosti sta je ukucano
 		filteredUsers() {
             return this.users.filter((user) => {
-				    searchObject =  user.username.toLowerCase().match(this.nameSearch.toLowerCase());
+				    searchObject =  user.firstName.toLowerCase().match(this.nameSearch.toLowerCase()) &&
+                                    user.lastName.toLowerCase().match(this.surnameSearch.toLowerCase()) &&
+                                    user.username.toLowerCase().match(this.usernameSearch.toLowerCase());
 				return searchObject;
 			})
 		},
@@ -118,8 +125,22 @@ Vue.component("allUsers", {
 			.get('rest/users/allUsers')
 			.then(response=> {this.users=response.data})
 		},
+        getCurrentUser: function () {
+			axios
+			.get('rest/users/currentUser')
+			.then(response=> {this.user=response.data})
+		},
+        sortList(sortBy) {
+			if (this.sortedbyASC) {
+				this.users.sort((x, y) => (x[sortBy] > y[sortBy] ? -1 : 1));
+				this.sortedbyASC = false;
+			} else {
+				this.users.sort((x, y) => (x[sortBy] < y[sortBy] ? -1 : 1));
+				this.sortedbyASC = true;
+			}
+		},
         openMyProfilePage: function(){
-            this.$router.push("/myProfile/"+this.id)
+            this.$router.push("/myProfile/"+this.user.username)
         },
         openAllUsersPage: function(){
             this.$router.push("/allUsers")
