@@ -3,8 +3,8 @@ Vue.component("addService", {
 	// podaci
 	data: function () {
 	    return {
-            id: this.$route.params.name,
-            users: [],
+            sportObjectName: this.$route.params.name,
+            user: {},
             service: 
                 {
                     name: '',
@@ -43,39 +43,37 @@ Vue.component("addService", {
 	    template: `
 <div>
 
-	<!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
-                        <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                        BitiFiti - {{id}}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item" @click="openAllUsersPage()" class="nav-item">Svi korisnici</li>
-                            <li class="nav-item" @click="openMyProfilePage()" class="nav-item">Moj profil</li>
-                            <li class="nav-item" @click="logOut()" class="nav-item">Odjavi se</li>
-                        </ul>
-                    </div>
+    <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
+                    <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
+                    BitiFiti - {{sportObjectName}}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-1" role="button" @click="openMySportObject()">Moj sportski objekat</li>
+                        <li class="nav-item mx-1" role="button" @click="openMyProfilePage()">Moj profil</li>
+                        <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
+                    </ul>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
-            <!-- Header-->
-            <header class="masthead text-center text-black">
-                <div class="masthead-content">
-                    <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">Moj sportski objekat</h1>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
-                                <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
-                                <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
-                            </div>
+    <!-- Header-->
+        <header class="masthead text-center text-black">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-1">Dodaj Novi Trening</h1>
+                    <div class="row">
+                        <div class="col-sm-12 mb-2">
+                            <a @click="addServicePage()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj trening</a>
                         </div>
                     </div>
                 </div>
-            </header>
+            </div>
+        </header>
 
     <!-- Dodavanje -->
     <section class="h-100 bg-dark">
@@ -179,19 +177,13 @@ Vue.component("addService", {
 			.then(response=> {this.trainers=response.data})
 		},
         openMyProfilePage: function(){
-            this.$router.push("/myProfile/"+this.id)
+            this.$router.push("/myProfile/" + this.user.username)
         },
-        openAllUsersPage: function(){
-            this.$router.push("/allUsers")
+        openMySportObject: function(){
+            this.$router.push("/mySportObject/" + this.user.username + "/" + this.sportObjectName)
         },
-        addSportObject: function(){
-            this.$router.push("/addSportObject")
-        },
-        addManager: function(){
-            this.$router.push("/addManager")
-        },
-        addTrainer: function(){
-            this.$router.push("/addTrainer")
+        addServicePage: function(){
+            this.$router.push("/addService/" + this.sportObjectName)
         },
         getCurrentUser: function () {
 			axios
@@ -200,15 +192,13 @@ Vue.component("addService", {
 		},
         addNewService: function() {
             // TODO dodati sliku za logo
-            this.service.logo= document.getElementById("formFile").files[0].name;
+            this.service.image = "components/Resources/" + document.getElementById("formFile").files[0].name;
 
             // TODO saljem addNewService/"IME SPORTSKOG OBJEKTA", i saljem trening, u bekendu dodati servis u taj sportsko objekat
             axios
-            .post('rest/sportObjects/addNewService/'+ this.id, this.service)
-            .then(this.$router.push("/mySportObject/" + this.user.username + "/" + this.this.id))
-            .catch(err => {
-                this.greska = "Nesto ne valja!";
-            })
+            .post('rest/sportObjects/addNewService/'+ this.sportObjectName, this.service)
+            .then(this.$router.push("/mySportObject/" + this.user.username + "/" + this.sportObjectName))
+            .catch(err => {this.greska = "Nesto ne valja!";})
         },
     }
 });

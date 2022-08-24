@@ -21,7 +21,7 @@
                 "duration": 50,
                 "trainer": "t",
                 "description": "guzica",
-                "image": "jbs"
+                "image": "components/Resources/customer.png"
             },
             {
                 "name": "Igranka bez prestanka1",
@@ -41,7 +41,7 @@
                 "duration": 50,
                 "trainer": "t",
                 "description": "guzica",
-                "image": "jbs"
+                "image": "components/Resources/customer.png"
             },
             {
                 "name": "Igranka bez prestanka2",
@@ -61,7 +61,7 @@
                 "duration": 50,
                 "trainer": "trn",
                 "description": "guzica",
-                "image": "jbs"
+                "image": "components/Resources/customer.png"
             }
         ],
         "location": {
@@ -101,7 +101,7 @@
                 "duration": 50,
                 "trainer": "trn",
                 "description": "guzica",
-                "image": "jbs"
+                "image": "components/Resources/customer.png"
             },
             {
                 "name": "Igranka bez prestanka1",
@@ -121,7 +121,7 @@
                 "duration": 50,
                 "trainer": "trn",
                 "description": "guzica",
-                "image": "jbs"
+                "image": "components/Resources/customer.png"
             },
             {
                 "name": "Igranka bez prestanka2",
@@ -141,7 +141,7 @@
                 "duration": 50,
                 "trainer": "t",
                 "description": "guzica",
-                "image": "jbs"
+                "image": "components/Resources/customer.png"
             }
         ],
         "location": {
