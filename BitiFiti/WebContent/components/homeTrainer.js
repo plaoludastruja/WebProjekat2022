@@ -3,7 +3,7 @@ Vue.component("homeTrainer", {
 	// podaci
 	data: function () {
 	    return {
-            id: this.$route.params.username,
+            username: this.$route.params.username,
             sortedbyASC: true,
             nameSearch:'',
 		    typeSearch:'',
@@ -19,28 +19,29 @@ Vue.component("homeTrainer", {
 	<!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
                 <div class="container px-5">
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
-                        <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                        BitiFiti - {{id}}
-                    </a>
+                        <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
+                            <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
+                            BitiFiti - {{username}}
+                        </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item" @click="openMyServices()" class="nav-item">Moji treninzi</li>
-                            <li class="nav-item" @click="openMyProfilePage()" class="nav-item">Moj profil</li>
-                            <li class="nav-item" @click="logOut()" class="nav-item">Odjavi se</li>
+                            <li class="nav-item mx-1" role="button" @click="openMyServices()">Moji treninzi</li>
+                            <li class="nav-item mx-1" role="button" @click="openMyProfilePage()">Moj profil</li>
+                            <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
-            <!-- Header-->
+
+        <!-- Header-->
             <header class="masthead text-center text-black">
                 <div class="masthead-content">
                     <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">Trener</h1>
+                        <h1 class="masthead-heading mb-0">Pocetna za trenera</h1>
                         <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
-                        <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn More</a>
+                        <a class="btn btn-primary btn-xl rounded-pill my-1" href="#scroll">Learn More</a>
                     </div>
                 </div>
             </header>
@@ -72,17 +73,16 @@ Vue.component("homeTrainer", {
                             <div class="row">
                                 <div v-for="object in filteredSportObjects" class="col-lg-4">
                                     <div class="card">
-                                        <img v-bind:src="object.name"/>
+                                        <img v-bind:src="object.logo" class="mx-auto" width="200"/>
                                         <div class="card-body">
                                             <h4 class="card-title">{{object.name}}</h4>
-                                            <h6 v-if="object.isWorking" style="color: green;">Otvoreno</h6>
+                                            <h6 v-if="object.working" style="color: green;">Otvoreno</h6>
                                             <h6 v-else style="color: red;">Zatvoreno</h6>
                                             <h6>{{object.location.city}}<p>{{object.location.streetName}} {{object.location.streetNumber}}</p></h6>
                                             <h6 >Ocjena: <svg xmlns="http://www.w3.org/2000/svg" v-for="p in object.averageScore" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                                             </svg></h6>
                                             <button @click="openSportObjectPage(object.name)" type="button" class="btn btn-outline-dark">Pregledaj</button>
-                                            <button @click="deleteSportObject(object)" type="button" class="btn btn-outline-danger">Obriši</button>
                                         </div>
                                     </div>
                                 </div>
@@ -130,10 +130,13 @@ Vue.component("homeTrainer", {
 			.then(response=> {this.sportObjects=response.data})
 		},
         openMyProfilePage: function(){
-            this.$router.push("/myProfile/"+this.id)
+            this.$router.push("/myProfile/" + this.username)
         },
         openMyServices: function(){
-            this.$router.push("/myServices/" + this.id)
+            this.$router.push("/myServices/" + this.username)
         },
+        openSportObjectPage: function(sportObjectName){
+			this.$router.push("/sportObjectInfo/" + sportObjectName);
+		},
     }
 });

@@ -39,7 +39,7 @@ Vue.component("mySportObject", {
         <header class="masthead text-center text-black">
             <div class="masthead-content">
                 <div class="container px-5 mb-1">
-                    <h1 class="masthead-heading mb-0">Moj sportski objekat</h1>
+                    <h1 class="masthead-heading mb-1">Moj sportski objekat</h1>
                     <div class="row">
                         <div class="col-sm-12 mb-2">
                             <a @click="addServicePage()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj trening</a>
@@ -131,12 +131,13 @@ Vue.component("mySportObject", {
 	// na pocetku
     mounted () {
         this.getSportObject();
+        this.getServices();
     },
     computed: {
         // ovo prepraviti da bude kao pretraga, sa svim ifovima u zavisnosti sta je ukucano
-		filteredUsers() {
-            return this.users.filter((user) => {
-				    searchObject =  this.sportObject.services.name.toLowerCase().match(this.nameSearch.toLowerCase());
+		filteredServices() {
+            return (this.sportObject.services).filter((servic) => {
+				    searchObject =  servic.name.toLowerCase().match(this.nameSearch.toLowerCase());
                     // TODO opsjeg cijena
                     //&& this.this.sportObject.services.price;
 				return searchObject;
@@ -155,6 +156,9 @@ Vue.component("mySportObject", {
 			.get('rest/sportObjects/' + this.sportObjectName)
 			.then(response=> {this.sportObject=response.data})
 		},
+        getServices: function(){
+            this.services = this.sportObject.services
+        },
         openMyProfilePage: function(){
             this.$router.push("/myProfile/" + this.username)
         },
