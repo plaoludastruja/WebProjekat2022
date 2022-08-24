@@ -8,7 +8,9 @@ Vue.component("login", {
             greska: "",
 	    }
 	},
-	    template: `<div>
+	    template: `
+        
+<div class="d-flex flex-column min-vh-100">
 
 
     <!-- Navigation-->
@@ -73,7 +75,7 @@ Vue.component("login", {
         </section>
 
     <!-- Footer-->
-            <footer class="py-5 bg-black">
+            <footer class="py-5 bg-black mt-auto">
                 <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Đorđe & Boško doo</p></div>
             </footer>
         

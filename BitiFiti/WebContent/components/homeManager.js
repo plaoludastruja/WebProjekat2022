@@ -15,7 +15,7 @@ Vue.component("homeManager", {
 	},
 	// html bootstrap
 	    template: ` 
-<div>
+<div class="d-flex flex-column min-vh-100">
 
 	<!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
@@ -94,7 +94,7 @@ Vue.component("homeManager", {
         </section>
 
     <!-- Footer-->
-            <footer class="py-5 bg-black">
+            <footer class="py-5 bg-black mt-auto">
                 <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Đorđe & Boško doo</p></div>
             </footer>
 </div>`,
