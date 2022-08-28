@@ -59,6 +59,21 @@ public class UserDAO {
 		return true;
 	}
 	
+	public boolean editUser(User user) {
+		for(User u : users) {
+			if(u.getUsername().equals(user.getUsername())) {
+				u.setFirstName(user.getFirstName());
+				u.setLastName(user.getLastName());
+				u.setDateOfBirth(user.getDateOfBirth());
+				//u.setUsername(user.getUsername());
+				u.setPassword(user.getPassword());
+				saveUsers();
+				return true;
+			}		
+		}	
+		return false;
+	}
+	
 	public void loadUsers() {
 		ObjectMapper mapper = new ObjectMapper();
 		try {

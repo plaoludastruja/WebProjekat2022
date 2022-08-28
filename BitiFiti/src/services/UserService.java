@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -58,6 +59,27 @@ public class UserService {
 			return Response.status(400).entity("Korisnicko ime je zauzeto").build();
 		}
 		return Response.status(200).build();
+	}
+	
+//	@POST
+//	@Path("/editMyProfile")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Response editCustomer(String username, User user, @Context HttpServletRequest request) {
+//		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+//		if(!userDao.addUser(user)) {
+//			return Response.status(400).entity("Nije pronadjen korisnik sa tim korisnickim imenom").build();
+//		}
+//		return Response.status(200).build();
+//	}
+	
+	@POST
+	@Path("/editMyProfile")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void editCustomer(User user, @Context HttpServletRequest request) {
+		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+		userDao.editUser(user);
 	}
 	
 	@POST

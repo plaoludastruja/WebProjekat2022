@@ -75,7 +75,7 @@ Vue.component("editMyProfile", {
                                 <div style="color: red;" id="greska">{{greska}}</div>
 
                                 <div class="d-flex justify-content-end pt-3">
-                                    <button @click="editData()" type="button" class="btn btn-warning btn-lg ms-2">Prijava</button>
+                                    <button @click="editData()" type="button" class="btn btn-warning btn-lg ms-2"></button>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@ Vue.component("editMyProfile", {
         editData: function(){
             axios
 			.post('rest/users/editMyProfile', this.user)
-			.then(response=> {this.$router.push("/myProfile/" + this.username)})
+			//.then(response=> {this.$router.push("/myProfile/" + this.username)})
             .catch(err => {
                 this.greska = "Korisničko ime je zauzeto!";
             })
