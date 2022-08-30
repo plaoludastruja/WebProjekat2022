@@ -115,4 +115,13 @@ public class UserService {
 		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
 		return userDAO.freeManagers();
 	}
+	
+	@GET
+	@Path("/trainers")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<User> findAllTrainers(@Context HttpServletRequest request){
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
+		return userDAO.findAllTrainers();
+	}
 }

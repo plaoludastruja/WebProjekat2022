@@ -52,6 +52,18 @@ public class UserDAO {
 		return freeManagers;
 	}
 	
+	public List<User> findAllTrainers(){
+		List<User> trainers = new ArrayList<User>();
+		for(User u: users)
+		{
+			if(u.getUserType() == UserType.TRAINER)
+			{
+				trainers.add(u);
+			}
+		}
+		return trainers;
+	}
+	
 	public User getByUsername(String username) {
 		for(User u : users) {
 			if(u.getUsername().equals(username)) {
