@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.SportObject;
 import beans.User;
+import enums.UserType;
 
 
 public class UserDAO {
@@ -37,6 +38,18 @@ public class UserDAO {
 	
 	public List<User> getAll() {
 		return users;
+	}
+	
+	public List<User> freeManagers(){
+		List<User> freeManagers = new ArrayList<User>();
+		for(User u: users)
+		{
+			if(u.getUserType() == UserType.MANAGER && u.getSportsObject() == null)
+			{
+				freeManagers.add(u);
+			}
+		}
+		return freeManagers;
 	}
 	
 	public User getByUsername(String username) {
