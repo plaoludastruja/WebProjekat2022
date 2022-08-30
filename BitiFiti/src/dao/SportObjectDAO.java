@@ -51,6 +51,23 @@ public class SportObjectDAO {
 		return true;
 	}
 	
+	public boolean addNewService(Service s, String sportObjectName) {
+		for(SportObject o : sportObjects) {
+			if(o.getName().equals(sportObjectName))
+			{
+				for(Service ss : o.getServices())
+				{
+					if(ss.getName().equals(s.getName()))
+					{
+						return false;
+					}
+				}
+				o.addService(s);
+			}
+		}
+		return true;
+	}
+	
 	public boolean deleteSportObject(String name) {
 		for(SportObject o : sportObjects) {
 			if(o.getName().equals(name)) {

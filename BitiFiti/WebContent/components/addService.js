@@ -139,7 +139,7 @@ Vue.component("addService", {
                                                 <div style="color: red;" id="greska">{{greska}}</div>
         
                                                 <div class="d-flex justify-content-end pt-3">
-                                                    <button @click="addNewService()" type="button" class="btn btn-warning btn-lg ms-2">Registracija</button>
+                                                    <button @click="addNewService()" type="button" class="btn btn-warning btn-lg ms-2">Dodaj</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -192,7 +192,8 @@ Vue.component("addService", {
 		},
         addNewService: function() {
             // TODO dodati sliku za logo
-            this.service.image = "components/Resources/" + document.getElementById("formFile").files[0].name;
+            // this.service.image = "components/Resources/" + document.getElementById("formFile").files[0].name;
+            this.service.image = "components/Resources/trainer.png";
 
             // TODO saljem addNewService/"IME SPORTSKOG OBJEKTA", i saljem trening, u bekendu dodati servis u taj sportsko objekat
             axios

@@ -116,4 +116,7 @@ public class SportObject {
 	}
 	
 	
+	public void addService(Service s) {
+		this.services.add(s);
+	}
 }

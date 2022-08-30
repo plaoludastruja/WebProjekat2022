@@ -66,6 +66,18 @@ public class SportObjectService {
 		}
 		return Response.status(200).build();
 	}
+	
+	@POST
+	@Path("/addNewService/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response newService(Service service, @PathParam("id") String id, @Context HttpServletRequest request) {
+		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");
+		if(!sportObjectDAO.addNewService(service, id)) {
+			return Response.status(400).entity("Ime sadrzaja je zauzeto").build();
+		}
+		return Response.status(200).build();
+	}
 
 	// nije mi trebala
 	@GET
