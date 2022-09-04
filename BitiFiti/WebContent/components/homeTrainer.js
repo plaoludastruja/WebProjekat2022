@@ -1,8 +1,9 @@
 // naziv komponente kao u app.js
-Vue.component("homepage", { 
+Vue.component("homeTrainer", { 
 	// podaci
 	data: function () {
 	    return {
+            username: this.$route.params.username,
             sortedbyASC: true,
             nameSearch:'',
 		    typeSearch:'',
@@ -12,31 +13,33 @@ Vue.component("homepage", {
 	    }
 	},
 	// html bootstrap
-	    template: `
+	    template: ` 
 <div class="d-flex flex-column min-vh-100">
 
 	<!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
                 <div class="container px-5">
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/">
-                        <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
-                        BitiFiti
-                    </a>
+                        <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
+                            <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
+                            BitiFiti - {{username}}
+                        </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/register">Registracija</a></li>
-                            <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/login">Prijava</a></li>
+                            <li class="nav-item mx-1" role="button" @click="openMyServices()">Moji treninzi</li>
+                            <li class="nav-item mx-1" role="button" @click="openMyProfilePage()">Moj profil</li>
+                            <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
                         </ul>
                     </div>
                 </div>
             </nav>
 
-    <!-- Header-->
+
+        <!-- Header-->
             <header class="masthead text-center text-black">
                 <div class="masthead-content">
                     <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">Najbolji sajt na svijetu</h1>
+                        <h1 class="masthead-heading mb-0">Pocetna za trenera</h1>
                         <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
                         <a class="btn btn-primary btn-xl rounded-pill my-1" href="#scroll">Learn More</a>
                     </div>
@@ -44,8 +47,8 @@ Vue.component("homepage", {
             </header>
 
     <!-- pretraga -->
-        <section class="bg-dark py-4">
-            <div class="container">
+        <section class="bg-dark">
+            <div class="container py-3">
                 <div class="row d-flex justify-content-center">
                     <input class="col-lg-2 mx-2" type="text" v-model="nameSearch" placeholder="Naziv">
                     <input class="col-lg-2 mx-2" type="text" v-model="typeSearch" placeholder="Tip" >
@@ -90,34 +93,6 @@ Vue.component("homepage", {
             </div>
         </section>
 
-    <!-- tabela -->
-        <section id="scroll">
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center">
-                <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                        <label v-on:click="sortList('name')">Naziv</label>
-                        </th>
-                        <th v-on:click="sortList('sportObjectType')">Tip</th>
-                        <th v-on:click="sortList('location.city')">Lokacija</th>
-                        <th v-on:click="sortList('averageScore')">Prosječna ocjena</th>
-                    </tr>
-                </thead>
-                <tbody v-for="object in filteredSportObjects">
-                    <tr>
-                        <td>{{object.name}}</td>
-                        <td>{{object.sportObjectType}}</td>
-                        <td>{{object.location.city}}</td>
-                        <td>{{object.averageScore}}</td>
-                    </tr>
-                </tbody>
-            </table>
-                </div>
-            </div>
-        </section>
-
     <!-- Footer-->
             <footer class="py-5 bg-black mt-auto">
                 <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Đorđe & Boško doo</p></div>
@@ -144,22 +119,24 @@ Vue.component("homepage", {
 	},
 	// funkcije
     methods: {
-    	getAllSportObject: function () {
+        logOut: function () {
+			axios
+			.post('rest/users/logout')
+			.then(response=> {this.$router.push("/login")})
+		},
+        getAllSportObject: function () {
 			axios
 			.get('rest/sportObjects/')
 			.then(response=> {this.sportObjects=response.data})
 		},
-        sortList(sortBy) {
-			if (this.sortedbyASC) {
-				this.sportObjects.sort((x, y) => (x[sortBy] > y[sortBy] ? -1 : 1));
-				this.sortedbyASC = false;
-			} else {
-				this.sportObjects.sort((x, y) => (x[sortBy] < y[sortBy] ? -1 : 1));
-				this.sortedbyASC = true;
-			}
-		},
+        openMyProfilePage: function(){
+            this.$router.push("/myProfile/" + this.username)
+        },
+        openMyServices: function(){
+            this.$router.push("/myServices/" + this.username)
+        },
         openSportObjectPage: function(sportObjectName){
-			this.$router.push("/sportObjectInfo/"+sportObjectName);
+			this.$router.push("/sportObjectInfo/" + sportObjectName);
 		},
     }
 });

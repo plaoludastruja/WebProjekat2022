@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="css/styles.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+<body>
+    <div>
+
+        <!-- Navigation-->
+                <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
+                    <div class="container px-5">
+                        <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
+                            <img src="" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                            BitiFiti - Admin
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                        <div class="collapse navbar-collapse" id="navbarResponsive">
+                            <ul class="navbar-nav ms-auto">
+                                <li @click="logOut()" class="nav-item">Odjavi se</li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                            <label v-on:click="sortList('name')">Korisnicko ime</label>
+                            </th>
+                            <th v-on:click="sortList('sportObjectType')">Sifra</th>
+                            <th v-on:click="sortList('sportObjectType')">Tip korisnika</th>
+                            <th v-on:click="sortList('sportObjectType')">Izmjeni</th>
+                        </tr>
+                    </thead>
+                    <tbody v-for="service in this.sportObject.services">
+                        <tr>
+                            <td>{{service.name}}</td>
+                            <td>{{service.serviceType}}</td>
+                            <td>{{service.sportObject}}</td>
+                            <td><div  class="btn btn-outline-dark rounded-pill">Izmijeni</div></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <section class="h-100 bg-dark">
+                    <div class="container py-5 h-100">
+                        <div class="row d-flex justify-content-center align-items-center h-100">
+                            <div class="col col-xl-6">
+                                <div class="card card-registration my-2">
+                                    <div class="row g-0">
+                                        <div class="d-flex align-items-center">
+                                            <div class="card-body p-md-5 text-black">
+                                                <h3 class="mb-3">Registrujte se</h3>
+
+                                                <div class="row mb-0">
+                                                    <div class="col-md-8 mb-2">
+                                                        <div class="form-outline mb-2">
+                                                            <select class="form-select" v-model="managerValue">
+                                                                <option disabled>Nema mendjera</option>
+                                                                <option v-for="manager in managers" :value="manager.username">{{manager.name}} {{manager.surname}}</option>
+                                                            </select>
+                                                            <label class="form-label">Izaberite menadjera</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 mb-2">
+                                                        <div class="btn btn-secondary">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                                                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                                            </svg>
+                                                        </div>
+                                                        <label class="form-label">Dodaj menadjera</label>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-outline mb-2">
+                                                    <input type="file" ref="image" class="form-control-file" name="image" accept="image/png, image/jpeg"
+                                                            @change="handleFileUpload( $event )"><br>
+                                                    <label class="form-label">Logo</label>
+                                                </div>
+
+                                                
+
+
+                                                <div class="row mb-0">
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="form-outline">
+                                                            <input v-model="user.firstName" type="text" class="form-control form-control-lg" />
+                                                            <label class="form-label">Ime</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="form-outline">
+                                                            <input v-model="user.lastName" type="text" class="form-control form-control-lg" />
+                                                            <label class="form-label">Prezime</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                
+                                                <div class="d-md-flex justify-content-start align-items-center mb-2 pb-2">
+                                                    <h6 class="mb-0 me-4">Pol: </h6>
+                                                    <div class="form-check form-check-inline mb-0 me-4">
+                                                        <input v-model="user.gender" value="1" class="form-check-input" type="radio"/>
+                                                        <label class="form-check-label">Žensko</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline mb-0 me-4">
+                                                        <input v-model="user.gender" value="0" class="form-check-input" type="radio"/>
+                                                        <label class="form-check-label">Muško</label>
+                                                    </div>
+                                                </div>
+                
+                                                <div class="form-outline mb-2">
+                                                    <input v-model="user.dateOfBirth" type="date" class="form-control form-control-lg" />
+                                                    <label class="form-label">Datum rođenja</label>
+                                                </div>
+                
+                                                <div class="form-outline mb-2">
+                                                    <input v-model="user.username" type="text" class="form-control form-control-lg" />
+                                                    <label class="form-label">Korisničko ime</label>
+                                                </div>
+                
+                                                <div class="form-outline mb-2">
+                                                    <input v-model="user.password" type="time" class="form-control form-control-lg" />
+                                                    <label class="form-label">Šifra</label>
+                                                </div>
+        
+                                                <div style="color: red;" id="greska">{{greska}}</div>
+        
+                                                <div class="d-flex justify-content-end pt-3">
+                                                    <button @click="registerUser()" type="button" class="btn btn-warning btn-lg ms-2">Registracija</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+<!-- Info-->
+    <div class="container">
+        <div class="main-body">
+            <div class="row gutters-sm">
+
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img v-if="user.role === 'ADMINISTRATOR'" src="components/Resources/administrator.png"  class="rounded-circle" width="150">
+                                <img v-else-if="user.role === 'MANAGER'" src="components/Resources/manager.png"  class="rounded-circle" width="150">
+                                <img v-else-if="user.role === 'BUYER'" src="components/Resources/customer.png"  class="rounded-circle" width="150">
+                                <img v-else src="components/Resources/trainer.png" class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4>{{user.username}}</h4>
+                                    <p class="text-secondary mb-1">{{user.role}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Ime</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">{{user.firstName}}</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Prezime</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">{{user.lastName}}</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Pol</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">{{user.gender}}</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Datum rodjenja</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">{{user.dateOfBirth}}</div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <a @click="editData()" class="btn btn-outline-dark" target="__blank">Izmijeni profil</a>
+                                    <a @click="changePassword()" class="btn btn-outline-dark" target="__blank" >Promjeni sifru</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+        <!-- Header-->
+        <header class="masthead text-center text-black">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-0">Najbolji sajt na svijetu</h1>
+                    <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">Learn More</a>
+                </div>
+            </div>
+        </header>
+
+<!-- pretraga -->
+    <section class="bg-dark">
+        <div class="container py-3">
+            <div class="row d-flex justify-content-center">
+                <input class="col-lg-2 mx-2" type="text" v-model="nameSearch" placeholder="Naziv">
+                <input class="col-lg-2 mx-2" type="text" v-model="typeSearch" placeholder="Tip" >
+                <input class="col-lg-2 mx-2" type="text" v-model="locationSearch" placeholder="Lokacija" >
+                <input class="col-lg-2 mx-2" type="text" v-model="scoreSearch" placeholder="Ocjena">
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Carousel wrapper -->
+    <div
+        id="carouselMultiItemExample"
+        class="carousel slide carousel-dark text-center"
+        data-mdb-ride="carousel">
+
+        <!-- Inner -->
+        <div class="carousel-inner py-4">
+            <!-- Single item -->
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row">
+                        <div v-for="object in filteredSportObjects" class="col-lg-4">
+                            <div class="card">
+                                <img v-bind:src="object.logo"/>
+                                <div class="card-body">
+                                    <h4 class="card-title">{{object.name}}</h4>
+                                    <h6 v-if="restaurant.status === 'OPEN'" style="color: green;">{{object.status }}</h6>
+                                    <h6 v-else style="color: red;">{{object.status}}</h6>
+                                    <h6>{{object.location.city}}<p>{{object.location.city}} {{object.location.city}}</p></h6>
+                                    <h6 >Ocjena: <svg xmlns="http://www.w3.org/2000/svg" v-for="p in object.avg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                    </svg></h6>
+                                    <button @click="openSportObjectPage(object.name)" type="button" class="btn btn-outline-dark">Pregledaj</button>
+                                    <button @click="deleteSportObject(object)" type="button" class="btn btn-outline-danger">Obriši</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- tabela -->
+    <section id="scroll">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                    <label v-on:click="sortList('name')">Naziv</label>
+                    </th>
+                    <th v-on:click="sortList('sportObjectType')">Tip</th>
+                    <th v-on:click="sortList('location')">Lokacija</th>
+                    <th v-on:click="sortList('averageScore')">Prosječna ocjena</th>
+                </tr>
+            </thead>
+            <tbody v-for="object in filteredSportObjects">
+                <tr>
+                    <td>{{object.name}}</td>
+                    <td>{{object.sportObjectType}}</td>
+                    <td>{{object.location.city}}</td>
+                    <td>{{object.averageScore}}</td>
+                </tr>
+            </tbody>
+        </table>
+            </div>
+        </div>
+    </section>
+    
+        <!-- Footer-->
+                <footer class="py-5 bg-black">
+                    <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Đorđe & Boško doo</p></div>
+                </footer>
+    </div>
+
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core theme JS-->
+</body>
+</html>

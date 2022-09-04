@@ -1,51 +1,49 @@
 package beans;
 
 import java.io.Serializable;
+import java.util.List;
+
+import enums.Gender;
+import enums.UserType;
 
 public class User implements Serializable {
 	
-	private String firstName;
-	private String lastName;
-	private String email;
 	private String username;
 	private String password;
+	private String firstName;
+	private String lastName;
+	private Gender gender;
+	private String dateOfBirth;
+	private UserType userType;
+	private List<Integer> trainings;
+	private double fee; //Bice tip FEE
+	private String sportsObject;
+	private List<String> visitedSportsObjects;
+	private int points;
+	private CustomerType customerType;
+	
 	
 	public User() {
 	}
+	
 
-	public User(String firstName, String lastName, String email, String username, String password) {
+	public User(String username, String password, String firstName, String lastName, Gender gender, String dateOfBirth,
+			UserType userType, List<Integer> trainings, double fee, String sportsObject,
+			List<String> visitedSportsObjects, int points, CustomerType customerType) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
 		this.username = username;
 		this.password = password;
-	}
-
-
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
 		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+		this.gender = gender;
+		this.dateOfBirth = dateOfBirth;
+		this.userType = userType;
+		this.trainings = trainings;
+		this.fee = fee;
+		this.sportsObject = sportsObject;
+		this.visitedSportsObjects = visitedSportsObjects;
+		this.points = points;
+		this.customerType = customerType;
 	}
 
 	public String getUsername() {
@@ -64,6 +62,101 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public UserType getUserType() {
+		return userType;
+	}
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+
+	public List<Integer> getTrainings() {
+		return trainings;
+	}
+
+	public void setTrainings(List<Integer> trainings) {
+		this.trainings = trainings;
+	}
+
+	public double getFee() {
+		return fee;
+	}
+
+	public void setFee(Double fee) {
+		this.fee = fee;
+	}
+
+	public String getSportsObject() {
+		return sportsObject;
+	}
+
+	public void setSportsObject(String sportsObject) {
+		this.sportsObject = sportsObject;
+	}
+
+	public List<String> getVisitedSportsObjects() {
+		return visitedSportsObjects;
+	}
+
+	public void setVisitedSportsObjects(List<String> visitedSportsObjects) {
+		this.visitedSportsObjects = visitedSportsObjects;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public CustomerType getCustomerType() {
+		return customerType;
+	}
+
+	public void setCustomerType(CustomerType customerType) {
+		this.customerType = customerType;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+
+	/*
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -118,7 +211,7 @@ public class User implements Serializable {
 		return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", username=" + username
 				+ ", password=" + password + "]";
 	}
-
+	*/
 	private static final long serialVersionUID = 6640936480584723344L;
 
 }

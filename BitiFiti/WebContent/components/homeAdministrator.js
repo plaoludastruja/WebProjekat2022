@@ -1,8 +1,9 @@
 // naziv komponente kao u app.js
-Vue.component("homepage", { 
+Vue.component("homeAdministrator", { 
 	// podaci
 	data: function () {
 	    return {
+            username: this.$route.params.username,
             sortedbyASC: true,
             nameSearch:'',
 		    typeSearch:'',
@@ -12,36 +13,39 @@ Vue.component("homepage", {
 	    }
 	},
 	// html bootstrap
-	    template: `
+	    template: ` 
 <div class="d-flex flex-column min-vh-100">
 
 	<!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
+            <div class="container px-5">
+                <div>
+                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/homeAdministrator/a">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
-                        BitiFiti
+                        BitiFiti - {{username}}
                     </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/register">Registracija</a></li>
-                            <li class="nav-item"><a class="nav-link" href="http://localhost:8080/BitiFiti/#/login">Prijava</a></li>
-                        </ul>
-                    </div>
+                </div> 
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-1" role="button" @click="openAllUsersPage()">Svi korisnici</li>
+                        <li class="nav-item mx-1" role="button" @click="openMyProfilePage()">Moj profil</li>
+                        <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
+                    </ul>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
     <!-- Header-->
-            <header class="masthead text-center text-black">
-                <div class="masthead-content">
-                    <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">Najbolji sajt na svijetu</h1>
-                        <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
-                        <a class="btn btn-primary btn-xl rounded-pill my-1" href="#scroll">Learn More</a>
-                    </div>
+        <header class="masthead text-center text-black">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-0">Pocetna za administratora</h1>
+                    <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
+                    <a class="btn btn-primary btn-xl rounded-pill my-1" href="#scroll">Learn More</a>
                 </div>
-            </header>
+            </div>
+        </header>
 
     <!-- pretraga -->
         <section class="bg-dark py-4">
@@ -80,40 +84,13 @@ Vue.component("homepage", {
                                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                                             </svg></h6>
                                             <button @click="openSportObjectPage(object.name)" type="button" class="btn btn-outline-dark">Pregledaj</button>
+                                            <button @click="deleteSportObject(object)" type="button" class="btn btn-outline-danger">Obriši</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-    <!-- tabela -->
-        <section id="scroll">
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center">
-                <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                        <label v-on:click="sortList('name')">Naziv</label>
-                        </th>
-                        <th v-on:click="sortList('sportObjectType')">Tip</th>
-                        <th v-on:click="sortList('location.city')">Lokacija</th>
-                        <th v-on:click="sortList('averageScore')">Prosječna ocjena</th>
-                    </tr>
-                </thead>
-                <tbody v-for="object in filteredSportObjects">
-                    <tr>
-                        <td>{{object.name}}</td>
-                        <td>{{object.sportObjectType}}</td>
-                        <td>{{object.location.city}}</td>
-                        <td>{{object.averageScore}}</td>
-                    </tr>
-                </tbody>
-            </table>
                 </div>
             </div>
         </section>
@@ -144,22 +121,28 @@ Vue.component("homepage", {
 	},
 	// funkcije
     methods: {
-    	getAllSportObject: function () {
+        logOut: function () {
+			axios
+			.post('rest/users/logout')
+			.then(response=> {this.$router.push("/login")})
+		},
+        getAllSportObject: function () {
 			axios
 			.get('rest/sportObjects/')
 			.then(response=> {this.sportObjects=response.data})
 		},
-        sortList(sortBy) {
-			if (this.sortedbyASC) {
-				this.sportObjects.sort((x, y) => (x[sortBy] > y[sortBy] ? -1 : 1));
-				this.sortedbyASC = false;
-			} else {
-				this.sportObjects.sort((x, y) => (x[sortBy] < y[sortBy] ? -1 : 1));
-				this.sortedbyASC = true;
-			}
-		},
+        openMyProfilePage: function(){
+            this.$router.push("/myProfile/" + this.username)
+        },
+        openAllUsersPage: function(){
+            this.$router.push("/allUsers")
+        },
         openSportObjectPage: function(sportObjectName){
-			this.$router.push("/sportObjectInfo/"+sportObjectName);
+			this.$router.push("/sportObjectInfo/" + sportObjectName);
+		},
+        // TODO da se moze obrisati
+        deleteSportObject: function(object){
+			this.$router.push("/sportObjectInfo/");
 		},
     }
 });
