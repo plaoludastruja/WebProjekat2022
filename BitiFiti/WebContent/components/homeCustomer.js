@@ -132,7 +132,7 @@ Vue.component("homeCustomer", {
             this.$router.push("/myProfile/" + this.username)
         },
         openSomethingForCustomer: function(){
-            this.$router.push("/customer/" + this.username)
+            this.$router.push("/customersFee/" + this.username)
         },
         openSportObjectPage: function(sportObjectName){
 			this.$router.push("/sportObjectInfo/" + sportObjectName);

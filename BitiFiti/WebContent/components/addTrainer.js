@@ -50,6 +50,7 @@ Vue.component("addTrainer", {
                             <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
                             <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
                             <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
+                            <a @click="addPromoCode()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj promo kod</a>
                         </div>
                     </div>
                 </div>
@@ -158,6 +159,9 @@ Vue.component("addTrainer", {
         },
         addTrainer: function(){
             this.$router.push("/addTrainer")
+        },
+        addPromoCode: function(){
+            this.$router.push("/addPromoCode")
         },
         registerUser: function() {
             axios

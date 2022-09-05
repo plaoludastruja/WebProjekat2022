@@ -123,7 +123,7 @@ Vue.component("myServices", {
 		},
         getTrainersServices: function () {
 			axios
-			.get('rest/user/trainersServics' + this.username)
+			.get('rest/users/trainersServics' + this.username)
 			.then(response=> {this.services=response.data})
 		},
         openMyProfilePage: function(){
@@ -131,9 +131,6 @@ Vue.component("myServices", {
         },
         openMyServices: function(){
             this.$router.push("/myServices/" + this.username)
-        },
-        addServicePage: function(){
-            this.$router.push("/addService/" + this.id1)
         },
         // TODO da ga otkaze ako je nesto nmp
         editService: function(serviceName){
