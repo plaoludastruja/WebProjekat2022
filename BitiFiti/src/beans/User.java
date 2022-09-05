@@ -102,11 +102,11 @@ public class User implements Serializable {
 		this.userType = userType;
 	}
 
-	public List<String> getTrainings() {
+	public List<Service> getTrainings() {
 		return trainings;
 	}
 
-	public void setTrainings(List<String> trainings) {
+	public void setTrainings(List<Service> trainings) {
 		this.trainings = trainings;
 	}
 

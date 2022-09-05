@@ -5,7 +5,7 @@ import enums.ServiceType;
 public class Service {
 	private String name;
 	private ServiceType serviceType;
-	private SportObject sportObject;
+	private String sportObject;
 	private int duration;
 	private String trainer;
 	private String description;
@@ -17,7 +17,7 @@ public class Service {
 	}
 
 
-	public Service(String name, ServiceType serviceType, SportObject sportObject, int duration, String trainer,
+	public Service(String name, ServiceType serviceType, String sportObject, int duration, String trainer,
 			String description, String image) {
 		super();
 		this.name = name;
@@ -50,12 +50,12 @@ public class Service {
 	}
 
 
-	public SportObject getSportObject() {
+	public String getSportObject() {
 		return sportObject;
 	}
 
 
-	public void setSportObject(SportObject sportObject) {
+	public void setSportObject(String sportObject) {
 		this.sportObject = sportObject;
 	}
 
