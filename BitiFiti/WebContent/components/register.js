@@ -37,7 +37,7 @@ Vue.component("register", {
         
 
         <section class="vh-100 bg-dark">
-            <div class="container py-5 h-100">
+            <div class="container py-1 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col col-xl-10">
                         <div class="card card-registration" style="border-radius: 1rem;">
