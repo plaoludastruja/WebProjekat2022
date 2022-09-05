@@ -113,21 +113,12 @@ Vue.component("addService", {
                                                 <div class="row mb-0">
                                                     <div class="col-md-8 mb-2">
                                                         <div class="form-outline mb-2">
-                                                            // TODO trainerValue je string, username od trenera, al to kad ga dobijem 
-                                                            <select class="form-select" v-model="trainerValue">
+                                                            <select class="form-select" v-model="service.trainer">
                                                                 <option disabled>Nema trenera</option>
                                                                 <option v-for="trainer in trainers" :value="trainer.username">{{trainer.firstName}} {{trainer.lastName}}</option>
                                                             </select>
                                                             <label class="form-label">Izaberite trenera</label>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-md-4 mb-2">
-                                                        <div class="btn btn-secondary">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-                                                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                                            </svg>
-                                                        </div>
-                                                        <label class="form-label">Dodaj trenera</label>
                                                     </div>
                                                 </div>
 
@@ -192,13 +183,21 @@ Vue.component("addService", {
 		},
         addNewService: function() {
             // TODO dodati sliku za logo
-            // this.service.image = "components/Resources/" + document.getElementById("formFile").files[0].name;
-            this.service.image = "components/Resources/trainer.png";
+            this.service.image = "components/Resources/" + document.getElementById("formFile").files[0].name;
 
             // TODO saljem addNewService/"IME SPORTSKOG OBJEKTA", i saljem trening, u bekendu dodati servis u taj sportsko objekat
             axios
             .post('rest/sportObjects/addNewService/'+ this.sportObjectName, this.service)
-            .then(this.$router.push("/mySportObject/" + this.user.username + "/" + this.sportObjectName))
+            .then(
+                axios
+                .put('rest/users/addTrainingsToTrainer', this.service)
+                .then(this.$router.push("/mySportObject/" + this.user.username + "/" + this.sportObjectName))
+                .catch(err => {
+                    this.greska = "Druga greska!";
+                })
+                
+                
+            )
             .catch(err => {this.greska = "Nesto ne valja!";})
         },
     }

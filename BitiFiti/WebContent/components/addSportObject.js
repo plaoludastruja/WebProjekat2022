@@ -233,7 +233,7 @@ Vue.component("addSportObject", {
             .post('rest/sportObjects/addSportObject', this.sportObject)
             .then(
                 axios
-                .put('rest/users/addSportObjectToManager', this.sportObject.manager)
+                .put('rest/users/addSportObjectToManager', this.sportObject)
                 .then(this.$router.push("/allUsers"))
                 .catch(err => {
                     this.greska = "Druga greska!";
