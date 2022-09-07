@@ -3,6 +3,7 @@ Vue.component("editService", {
 	// podaci
 	data: function () {
 	    return {
+	    	sportObjectName: this.$route.params.name,
             editingServiceName: this.$route.params.serviceName,
             user: {},
             service: {},
@@ -137,7 +138,7 @@ Vue.component("editService", {
 		},
         getService: function () {
 			axios
-			.get('rest/sportObject/service/' + this.editingServiceName)
+			.get('rest/sportObjects/service/' + this.sportObjectName + "/" + this.editingServiceName ,)
 			.then(response=> {this.service=response.data})
 		},
         // TODO : treba da mi vrati sve trenere, mogu ciljati users,

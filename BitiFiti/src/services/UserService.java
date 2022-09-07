@@ -130,10 +130,10 @@ public class UserService {
 	}
 	
 	@GET
-	@Path("/trainersServices")
+	@Path("/trainersServices/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Service> getTrainersServices(@Context HttpServletRequest request, String trainer){
+	public List<Service> getTrainersServices( @PathParam("id") String trainer, @Context HttpServletRequest request){
 		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
 		return userDAO.getTrainersServices(trainer);
 	}

@@ -40,7 +40,7 @@ const router = new VueRouter({
 		{ path: '/addService/:name', component: AddServicePage},
 		{ path: '/myServices/:username', component: MyServicesPage},
 		{ path: '/editMyProfile/:username', component: EditMyProfilePage},
-		{ path: '/editService/:serviceName', component: EditServicePage},
+		{ path: '/editService/:name/:serviceName', component: EditServicePage},
 		{ path: '/addPromoCode', component: AddPromoCodePage},
 
 		// ne prelaziti

@@ -73,6 +73,18 @@ public class SportObjectDAO {
 		UserDAO.saveUsers();
 		return true;
 	}
+	public Service findServiceByName(String objectName, String serviceName)
+	{
+		SportObject o = getByName(objectName);
+		for(Service s : o.getServices())
+		{
+			if(s.getName().equals(serviceName))
+			{
+				return s;
+			}
+		}
+		return null;
+	}
 	
 	public boolean deleteSportObject(String name) {
 		for(SportObject o : sportObjects) {

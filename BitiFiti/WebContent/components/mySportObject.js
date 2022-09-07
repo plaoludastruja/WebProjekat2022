@@ -250,7 +250,7 @@ Vue.component("mySportObject", {
             this.$router.push("/addService/" + this.sportObjectName)
         },
         editService: function(serviceName){
-            this.$router.push("/editService/" + serviceName)
+            this.$router.push("/editService/" + this.sportObjectName + "/" + serviceName)
         },
     }
 });

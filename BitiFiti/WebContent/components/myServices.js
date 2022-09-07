@@ -164,7 +164,7 @@ Vue.component("myServices", {
 		},
         getTrainersServices: function () {
 			axios
-			.get('rest/users/trainersServices' + this.username)
+			.get('rest/users/trainersServices/' + this.username)
 			.then(response=> {this.services=response.data})
 		},
         openHome: function(){
