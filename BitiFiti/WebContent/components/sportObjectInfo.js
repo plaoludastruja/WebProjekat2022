@@ -163,7 +163,7 @@ Vue.component("sportObjectInfo", {
 		filteredServices() {
             return this.sportObject.services.filter((service) => {
 				    searchObject =  service.name.toLowerCase().match(this.nameSearch.toLowerCase()) &&
-                    service.serviceType.toLowerCase().match(this.typeSearch.toLowerCase());
+                                    service.serviceType.toLowerCase().match(this.typeSearch.toLowerCase());
 				return searchObject;
 			})
 		},
