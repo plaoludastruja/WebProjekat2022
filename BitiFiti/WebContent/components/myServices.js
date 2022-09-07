@@ -123,7 +123,7 @@ Vue.component("myServices", {
 		},
         getTrainersServices: function () {
 			axios
-			.get('rest/user/trainersServics' + this.username)
+			.get('rest/user/trainersServices' + this.username)
 			.then(response=> {this.services=response.data})
 		},
         openMyProfilePage: function(){

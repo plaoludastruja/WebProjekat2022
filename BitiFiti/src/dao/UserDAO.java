@@ -65,6 +65,11 @@ public class UserDAO {
 		return trainers;
 	}
 	
+	public List<Service> getTrainersServices(String trainer){
+		User t = getByUsername(trainer);
+		return t.getTrainings();
+	}
+	
 	public static User getByUsername(String username) {
 		for(User u : users) {
 			if(u.getUsername().equals(username)) {
