@@ -21,7 +21,7 @@ Vue.component("myServices", {
     <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
+                    <a class="navbar-brand" role="button" @click="openHome()">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti - {{username}}
                     </a>
@@ -126,6 +126,9 @@ Vue.component("myServices", {
 			.get('rest/users/trainersServices' + this.username)
 			.then(response=> {this.services=response.data})
 		},
+        openHome: function(){
+            this.$router.push("/homeTrainer/" + this.username)
+        },
         openMyProfilePage: function(){
             this.$router.push("/myProfile/" + this.username)
         },

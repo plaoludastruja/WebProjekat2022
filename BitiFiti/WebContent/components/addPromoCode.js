@@ -3,6 +3,7 @@ Vue.component("addPromoCode", {
 	// podaci
 	data: function () {
 	    return {
+            currentUser: {},
             promoCode: {
 				name: '',
                 expirationDate: '',
@@ -20,7 +21,7 @@ Vue.component("addPromoCode", {
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
                 <div>
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/homeAdministrator/a">
+                    <a class="navbar-brand" role="button" @click="openHome()">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti
                     </a>
@@ -105,6 +106,7 @@ Vue.component("addPromoCode", {
 </div>`,
 	// na pocetku
     mounted () {
+        this.getCurrentUser();
     },
 	// funkcije
     methods: {
@@ -113,8 +115,16 @@ Vue.component("addPromoCode", {
 			.post('rest/users/logout')
 			.then(response=> {this.$router.push("/login")})
 		},
+        getCurrentUser: function () {
+			axios
+			.get('rest/users/currentUser')
+			.then(response=> {this.currentUser=response.data})
+		},
+        openHome: function(){
+            this.$router.push("/homeAdministrator/" + this.currentUser.username)
+        },
         openMyProfilePage: function(){
-            this.$router.push("/myProfile/"+this.id)
+            this.$router.push("/myProfile/"+ this.currentUser.username)
         },
         openAllUsersPage: function(){
             this.$router.push("/allUsers")

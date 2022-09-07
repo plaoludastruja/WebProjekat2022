@@ -3,6 +3,7 @@ Vue.component("addSportObject", {
 	// podaci
 	data: function () {
 	    return {
+            currentUser: {},
             users: [],
             sportObject: {
                 name: '',
@@ -36,7 +37,7 @@ Vue.component("addSportObject", {
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
                 <div>
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/homeAdministrator/a">
+                    <a class="navbar-brand" role="button" @click="openHome()">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti
                     </a>
@@ -194,6 +195,7 @@ Vue.component("addSportObject", {
 	// na pocetku
     mounted () {
         this.getFreeManagers();
+        this.getCurrentUser();
         
     },
 	// funkcije
@@ -203,6 +205,11 @@ Vue.component("addSportObject", {
 			.post('rest/users/logout')
 			.then(response=> {this.$router.push("/login")})
 		},
+        getCurrentUser: function () {
+			axios
+			.get('rest/users/currentUser')
+			.then(response=> {this.currentUser=response.data})
+		},
         // TODO : treba da mi vrati sve menadzere koji nemaju sportski objekat, mogu ciljati users,
         // a moze se napraviti i odvojeni za menazdere
         // ugl ocekujem listu menadzera
@@ -211,8 +218,11 @@ Vue.component("addSportObject", {
 			.get('rest/users/freeManagers')
 			.then(response=> {this.managers=response.data})
 		},
+        openHome: function(){
+            this.$router.push("/homeAdministrator/" + this.currentUser.username)
+        },
         openMyProfilePage: function(){
-            this.$router.push("/myProfile/"+this.id)
+            this.$router.push("/myProfile/"+ this.currentUser.username)
         },
         openAllUsersPage: function(){
             this.$router.push("/allUsers")

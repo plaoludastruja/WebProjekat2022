@@ -3,6 +3,7 @@ Vue.component("addTrainer", {
 	// podaci
 	data: function () {
 	    return {
+            currentUser: {},
             users: [],
             user: {
 				username: '',
@@ -25,7 +26,7 @@ Vue.component("addTrainer", {
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
                 <div>
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/homeAdministrator/a">
+                    <a class="navbar-brand" role="button" @click="openHome()">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti
                     </a>
@@ -133,6 +134,7 @@ Vue.component("addTrainer", {
 	// na pocetku
     mounted () {
         this.getAllUsers();
+        this.getCurrentUser();
     },
 	// funkcije
     methods: {
@@ -146,8 +148,16 @@ Vue.component("addTrainer", {
 			.get('rest/users/allUsers')
 			.then(response=> {this.users=response.data})
 		},
+        getCurrentUser: function () {
+			axios
+			.get('rest/users/currentUser')
+			.then(response=> {this.currentUser=response.data})
+		},
+        openHome: function(){
+            this.$router.push("/homeAdministrator/" + this.currentUser.username)
+        },
         openMyProfilePage: function(){
-            this.$router.push("/myProfile/"+this.id)
+            this.$router.push("/myProfile/"+this.currentUser.username)
         },
         openAllUsersPage: function(){
             this.$router.push("/allUsers")

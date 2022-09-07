@@ -19,7 +19,7 @@ Vue.component("allUsers", {
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
                 <div>
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/homeAdministrator/a">
+                    <a class="navbar-brand" role="button" @click="openHome()">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti
                     </a>
@@ -140,6 +140,9 @@ Vue.component("allUsers", {
 				this.sortedbyASC = true;
 			}
 		},
+        openHome: function(){
+            this.$router.push("/homeAdministrator/" + this.user.username)
+        },
         openMyProfilePage: function(){
             this.$router.push("/myProfile/"+this.user.username)
         },

@@ -22,7 +22,7 @@ Vue.component("sportObjectInfo", {
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
                 <div>
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/">
+                    <a class="navbar-brand">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti - {{sportObjectName}}
                     </a>
@@ -31,7 +31,7 @@ Vue.component("sportObjectInfo", {
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         
-                        <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
+                        <li class="nav-item mx-1" role="button">Vrati se nazad</li>
                     </ul>
                 </div>
             </div>

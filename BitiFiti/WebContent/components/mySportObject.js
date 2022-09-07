@@ -20,7 +20,7 @@ Vue.component("mySportObject", {
 	<!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
-                <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
+                <a class="navbar-brand" role="button" @click="openHome()">
                     <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                     BitiFiti - {{sportObjectName}}
                 </a>
@@ -158,6 +158,9 @@ Vue.component("mySportObject", {
 		},
         getServices: function(){
             this.services = this.sportObject.services
+        },
+        openHome: function(){
+            this.$router.push("/homeManager/" + this.username)
         },
         openMyProfilePage: function(){
             this.$router.push("/myProfile/" + this.username)
