@@ -180,6 +180,7 @@ Vue.component("homeCustomer", {
         openSomethingForCustomer: function(){
             this.$router.push("/customersFee/" + this.username)
         },
+        // otvara se fenski sportski objekat
         openSportObjectPage: function(sportObjectName){
 			this.$router.push("/sportObjectInfo/" + sportObjectName);
 		},
