@@ -8,6 +8,7 @@ Vue.component("myServices", {
             nameSearch:'',
 		    typeSearch:'',
             priceSearch: '',
+            sportObjectSearch: '',
             users: [],
             sportObject:{},
             services:[]
@@ -39,10 +40,10 @@ Vue.component("myServices", {
         <header class="masthead text-center text-black">
             <div class="masthead-content">
                 <div class="container px-5">
-                    <h1 class="masthead-heading mb-1">Moji treninzi, KAD BOSKO URADI BEKEND</h1>
+                    <h1 class="masthead-heading mb-1">Moji treninzi</h1>
                     <div class="row">
                         <div class="col-sm-12 mb-2">
-                            <a @click="addSomethingForTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank">Trener moze otkazati personalni trening</a>
+                        
                         </div>
                     </div>
                 </div>
@@ -54,6 +55,7 @@ Vue.component("myServices", {
             <div class="container">
                 <div class="row d-flex justify-content-center">
                     <input class="col-lg-2 mx-2" type="text" v-model="nameSearch" placeholder="Naziv">
+                    <input class="col-lg-2 mx-2" type="text" v-model="sportObjectSearch" placeholder="Sportski objekat">
                     
                     <select class="btn btn-warning col-lg-2 mx-2 dropdown-toggle" v-model="typeSearch"
                         data-toggle="dropdown">
@@ -64,7 +66,7 @@ Vue.component("myServices", {
                         <option class="dropdown-item" value="MASSAGE">Masaža</option>
                     </select>
 
-                    <div v-on:click="sortList('name')" type="button" class="btn btn-warning col-md-1 mx-2" data-bs-toggle="tooltip" title="Sortiraj po imenu">
+                    <div v-on:click="sortList('sportObject')" type="button" class="btn btn-warning col-md-1 mx-2" data-bs-toggle="tooltip" title="Sortiraj po imenu">
                         <svg v-if="sortedbyASC" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M10.082 5.629 9.664 7H8.598l1.789-5.332h1.234L13.402 7h-1.12l-.419-1.371h-1.781zm1.57-.785L11 2.687h-.047l-.652 2.157h1.351z"/>
                             <path d="M12.96 14H9.028v-.691l2.579-3.72v-.054H9.098v-.867h3.785v.691l-2.567 3.72v.054h2.645V14zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z"/>
@@ -143,7 +145,8 @@ Vue.component("myServices", {
 		filteredServices() {
             return this.services.filter((service) => {
                 searchObject =  service.name.toLowerCase().match(this.nameSearch.toLowerCase()) &&
-                                service.serviceType.toLowerCase().match(this.typeSearch.toLowerCase());
+                                service.serviceType.toLowerCase().match(this.typeSearch.toLowerCase()) &&
+                                service.sportObject.toLowerCase().match(this.sportObjectSearch.toLowerCase());
                 return searchObject;
 			})
 		},

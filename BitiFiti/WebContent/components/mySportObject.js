@@ -99,6 +99,15 @@ Vue.component("mySportObject", {
                         <option class="dropdown-item" value="SAUNA">Sauna</option>
                         <option class="dropdown-item" value="MASSAGE">Masaža</option>
                     </select>
+                    
+                    <select class="btn btn-warning col-lg-2 mx-2 dropdown-toggle" v-model="priceSearch"
+                        data-toggle="dropdown">
+                        <option class="dropdown-item" value="">Sve cijene</option>
+                        <option class="dropdown-item" value="1">< 500</option>
+                        <option class="dropdown-item" value="2">500 - 1000</option>
+                        <option class="dropdown-item" value="3">1000 - 2000</option>
+                        <option class="dropdown-item" value="4">> 2000</option>
+                    </select>
 
                     <div v-on:click="sortList('name')" type="button" class="btn btn-warning col-md-1 mx-2" data-bs-toggle="tooltip" title="Sortiraj po imenu">
                         <svg v-if="sortedbyASC" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-sort-alpha-down" viewBox="0 0 16 16">
@@ -208,7 +217,14 @@ Vue.component("mySportObject", {
 		filteredServices() {
             return this.sportObject.services.filter((service) => {
                 searchObject =  service.name.toLowerCase().match(this.nameSearch.toLowerCase()) &&
-                                service.serviceType.toLowerCase().match(this.typeSearch.toLowerCase());
+                                service.serviceType.toLowerCase().match(this.typeSearch.toLowerCase()) &&
+                                (
+                                (this.priceSearch==1 && service.price <= 500 ) ||
+                                (this.priceSearch==2 && (service.price > 500 && service.price <= 1000) ) ||
+                                (this.priceSearch==3 && (service.price > 1000 && service.price <= 2000) ) ||
+                                (this.priceSearch==4 && service.price > 2000 ) ||
+                                (this.priceSearch=='' && service.price >= 0 )
+                                );
                 return searchObject;
 			})
 		},
