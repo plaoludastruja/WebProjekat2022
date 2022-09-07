@@ -231,18 +231,11 @@ Vue.component("addSportObject", {
         },
         addNewSportObject: function() {
             // TODO dodati sliku za logo
-            //this.sportObject.logo= "components/Resources/" + document.getElementById("formFile").files[0].name;
-			this.sportObject.logo= "components/Resources/muscle.png"
+            this.sportObject.logo= "components/Resources/" + document.getElementById("formFile").files[0].name;
+            
             axios
             .post('rest/sportObjects/addSportObject', this.sportObject)
-            .then(
-                axios
-                .put('rest/users/addSportObjectToManager', this.sportObject)
-                .then(this.$router.push("/allUsers"))
-                .catch(err => {
-                    this.greska = "Druga greska!";
-                })
-            )
+            .then(this.$router.push("/allUsers"))
             .catch(err => {
                 this.greska = "Postoji objekat sa tim imenom!";
             })

@@ -11,7 +11,8 @@ Vue.component("addTrainer", {
                 lastName: '',
                 gender: null,
                 dateOfBirth: '',
-                userType: 2
+                userType: 2,
+                trainings: []
 		  	},
             greska: "",
 	    }

@@ -76,7 +76,7 @@ Vue.component("myServices", {
                     <div class="carousel-item active">
                         <div class="container">
                             <div class="row">
-                                <div v-for="service in this.sportObject.services" class="col-lg-4">
+                                <div v-for="service in this.services" class="col-lg-4">
                                     <div class="card">
                                         <img v-bind:src="service.image" class="mx-auto" width="200"/>
                                         <div class="card-body">
@@ -123,7 +123,7 @@ Vue.component("myServices", {
 		},
         getTrainersServices: function () {
 			axios
-			.get('rest/users/trainersServics' + this.username)
+			.get('rest/users/trainersServices' + this.username)
 			.then(response=> {this.services=response.data})
 		},
         openMyProfilePage: function(){
