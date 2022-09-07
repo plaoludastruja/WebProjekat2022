@@ -87,6 +87,8 @@ public class SportObjectService {
 		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");		
 		return sportObjectDAO.findServiceByName(objectName, serviceName);
 	}
+	
+	
 
 	@PUT
 	@Path("/editServiceInfo/{objectId}/{serviceId}")

@@ -117,7 +117,7 @@ Vue.component("myServices", {
                                             <h6>Trajanje:<p>{{service.duration}}</p></h6>
                                             
 
-                                            <button v-if="service.serviceType=='PERSONAL_TRAINING'" @click="cancelService(service.name)" type="button" class="btn btn-outline-danger mb-3">Otkaži personalni</button>
+                                            <button v-if="service.serviceType=='PERSONAL_TRAINING'" @click="cancelService(service)" type="button" class="btn btn-outline-danger mb-3">Otkaži personalni</button>
                                             <h6 v-else>Tip:<p>{{service.serviceType}}</p></h6>
                                             </div>
                                     </div>
@@ -179,11 +179,12 @@ Vue.component("myServices", {
             this.$router.push("/myServices/" + this.username)
         },
         // TODO da ga otkaze ako je nesto nmp
-        cancelService: function(serviceName){
+        cancelService: function(service){
             axios
-			.delete('rest/sportObjects/trainerCancelsTraining/' + serviceName)
+			.put('rest/users/trainerCancelsTraining/' + this.username, service)
+			.then(this.$router.push("/myServices/" + this.user.username))
         },
-        addSomethingForTrainer: function(serviceName){
+        addSomethingForTrainer: function(s){
             this.$router.push("/editService/" + serviceName)
         },
     }
