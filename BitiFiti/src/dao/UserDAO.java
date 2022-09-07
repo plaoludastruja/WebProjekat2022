@@ -70,6 +70,28 @@ public class UserDAO {
 		return t.getTrainings();
 	}
 	
+	public void deleteService(String trainer, Service service) {
+		User t = getByUsername(trainer);
+		List<Service> services = getTrainersServices(trainer);
+		
+		for(Service s: services)
+		{
+			if(s.getName().equals(service.getName()))
+			{
+				//List<Service> objServices = SportObjectDAO.getByName(s.getSportObject()).getServices();
+				services.remove(s);				
+				//objServices.remove(s);
+				
+				t.setTrainings(services);
+				saveUsers();
+				//SportObjectDAO.getByName(t.getSportsObject()).setServices(objServices);
+				//SportObjectDAO.saveSportObjects();
+				return;
+			}
+		}
+	
+	}
+	
 	public static User getByUsername(String username) {
 		for(User u : users) {
 			if(u.getUsername().equals(username)) {

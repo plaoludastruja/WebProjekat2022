@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -20,6 +21,7 @@ import beans.Product;
 import beans.Service;
 import beans.User;
 import dao.ProductDAO;
+import dao.SportObjectDAO;
 import dao.UserDAO;
 
 @Path("users")
@@ -136,6 +138,17 @@ public class UserService {
 	public List<Service> getTrainersServices( @PathParam("id") String trainer, @Context HttpServletRequest request){
 		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
 		return userDAO.getTrainersServices(trainer);
+	}
+	
+	@PUT
+	@Path("/trainerCancelsTraining/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void deleteService( @PathParam("id") String trainer, Service service){
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
+		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");	
+		userDAO.deleteService(trainer, service);
+		sportObjectDAO.deleteService(service);
 	}
 	
 	@GET

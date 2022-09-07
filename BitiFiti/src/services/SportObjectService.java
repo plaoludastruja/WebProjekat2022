@@ -87,7 +87,17 @@ public class SportObjectService {
 		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");		
 		return sportObjectDAO.findServiceByName(objectName, serviceName);
 	}
+	
+	
 
+	@PUT
+	@Path("/editServiceInfo/{objectId}/{serviceId}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void editService(@PathParam("objectId") String objectName, @PathParam("serviceId") String serviceName, Service newService) {
+		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");		
+		sportObjectDAO.editService(objectName, serviceName, newService);
+	}
 	// nije mi trebala
 	@GET
 	@Path("/serviceBySportObject/{id}")

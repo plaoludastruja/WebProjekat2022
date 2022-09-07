@@ -107,7 +107,7 @@ Vue.component("editService", {
                                                 <div style="color: red;" id="greska">{{greska}}</div>
         
                                                 <div class="d-flex justify-content-end pt-3">
-                                                    <button @click="addNewService()" type="button" class="btn btn-warning btn-lg ms-2">Dodaj</button>
+                                                    <button @click="editServiceInfo()" type="button" class="btn btn-warning btn-lg ms-2">Dodaj</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -166,14 +166,14 @@ Vue.component("editService", {
 			.get('rest/users/currentUser')
 			.then(response=> {this.user=response.data})
 		},
-        addNewService: function() {
+        editServiceInfo: function() {
             // TODO dodati sliku za logo
-            this.service.image = "components/Resources/" + document.getElementById("formFile").files[0].name;
+            //this.service.image = "components/Resources/" + document.getElementById("formFile").files[0].name;
+            this.service.image = "components/Resources/muscle.png"
             this.service.sportObject = this.sportObjectName;
             
-            // TODO saljem addNewService/"IME SPORTSKOG OBJEKTA", i saljem trening, u bekendu dodati servis u taj sportsko objekat
             axios
-            .post('rest/sportObjects/addNewService/'+ this.sportObjectName, this.service)
+            .put('rest/sportObjects/editServiceInfo/'+ this.sportObjectName + "/" + this.editingServiceName, this.service)
             .then(this.$router.push("/mySportObject/" + this.user.username + "/" + this.sportObjectName))
             .catch(err => {this.greska = "Nesto ne valja!";})
         },
