@@ -11,6 +11,7 @@ Vue.component("addService", {
                     serviceType: 0,
                     sportObject: '',
                     duration: 0,
+                    price: 0,
                     trainer: '',
                     description: '',
                     image: ''
@@ -103,6 +104,11 @@ Vue.component("addService", {
                                                 <div class="form-outline mb-2">
                                                     <input v-model="service.duration" type="number" class="form-control form-control-lg" />
                                                     <label class="form-label">Trajanje</label>
+                                                </div>
+
+                                                <div class="form-outline mb-2">
+                                                    <input v-model="service.price" type="number" class="form-control form-control-lg" />
+                                                    <label class="form-label">Cijena</label>
                                                 </div>
 
                                                 <div class="form-outline mb-2">

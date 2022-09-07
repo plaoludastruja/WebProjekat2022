@@ -37,7 +37,7 @@
         "gender": "MALE",
         "dateOfBirth": "2000-09-30",
         "userType": "TRAINER",
-        "trainings": null,
+        "trainings": [],
         "fee": 0.0,
         "sportsObject": null,
         "visitedSportsObjects": null,
@@ -238,6 +238,7 @@
                 "serviceType": "PERSONAL_TRAINING",
                 "sportObject": "",
                 "duration": 0,
+                "price": 0,
                 "trainer": "jelena",
                 "description": "",
                 "image": "components/Resources/muscle (1).png"
@@ -247,9 +248,71 @@
                 "serviceType": "PERSONAL_TRAINING",
                 "sportObject": "Sajmiste",
                 "duration": 10,
+                "price": 0,
                 "trainer": "jelena",
                 "description": "zajelenu",
                 "image": "components/Resources/customer.png"
+            }
+        ],
+        "fee": 0.0,
+        "sportsObject": null,
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "testmanager",
+        "password": "test",
+        "firstName": "test",
+        "lastName": "menazder",
+        "gender": "FEMALE",
+        "dateOfBirth": "2022-09-29",
+        "userType": "MANAGER",
+        "trainings": null,
+        "fee": 0.0,
+        "sportsObject": "test",
+        "visitedSportsObjects": null,
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "testtrainer",
+        "password": "test",
+        "firstName": "test",
+        "lastName": "trainer",
+        "gender": "MALE",
+        "dateOfBirth": "2022-09-06",
+        "userType": "TRAINER",
+        "trainings": [
+            {
+                "name": "testtrening",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "test",
+                "duration": 10,
+                "price": 0,
+                "trainer": "testtrainer",
+                "description": "testini",
+                "image": "components/Resources/trainer.png"
+            },
+            {
+                "name": "cijena",
+                "serviceType": "MASSAGE",
+                "sportObject": "Sajmiste",
+                "duration": 10,
+                "price": 200,
+                "trainer": "testtrainer",
+                "description": "imacijenu",
+                "image": "components/Resources/manager.png"
+            },
+            {
+                "name": "sadradikod starih clanova",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "Sajmiste",
+                "duration": 0,
+                "price": 0,
+                "trainer": "testtrainer",
+                "description": "",
+                "image": "components/Resources/trainer.png"
             }
         ],
         "fee": 0.0,
