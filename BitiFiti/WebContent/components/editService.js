@@ -168,8 +168,8 @@ Vue.component("editService", {
 		},
         editServiceInfo: function() {
             // TODO dodati sliku za logo
-            //this.service.image = "components/Resources/" + document.getElementById("formFile").files[0].name;
-            this.service.image = "components/Resources/muscle.png"
+            this.service.image = "components/Resources/" + document.getElementById("formFile").files[0].name;
+            //this.service.image = "components/Resources/muscle.png"
             this.service.sportObject = this.sportObjectName;
             
             axios

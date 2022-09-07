@@ -185,7 +185,7 @@ Vue.component("myServices", {
         cancelService: function(service){
             axios
 			.put('rest/users/trainerCancelsTraining/' + this.username, service)
-			.then(this.$router.push("/myServices/" + this.user.username))
+			.then(this.$router.push("/myServices/" + this.username))
         },
         addSomethingForTrainer: function(s){
             this.$router.push("/editService/" + serviceName)

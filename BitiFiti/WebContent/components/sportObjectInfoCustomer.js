@@ -22,7 +22,7 @@ Vue.component("sportObjectInfoCustomer", {
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
                 <div>
-                    <a class="navbar-brand">
+                    <a class="navbar-brand" role="button" @click="openHome()">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti - {{sportObjectName}}
                     </a>
@@ -30,6 +30,9 @@ Vue.component("sportObjectInfoCustomer", {
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-1" role="button" @click="openSomethingForCustomer()">Moji stavec</li>
+                        <li class="nav-item mx-1" role="button" @click="openMyProfilePage()">Moj profil</li>
+                        <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
                     </ul>
                 </div>
             </div>
@@ -213,6 +216,15 @@ Vue.component("sportObjectInfoCustomer", {
         showMap: function(){
 			this.$router.push("/map/" + sportObjectName);
 		},
+        openHome: function(){
+            this.$router.push("/homeCustomer/" + this.username)
+        },
+        openMyProfilePage: function(){
+            this.$router.push("/myProfile/" + this.username)
+        },
+        openSomethingForCustomer: function(){
+            this.$router.push("/customersFee/" + this.username)
+        },
         doTraining: function (service) {
 			axios
 			.post('rest/users/' + service)

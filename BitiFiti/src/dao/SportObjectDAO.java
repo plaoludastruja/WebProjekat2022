@@ -89,9 +89,29 @@ public class SportObjectDAO {
 	public void deleteService(Service service) {
 		SportObject o = getByName(service.getSportObject());
 		List<Service> services = o.getServices();
-		services.remove(service);
-		o.setServices(services);
-		saveSportObjects();
+
+		for(Service s: services)
+		{
+			if(s.getName().equals(service.getName()))
+			{
+				//List<Service> objServices = SportObjectDAO.getByName(s.getSportObject()).getServices();
+				s.setTrainer("");
+				//services.remove(s);				
+				//objServices.remove(s);
+				
+				//t.setTrainings(services);
+				//saveUsers();
+				o.setServices(services);
+				saveSportObjects();
+				//SportObjectDAO.getByName(t.getSportsObject()).setServices(objServices);
+				//SportObjectDAO.saveSportObjects();
+				return;
+			}
+
+		//services.remove(service);
+		//o.setServices(services);
+		//saveSportObjects();
+		}
 	}
 	
 	public void editService(String objectName, String serviceName, Service newService)
