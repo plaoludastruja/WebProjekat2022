@@ -182,7 +182,7 @@ Vue.component("homeCustomer", {
         },
         // otvara se fenski sportski objekat
         openSportObjectPage: function(sportObjectName){
-			this.$router.push("/sportObjectInfo/" + sportObjectName);
+			this.$router.push("/sportObjectInfoCustomer/" + this.username + "/" + sportObjectName);
 		},
     }
 });
