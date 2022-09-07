@@ -138,7 +138,7 @@ Vue.component("editService", {
 		},
         getService: function () {
 			axios
-			.get('rest/sportObjects/service/' + this.sportObjectName + "/" + this.editingServiceName ,)
+			.get('rest/sportObjects/service/' + this.sportObjectName + "/" + this.editingServiceName)
 			.then(response=> {this.service=response.data})
 		},
         // TODO : treba da mi vrati sve trenere, mogu ciljati users,

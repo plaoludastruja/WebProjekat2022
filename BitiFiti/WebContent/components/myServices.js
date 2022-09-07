@@ -111,13 +111,15 @@ Vue.component("myServices", {
                                         <img v-bind:src="service.image" class="mx-auto" width="200"/>
                                         <div class="card-body">
                                             <h4 class="card-title">{{service.name}}</h4>
-                                            <h6>{{service.ServiceType}}</h6>
-                                            <h6>Trener<p>{{service.trainer}}<p></h6>
-                                            <h6>Cijena<p>{{service.price}}<p></h6>
+                                            <h5>Sportski objekat:<p>{{service.sportObject}}<p></h5>
+                                            <h6>Trener:<p>{{service.trainer}}<p></h6>
+                                            <h6>Cijena:<p>{{service.price}}<p></h6>
                                             <h6>Trajanje:<p>{{service.duration}}</p></h6>
-                                            <h6>Tip:<p>{{service.serviceType}}</p></h6>
-                                            <button @click="editService(service.name)" type="button" class="btn btn-outline-dark">Pregledaj</button>
-                                        </div>
+                                            
+
+                                            <button v-if="service.serviceType=='PERSONAL_TRAINING'" @click="cancelService(service.name)" type="button" class="btn btn-outline-danger mb-3">Otkaži personalni</button>
+                                            <h6 v-else>Tip:<p>{{service.serviceType}}</p></h6>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -177,8 +179,9 @@ Vue.component("myServices", {
             this.$router.push("/myServices/" + this.username)
         },
         // TODO da ga otkaze ako je nesto nmp
-        editService: function(serviceName){
-            this.$router.push("/editService/" + serviceName)
+        cancelService: function(serviceName){
+            axios
+			.delete('rest/sportObjects/trainerCancelsTraining/' + serviceName)
         },
         addSomethingForTrainer: function(serviceName){
             this.$router.push("/editService/" + serviceName)
