@@ -84,7 +84,7 @@ public class SportObjectService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Service getService(@PathParam("objectId") String objectName, @PathParam("serviceId") String serviceName) {
-		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");
+		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");		
 		return sportObjectDAO.findServiceByName(objectName, serviceName);
 	}
 
