@@ -87,6 +87,7 @@ Vue.component("sportObjectInfo", {
                     <select class="btn btn-warning col-lg-2 mx-2 dropdown-toggle" v-model="priceSearch"
                         data-toggle="dropdown">
                         <option class="dropdown-item" value="">Sve cijene</option>
+                        <option class="dropdown-item" value="0">Besplatan</option>
                         <option class="dropdown-item" value="1">< 500</option>
                         <option class="dropdown-item" value="2">500 - 1000</option>
                         <option class="dropdown-item" value="3">1000 - 2000</option>
@@ -174,6 +175,7 @@ Vue.component("sportObjectInfo", {
 				    searchObject =  service.name.toLowerCase().match(this.nameSearch.toLowerCase()) &&
                                     service.serviceType.toLowerCase().match(this.typeSearch.toLowerCase()) &&
                                     (
+                                    (this.priceSearch==0 && service.price == 0 ) ||
                                     (this.priceSearch==1 && service.price <= 500 ) ||
                                     (this.priceSearch==2 && (service.price > 500 && service.price <= 1000) ) ||
                                     (this.priceSearch==3 && (service.price > 1000 && service.price <= 2000) ) ||
