@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.Service;
 import beans.SportObject;
+import dao.UserDAO;
 
 public class SportObjectDAO {
 	private List<SportObject> sportObjects;
@@ -48,23 +49,28 @@ public class SportObjectDAO {
 			return false;
 		sportObjects.add(o);
 		saveSportObjects();
+		String manager = o.getManager();
+		UserDAO.getByUsername(manager).setSportsObject(o.getName());
+		UserDAO.saveUsers();
 		return true;
 	}
 	
 	public boolean addNewService(Service s, String sportObjectName) {
-		for(SportObject o : sportObjects) {
-			if(o.getName().equals(sportObjectName))
+		SportObject o = getByName(sportObjectName);
+		for(Service ss : o.getServices())
+		{
+			if(ss.getName().equals(s.getName()))
 			{
-				for(Service ss : o.getServices())
-				{
-					if(ss.getName().equals(s.getName()))
-					{
-						return false;
-					}
-				}
-				o.addService(s);
+				return false;
 			}
 		}
+		List<Service> services = o.getServices();
+		services.add(s);
+		o.setServices(services);
+		//o.addService(s);
+		saveSportObjects();
+		UserDAO.getByUsername(s.getTrainer()).addTraining(s);
+		UserDAO.saveUsers();
 		return true;
 	}
 	

@@ -153,6 +153,10 @@ public class User implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public void addTraining(Service s) {
+		trainings.add(s);
+	}
 
 
 
