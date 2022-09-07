@@ -86,6 +86,25 @@ public class SportObjectDAO {
 		return null;
 	}
 	
+	public void editService(String objectName, String serviceName, Service newService)
+	{
+		SportObject o = getByName(objectName);
+		for(Service s : o.getServices())
+		{
+			if(s.getName().equals(serviceName))
+			{
+				s.setDescription(newService.getDescription());
+				s.setDuration(newService.getDuration());
+				s.setImage(newService.getImage());
+				s.setName(newService.getName());
+				s.setPrice(newService.getPrice());
+				s.setServiceType(newService.getServiceType());
+				s.setTrainer(newService.getTrainer());
+			}
+		}
+		saveSportObjects();
+	}
+	
 	public boolean deleteSportObject(String name) {
 		for(SportObject o : sportObjects) {
 			if(o.getName().equals(name)) {
