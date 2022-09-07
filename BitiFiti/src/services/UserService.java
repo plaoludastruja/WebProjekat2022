@@ -17,6 +17,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import beans.Product;
+import beans.Service;
 import beans.User;
 import dao.ProductDAO;
 import dao.UserDAO;
@@ -126,6 +127,15 @@ public class UserService {
 	public List<User> findFreeManagers(@Context HttpServletRequest request){
 		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
 		return userDAO.freeManagers();
+	}
+	
+	@GET
+	@Path("/trainersServices")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Service> getTrainersServices(@Context HttpServletRequest request, String trainer){
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
+		return userDAO.getTrainersServices(trainer);
 	}
 	
 	@GET
