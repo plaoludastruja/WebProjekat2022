@@ -231,8 +231,8 @@ Vue.component("addSportObject", {
         },
         addNewSportObject: function() {
             // TODO dodati sliku za logo
-            this.sportObject.logo= "components/Resources/" + document.getElementById("formFile").files[0].name;
-
+            //this.sportObject.logo= "components/Resources/" + document.getElementById("formFile").files[0].name;
+			this.sportObject.logo= "components/Resources/muscle.png"
             axios
             .post('rest/sportObjects/addSportObject', this.sportObject)
             .then(

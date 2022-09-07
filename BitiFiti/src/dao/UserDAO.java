@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import beans.Service;
 import beans.SportObject;
 import beans.User;
 import enums.UserType;
@@ -25,8 +26,8 @@ import enums.UserType;
 
 public class UserDAO {
 	//private Map<String, User> users = new HashMap<>();
-	private List<User> users;
-	private String path = "D:\\Fax\\WEB\\Projekat\\WebProjekat2022\\BitiFiti\\WebContent\\data\\users.json";
+	private static List<User> users;
+	private static String path = "D:\\Fax\\WEB\\Projekat\\WebProjekat2022\\BitiFiti\\WebContent\\data\\users.json";
 	
 	
 	public UserDAO() {
@@ -64,7 +65,7 @@ public class UserDAO {
 		return trainers;
 	}
 	
-	public User getByUsername(String username) {
+	public static User getByUsername(String username) {
 		for(User u : users) {
 			if(u.getUsername().equals(username)) {
 				return u;
@@ -82,6 +83,10 @@ public class UserDAO {
 		users.add(user);
 		saveUsers();
 		return true;
+	}
+	
+	public void addTrainingToTainer(Service s) {
+		getByUsername(s.getTrainer()).addTraining(s);
 	}
 	
 	public boolean editUser(User user) {
@@ -115,7 +120,7 @@ public class UserDAO {
 		}
 	}
 	
-	public void saveUsers() {
+	public static void saveUsers() {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			mapper.writeValue(Paths.get(path).toFile(), users);
