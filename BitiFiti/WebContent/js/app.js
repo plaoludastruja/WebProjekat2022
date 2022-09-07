@@ -17,6 +17,7 @@ const AddServicePage = {template: '<addService></addService>'}
 const MyServicesPage = {template: '<myServices></myServices>'}
 const EditMyProfilePage = {template: '<editMyProfile></editMyProfile>'}
 const EditServicePage = {template: '<editService></editService>'}
+const AddPromoCodePage = {template: '<addPromoCode></addPromoCode>'}
 
 // ne prelaziti
 const router = new VueRouter({
@@ -40,6 +41,7 @@ const router = new VueRouter({
 		{ path: '/myServices/:username', component: MyServicesPage},
 		{ path: '/editMyProfile/:username', component: EditMyProfilePage},
 		{ path: '/editService/:serviceName', component: EditServicePage},
+		{ path: '/addPromoCode', component: AddPromoCodePage},
 
 		// ne prelaziti
 	]

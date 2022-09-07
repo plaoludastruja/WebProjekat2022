@@ -7,6 +7,7 @@ public class Service {
 	private ServiceType serviceType;
 	private String sportObject;
 	private int duration;
+	private int price;
 	private String trainer;
 	private String description;
 	private String image;
@@ -17,13 +18,14 @@ public class Service {
 	}
 
 
-	public Service(String name, ServiceType serviceType, String sportObject, int duration, String trainer,
+	public Service(String name, ServiceType serviceType, String sportObject, int duration, int price, String trainer,
 			String description, String image) {
 		super();
 		this.name = name;
 		this.serviceType = serviceType;
 		this.sportObject = sportObject;
 		this.duration = duration;
+		this.price = price;
 		this.trainer = trainer;
 		this.description = description;
 		this.image = image;
@@ -67,6 +69,15 @@ public class Service {
 
 	public void setDuration(int duration) {
 		this.duration = duration;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 

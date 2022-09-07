@@ -11,6 +11,7 @@ Vue.component("addService", {
                     serviceType: 0,
                     sportObject: '',
                     duration: 0,
+                    price: 0,
                     trainer: '',
                     description: '',
                     image: ''
@@ -46,7 +47,7 @@ Vue.component("addService", {
     <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
-                <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#">
+                <a class="navbar-brand" role="button" @click="openHome()">
                     <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                     BitiFiti - {{sportObjectName}}
                 </a>
@@ -106,6 +107,11 @@ Vue.component("addService", {
                                                 </div>
 
                                                 <div class="form-outline mb-2">
+                                                    <input v-model="service.price" type="number" class="form-control form-control-lg" />
+                                                    <label class="form-label">Cijena</label>
+                                                </div>
+
+                                                <div class="form-outline mb-2">
                                                     <input v-model="service.description" type="text" class="form-control form-control-lg" />
                                                     <label class="form-label">Opis</label>
                                                 </div>
@@ -150,7 +156,6 @@ Vue.component("addService", {
     mounted () {
         this.getTrainers();
         this.getCurrentUser();
-        
     },
 	// funkcije
     methods: {
@@ -167,6 +172,9 @@ Vue.component("addService", {
 			.get('rest/users/trainers')
 			.then(response=> {this.trainers=response.data})
 		},
+        openHome: function(){
+            this.$router.push("/homeManager/" + this.user.username)
+        },
         openMyProfilePage: function(){
             this.$router.push("/myProfile/" + this.user.username)
         },
@@ -183,21 +191,13 @@ Vue.component("addService", {
 		},
         addNewService: function() {
             // TODO dodati sliku za logo
-            //this.service.image = "components/Resources/" + document.getElementById("formFile").files[0].name;
-			this.service.image = "components/Resources/muscle.png"
+            this.service.image = "components/Resources/" + document.getElementById("formFile").files[0].name;
+            this.service.sportObject = this.sportObjectName;
+            
             // TODO saljem addNewService/"IME SPORTSKOG OBJEKTA", i saljem trening, u bekendu dodati servis u taj sportsko objekat
             axios
             .post('rest/sportObjects/addNewService/'+ this.sportObjectName, this.service)
-            .then(
-                axios
-                .put('rest/users/addTrainingsToTrainer', this.service)
-                .then(this.$router.push("/mySportObject/" + this.user.username + "/" + this.sportObjectName))
-                .catch(err => {
-                    this.greska = "Druga greska!";
-                })
-                
-                
-            )
+            .then(this.$router.push("/mySportObject/" + this.user.username + "/" + this.sportObjectName))
             .catch(err => {this.greska = "Nesto ne valja!";})
         },
     }

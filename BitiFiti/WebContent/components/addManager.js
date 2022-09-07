@@ -3,6 +3,7 @@ Vue.component("addManager", {
 	// podaci
 	data: function () {
 	    return {
+            currentUser: {},
             users: [],
             user: {
 				username: '',
@@ -24,7 +25,7 @@ Vue.component("addManager", {
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
                 <div>
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/homeAdministrator/a">
+                    <a class="navbar-brand" role="button" @click="openHome()">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti
                     </a>
@@ -50,6 +51,7 @@ Vue.component("addManager", {
                             <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
                             <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
                             <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
+                            <a @click="addPromoCode()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj promo kod</a>
                         </div>
                     </div>
                 </div>
@@ -131,6 +133,7 @@ Vue.component("addManager", {
 	// na pocetku
     mounted () {
         this.getAllUsers();
+        this.getCurrentUser();
     },
 	// funkcije
     methods: {
@@ -144,8 +147,16 @@ Vue.component("addManager", {
 			.get('rest/users/allUsers')
 			.then(response=> {this.users=response.data})
 		},
+        getCurrentUser: function () {
+			axios
+			.get('rest/users/currentUser')
+			.then(response=> {this.currentUser=response.data})
+		},
+        openHome: function(){
+            this.$router.push("/homeAdministrator/" + this.currentUser.username)
+        },
         openMyProfilePage: function(){
-            this.$router.push("/myProfile/"+this.id)
+            this.$router.push("/myProfile/"+this.currentUser.username)
         },
         openAllUsersPage: function(){
             this.$router.push("/allUsers")
@@ -158,6 +169,9 @@ Vue.component("addManager", {
         },
         addTrainer: function(){
             this.$router.push("/addTrainer")
+        },
+        addPromoCode: function(){
+            this.$router.push("/addPromoCode")
         },
         registerUser: function() {
             axios

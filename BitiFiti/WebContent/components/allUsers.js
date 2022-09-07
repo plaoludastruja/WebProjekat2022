@@ -7,6 +7,8 @@ Vue.component("allUsers", {
             nameSearch:'',
 		    surnameSearch:'',
 		    usernameSearch:'',
+            typeSearch: '',
+            customerSearch: '',
             users: [],
             user: {},
 	    }
@@ -19,7 +21,7 @@ Vue.component("allUsers", {
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
                 <div>
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/homeAdministrator/a">
+                    <a class="navbar-brand" role="button" @click="openHome()">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti
                     </a>
@@ -45,6 +47,7 @@ Vue.component("allUsers", {
                             <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
                             <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
                             <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
+                            <a @click="addPromoCode()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj promo kod</a>
                         </div>
                     </div>
                 </div>
@@ -58,6 +61,24 @@ Vue.component("allUsers", {
                     <input class="col-lg-2 mx-2" type="text" v-model="nameSearch" placeholder="Ime">
                     <input class="col-lg-2 mx-2" type="text" v-model="surnameSearch" placeholder="Prezime" >
                     <input class="col-lg-2 mx-2" type="text" v-model="usernameSearch" placeholder="Korisničko ime">
+
+                    <select class="btn btn-warning col-lg-2 mx-2 dropdown-toggle" v-model="typeSearch"
+                        data-toggle="dropdown">
+                        <option class="dropdown-item" value="">Sve</option>
+                        <option class="dropdown-item" value="ADMINISTRATOR">Administrator</option>
+                        <option class="dropdown-item" value="MANAGER">Menadžer</option>
+                        <option class="dropdown-item" value="TRAINER">Trener</option>
+                        <option class="dropdown-item" value="CUSTOMER">Kupac</option>
+                    </select>
+
+                    <select class="btn btn-warning col-lg-2 mx-2 dropdown-toggle" v-model="customerSearch"
+                        data-toggle="dropdown">
+                        <option class="dropdown-item" value="">Sve</option>
+                        <option class="dropdown-item" value="">Zlatni</option>
+                        <option class="dropdown-item" value="">Srebreni</option>
+                        <option class="dropdown-item" value="">Bronzani</option>
+                        <option class="dropdown-item" value="">NE RADI JOS</option>
+                    </select>
                 </div>
             </div>
         </section>
@@ -108,7 +129,8 @@ Vue.component("allUsers", {
             return this.users.filter((user) => {
 				    searchObject =  user.firstName.toLowerCase().match(this.nameSearch.toLowerCase()) &&
                                     user.lastName.toLowerCase().match(this.surnameSearch.toLowerCase()) &&
-                                    user.username.toLowerCase().match(this.usernameSearch.toLowerCase());
+                                    user.username.toLowerCase().match(this.usernameSearch.toLowerCase()) &&
+                                    user.userType.toLowerCase().match(this.typeSearch.toLowerCase());
 				return searchObject;
 			})
 		},
@@ -139,6 +161,9 @@ Vue.component("allUsers", {
 				this.sortedbyASC = true;
 			}
 		},
+        openHome: function(){
+            this.$router.push("/homeAdministrator/" + this.user.username)
+        },
         openMyProfilePage: function(){
             this.$router.push("/myProfile/"+this.user.username)
         },
@@ -153,6 +178,9 @@ Vue.component("allUsers", {
         },
         addTrainer: function(){
             this.$router.push("/addTrainer")
+        },
+        addPromoCode: function(){
+            this.$router.push("/addPromoCode")
         },
     }
 });

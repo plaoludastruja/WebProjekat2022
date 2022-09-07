@@ -1,19 +1,14 @@
 // naziv komponente kao u app.js
-Vue.component("addTrainer", { 
+Vue.component("addPromoCode", { 
 	// podaci
 	data: function () {
 	    return {
             currentUser: {},
-            users: [],
-            user: {
-				username: '',
-                password: '',
-                firstName: '',
-                lastName: '',
-                gender: null,
-                dateOfBirth: '',
-                userType: 2,
-                trainings: []
+            promoCode: {
+				name: '',
+                expirationDate: '',
+                usageNumber: 0,
+                percent: 0
 		  	},
             greska: "",
 	    }
@@ -68,54 +63,32 @@ Vue.component("addTrainer", {
                                     <div class="row g-0">
                                         <div class="d-flex align-items-center">
                                             <div class="card-body p-md-5 text-black">
-                                                <h3 class="mb-3">Dodaj novog trenera</h3>
+                                                <h3 class="mb-3">Dodaj novi promo kod</h3>
                 
-                                                <div class="row mb-0">
-                                                    <div class="col-md-6 mb-2">
-                                                        <div class="form-outline">
-                                                            <input v-model="user.firstName" type="text" class="form-control form-control-lg" />
-                                                            <label class="form-label">Ime</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6 mb-2">
-                                                        <div class="form-outline">
-                                                            <input v-model="user.lastName" type="text" class="form-control form-control-lg" />
-                                                            <label class="form-label">Prezime</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                
-                                                <div class="d-md-flex justify-content-start align-items-center mb-2 pb-2">
-                                                    <h6 class="mb-0 me-4">Pol: </h6>
-                                                    <div class="form-check form-check-inline mb-0 me-4">
-                                                        <input v-model="user.gender" value="1" class="form-check-input" type="radio"/>
-                                                        <label class="form-check-label">Žensko</label>
-                                                    </div>
-                                                    <div class="form-check form-check-inline mb-0 me-4">
-                                                        <input v-model="user.gender" value="0" class="form-check-input" type="radio"/>
-                                                        <label class="form-check-label">Muško</label>
-                                                    </div>
+                                                <div class="form-outline">
+                                                    <input v-model="promoCode.name" type="text" class="form-control form-control-lg" />
+                                                    <label class="form-label">Kod</label>
                                                 </div>
                 
                                                 <div class="form-outline mb-2">
-                                                    <input v-model="user.dateOfBirth" type="date" class="form-control form-control-lg" />
-                                                    <label class="form-label">Datum rođenja</label>
+                                                    <input v-model="promoCode.expirationDate" type="date" class="form-control form-control-lg" />
+                                                    <label class="form-label">Datum isteka</label>
                                                 </div>
-                
+
                                                 <div class="form-outline mb-2">
-                                                    <input v-model="user.username" type="text" class="form-control form-control-lg" />
-                                                    <label class="form-label">Korisničko ime</label>
+                                                    <input v-model="promoCode.usageNumber" type="number" min="1" class="form-control form-control-lg" />
+                                                    <label class="form-label">Trajanje</label>
                                                 </div>
-                
+
                                                 <div class="form-outline mb-2">
-                                                    <input v-model="user.password" type="password" class="form-control form-control-lg" />
-                                                    <label class="form-label">Šifra</label>
+                                                    <input v-model="promoCode.percent" type="number" min="1" max="100" class="form-control form-control-lg" />
+                                                    <label class="form-label">Popust</label>
                                                 </div>
         
                                                 <div style="color: red;" id="greska">{{greska}}</div>
         
                                                 <div class="d-flex justify-content-end pt-3">
-                                                    <button @click="registerUser()" type="button" class="btn btn-warning btn-lg ms-2">Registruj</button>
+                                                    <button @click="registerPromoCode()" type="button" class="btn btn-warning btn-lg ms-2">Dodaj</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -133,7 +106,6 @@ Vue.component("addTrainer", {
 </div>`,
 	// na pocetku
     mounted () {
-        this.getAllUsers();
         this.getCurrentUser();
     },
 	// funkcije
@@ -142,11 +114,6 @@ Vue.component("addTrainer", {
 			axios
 			.post('rest/users/logout')
 			.then(response=> {this.$router.push("/login")})
-		},
-        getAllUsers: function () {
-			axios
-			.get('rest/users/allUsers')
-			.then(response=> {this.users=response.data})
 		},
         getCurrentUser: function () {
 			axios
@@ -157,7 +124,7 @@ Vue.component("addTrainer", {
             this.$router.push("/homeAdministrator/" + this.currentUser.username)
         },
         openMyProfilePage: function(){
-            this.$router.push("/myProfile/"+this.currentUser.username)
+            this.$router.push("/myProfile/"+ this.currentUser.username)
         },
         openAllUsersPage: function(){
             this.$router.push("/allUsers")
@@ -174,9 +141,9 @@ Vue.component("addTrainer", {
         addPromoCode: function(){
             this.$router.push("/addPromoCode")
         },
-        registerUser: function() {
+        registerPromoCode: function() {
             axios
-            .post('rest/users/register', this.user)
+            .post('rest/promoCode/addPromoCode', this.promoCode)
             .then(this.$router.push("/allUsers"))
             .catch(err => {
                 this.greska = "Nesto ne valja!";
