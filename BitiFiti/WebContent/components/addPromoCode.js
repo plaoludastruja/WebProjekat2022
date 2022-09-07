@@ -41,7 +41,7 @@ Vue.component("addPromoCode", {
         <header class="masthead text-center text-black">
             <div class="masthead-content">
                 <div class="container px-5">
-                    <h1 class="masthead-heading mb-1">Novi trener</h1>
+                    <h1 class="masthead-heading mb-1">Novi promo kod</h1>
                     <div class="row">
                         <div class="col-sm-12 mb-2">
                             <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
