@@ -7,6 +7,8 @@ Vue.component("allUsers", {
             nameSearch:'',
 		    surnameSearch:'',
 		    usernameSearch:'',
+            typeSearch: '',
+            customerSearch: '',
             users: [],
             user: {},
 	    }
@@ -59,6 +61,24 @@ Vue.component("allUsers", {
                     <input class="col-lg-2 mx-2" type="text" v-model="nameSearch" placeholder="Ime">
                     <input class="col-lg-2 mx-2" type="text" v-model="surnameSearch" placeholder="Prezime" >
                     <input class="col-lg-2 mx-2" type="text" v-model="usernameSearch" placeholder="Korisničko ime">
+
+                    <select class="btn btn-warning col-lg-2 mx-2 dropdown-toggle" v-model="typeSearch"
+                        data-toggle="dropdown">
+                        <option class="dropdown-item" value="">Sve</option>
+                        <option class="dropdown-item" value="ADMINISTRATOR">Administrator</option>
+                        <option class="dropdown-item" value="MANAGER">Menadžer</option>
+                        <option class="dropdown-item" value="TRAINER">Trener</option>
+                        <option class="dropdown-item" value="CUSTOMER">Kupac</option>
+                    </select>
+
+                    <select class="btn btn-warning col-lg-2 mx-2 dropdown-toggle" v-model="customerSearch"
+                        data-toggle="dropdown">
+                        <option class="dropdown-item" value="">Sve</option>
+                        <option class="dropdown-item" value="">Zlatni</option>
+                        <option class="dropdown-item" value="">Srebreni</option>
+                        <option class="dropdown-item" value="">Bronzani</option>
+                        <option class="dropdown-item" value="">NE RADI JOS</option>
+                    </select>
                 </div>
             </div>
         </section>
@@ -109,7 +129,8 @@ Vue.component("allUsers", {
             return this.users.filter((user) => {
 				    searchObject =  user.firstName.toLowerCase().match(this.nameSearch.toLowerCase()) &&
                                     user.lastName.toLowerCase().match(this.surnameSearch.toLowerCase()) &&
-                                    user.username.toLowerCase().match(this.usernameSearch.toLowerCase());
+                                    user.username.toLowerCase().match(this.usernameSearch.toLowerCase()) &&
+                                    user.userType.toLowerCase().match(this.typeSearch.toLowerCase());
 				return searchObject;
 			})
 		},

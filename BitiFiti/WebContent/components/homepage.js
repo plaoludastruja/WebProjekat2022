@@ -51,7 +51,6 @@ Vue.component("homepage", {
                     <input class="col-lg-2 mx-2" type="text" v-model="locationSearch" placeholder="Lokacija">
                     <input class="col-lg-2 mx-2" type="text" v-model="scoreSearch" placeholder="Ocjena">
                     
-                    
                     <select class="btn btn-warning col-lg-2 mx-2 dropdown-toggle" v-model="typeSearch"
                         data-toggle="dropdown">
                         <option class="dropdown-item" value="">Sve</option>
