@@ -178,7 +178,7 @@ Vue.component("homeCustomer", {
             this.$router.push("/myProfile/" + this.username)
         },
         openSomethingForCustomer: function(){
-            this.$router.push("/customersFee/" + this.username)
+            this.$router.push("/customerFee/" + this.username)
         },
         // otvara se fenski sportski objekat
         openSportObjectPage: function(sportObjectName){

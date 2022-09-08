@@ -87,28 +87,28 @@ Vue.component("allUsers", {
         <section id="scroll">
             <div class="container px-5">
                 <div class="row gx-5 align-items-center">
-                <table class="table">
-                <thead>
-                    <tr>
-                        <th v-on:click="sortList('username')">Korisnicko ime</th>
-                        <th v-on:click="sortList('password')">Šifra</th>
-                        <th v-on:click="sortList('firstName')">Ime</th>
-                        <th v-on:click="sortList('lastName')">Prezime</th>
-                        <th v-on:click="sortList('userType')">Tip korisnika</th>
-                        <th v-on:click="sortList('TODO')">Broj sakupljenih bodova</th>
-                    </tr>
-                </thead>
-                <tbody v-for="user in filteredUsers">
-                    <tr>
-                        <td>{{user.username}}</td>
-                        <td>{{user.password}}</td>
-                        <td>{{user.firstName}}</td>
-                        <td>{{user.lastName}}</td>
-                        <td>{{user.userType}}</td>
-                        <td>{{user.points}}</td>
-                    </tr>
-                </tbody>
-            </table>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th v-on:click="sortList('username')">Korisnicko ime</th>
+                                <th v-on:click="sortList('password')">Šifra</th>
+                                <th v-on:click="sortList('firstName')">Ime</th>
+                                <th v-on:click="sortList('lastName')">Prezime</th>
+                                <th v-on:click="sortList('userType')">Tip korisnika</th>
+                                <th v-on:click="sortList('TODO')">Broj sakupljenih bodova</th>
+                            </tr>
+                        </thead>
+                        <tbody v-for="user in filteredUsers">
+                            <tr>
+                                <td>{{user.username}}</td>
+                                <td>{{user.password}}</td>
+                                <td>{{user.firstName}}</td>
+                                <td>{{user.lastName}}</td>
+                                <td>{{user.userType}}</td>
+                                <td>{{user.points}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>

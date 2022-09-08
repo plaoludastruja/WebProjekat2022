@@ -195,7 +195,7 @@ Vue.component("mySportObject", {
                         <td>{{service.name}}</td>
                         <td>{{service.serviceType}}</td>
                         <td>{{service.sportObject}}</td>
-                        <td><div  class="btn btn-outline-dark rounded-pill" @click="editService(service.name)">Izmijeni</div></td>
+                        <td><div class="btn btn-outline-dark rounded-pill" @click="editService(service.name)">Izmijeni</div></td>
                     </tr>
                 </tbody>
             </table>
