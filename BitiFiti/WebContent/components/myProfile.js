@@ -48,6 +48,7 @@ Vue.component("myProfile", {
                                     <div class="mt-3">
                                         <h4>{{user.username}}</h4>
                                         <p class="text-secondary mb-1">{{user.userType}}</p>
+                                        <p v-if="user.userType === 'CUSTOMER'" class="text-secondary mb-1">{{user.customerType.name}}</p>
                                     </div>
                                 </div>
                             </div>

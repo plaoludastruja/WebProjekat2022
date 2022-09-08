@@ -95,7 +95,7 @@ Vue.component("allUsers", {
                                 <th v-on:click="sortList('firstName')">Ime</th>
                                 <th v-on:click="sortList('lastName')">Prezime</th>
                                 <th v-on:click="sortList('userType')">Tip korisnika</th>
-                                <th v-on:click="sortList('TODO')">Broj sakupljenih bodova</th>
+                                <th v-on:click="sortList('points')">Broj sakupljenih bodova</th>
                             </tr>
                         </thead>
                         <tbody v-for="user in filteredUsers">

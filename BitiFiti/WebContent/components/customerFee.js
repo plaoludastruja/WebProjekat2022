@@ -21,7 +21,8 @@ Vue.component("customerFee", {
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-1" role="button" @click="openSomethingForCustomer()">Moji stavec</li>
+                        <li class="nav-item mx-1" role="button" @click="openHistoryForCustomer()">Istorija treninga</li>
+                        <li class="nav-item mx-1" role="button" @click="openSomethingForCustomer()">Članarina</li>
                         <li class="nav-item mx-1" role="button" @click="openMyProfilePage()">Moj profil</li>
                         <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
                     </ul>
@@ -121,6 +122,9 @@ Vue.component("customerFee", {
         },
         openSomethingForCustomer: function(){
             this.$router.push("/customerFee/" + this.username)
+        },
+        openHistoryForCustomer: function(){
+            this.$router.push("/historyTrainings/" + this.username)
         },
         // kod usera treba da se stavi novi fee
         getFee: function (thisFee) {
