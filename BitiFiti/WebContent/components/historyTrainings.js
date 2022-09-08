@@ -172,7 +172,7 @@ Vue.component("historyTrainings", {
 		},
         getHistoryOfTrainings: function () {
 			axios
-			.get('rest/getCustomersServices/' + this.username)
+			.get('rest/users/getCustomersServices/' + this.username)
 			.then(response=> {this.services=response.data})
 		},
         openHome: function(){

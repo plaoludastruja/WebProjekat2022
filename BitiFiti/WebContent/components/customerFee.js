@@ -111,7 +111,7 @@ Vue.component("customerFee", {
 		},
         getAllFees: function () {
 			axios
-			.get('rest/getAllFees')
+			.get('rest/fees/getAllFees')
 			.then(response=> {this.fee=response.data})
 		},
         openHome: function(){

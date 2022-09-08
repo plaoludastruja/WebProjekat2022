@@ -229,10 +229,11 @@ Vue.component("sportObjectInfoCustomer", {
         openHistoryForCustomer: function(){
             this.$router.push("/historyTrainings/" + this.username)
         },
+        // TODO dodati trening kupcu i uraditi mu sve sto trebaa
         doTraining: function (service) {
 			axios
-			.post('rest/users/' + service)
-			.then(response=> {this.$router.push("/TODO")})
+			.put('rest/users/makeTrainingReservation/' + this.username, service)
+			.then(this.$router.push("/historyTrainings/" + this.username))
 		},
     }
 });
