@@ -5,9 +5,9 @@ public class Fee {
 	private String name;
 	private int numberOfTrainings;
 	private int numberOfDays;
-	private double price; // cijena ce se promjeniti ako bude promo kod
+	private double price; // cijena ce se promjeniti ako bude promo kod (dodatni zadatak koji radi djordje)
 	
-	private String startDate; // dodaje se kad se posalje upit, status postaje ACTIVE
+	private String startDate; // dodaje se datum kad se posalje upit, status postaje ACTIVE
 	private String endDate; // startDate.addDays(umberOfDays), kad prodje ovaj datum, status postaje NOTACTIVE
 	private String status; // kad se kupi:ACTIVE, kad prodje vrijeme ili potrose se treninzi NOTACITVE
 	private int trainingsUsed; // povecava se kad kupac rezervise trening, ne moze biti veci od numberOfTrainings

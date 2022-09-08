@@ -4,7 +4,7 @@
         "numberOfTrainings": 30,
         "numberOfDays": 30,
         "price": 1500.0,
-        "activeDate": "",
+        "startDate": "",
         "endDate": "",
         "status": "NOTACTIVE",
         "trainingsUsed": 0
@@ -14,7 +14,7 @@
         "numberOfTrainings": 1,
         "numberOfDays": 1,
         "price": 100.0,
-        "activeDate": "",
+        "startDate": "",
         "endDate": "",
         "status": "NOTACTIVE",
         "trainingsUsed": 0

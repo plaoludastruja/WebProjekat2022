@@ -8,7 +8,8 @@ Vue.component("register", {
                 lastName: '',
                 gender: null,
                 dateOfBirth: '',
-                userType: 3
+                userType: 3,
+                fee: {}
 		  	},
             greska: "",
 	    }

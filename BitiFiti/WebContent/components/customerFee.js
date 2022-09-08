@@ -1,5 +1,5 @@
 // naziv komponente kao u app.js
-Vue.component("feeCustomer", { 
+Vue.component("customerFee", { 
 	// podaci
 	data: function () {
 	    return {
@@ -110,7 +110,7 @@ Vue.component("feeCustomer", {
 		},
         getAllFees: function () {
 			axios
-			.get('rest/getAllFees/')
+			.get('rest/getAllFees')
 			.then(response=> {this.fee=response.data})
 		},
         openHome: function(){

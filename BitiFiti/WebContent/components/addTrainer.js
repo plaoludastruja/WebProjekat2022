@@ -13,6 +13,7 @@ Vue.component("addTrainer", {
                 gender: null,
                 dateOfBirth: '',
                 userType: 2,
+                fee: null,
                 trainings: []
 		  	},
             greska: "",

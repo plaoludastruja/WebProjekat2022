@@ -12,7 +12,8 @@ Vue.component("addManager", {
                 lastName: '',
                 gender: null,
                 dateOfBirth: '',
-                userType: 1
+                userType: 1,
+                fee: null
 		  	},
             greska: "",
 	    }
