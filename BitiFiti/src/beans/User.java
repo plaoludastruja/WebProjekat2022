@@ -18,7 +18,7 @@ public class User implements Serializable {
 	private List<Service> trainings;
 	private Fee fee; //Bice tip FEE
 	private String sportsObject;
-	private List<String> trainingHistory;
+	private List<Service> trainingHistory;
 	private int points;
 	private CustomerType customerType;
 	
@@ -29,7 +29,7 @@ public class User implements Serializable {
 
 	public User(String username, String password, String firstName, String lastName, Gender gender, String dateOfBirth,
 			UserType userType, List<Service> trainings, Fee fee, String sportsObject,
-			List<String> trainingHistory, int points, CustomerType customerType) {
+			List<Service> trainingHistory, int points, CustomerType customerType) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -126,11 +126,11 @@ public class User implements Serializable {
 		this.sportsObject = sportsObject;
 	}
 
-	public List<String> getTrainingHistory() {
+	public List<Service> getTrainingHistory() {
 		return trainingHistory;
 	}
 
-	public void setTrainingHistory(List<String> trainingHistory) {
+	public void setTrainingHistory(List<Service> trainingHistory) {
 		this.trainingHistory = trainingHistory;
 	}
 

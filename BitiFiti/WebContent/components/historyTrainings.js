@@ -109,7 +109,7 @@ Vue.component("historyTrainings", {
                                         <div class="card-body">
                                             <h4 class="card-title">{{service.name}}</h4>
                                             <h5>Sportski objekat:<p>{{service.sportObject}}<p></h5>
-                                            <h6>Trener:<p>{{service.trainer}}<p></h6>
+                                            <h6>Datum:<p>{{service.trainer}}<p></h6>
                                             <h6>Cijena:<p>{{service.price}}<p></h6>
                                             <h6>Trajanje:<p>{{service.duration}}</p></h6>
                                             <h6>Tip:<p>{{service.serviceType}}</p></h6>
@@ -137,7 +137,7 @@ Vue.component("historyTrainings", {
     },
     computed: {
         // ovo prepraviti da bude kao pretraga, sa svim ifovima u zavisnosti sta je ukucano
-		filteredSportObjects() {
+		filteredServices() {
             return this.services.filter((service) => {
                 searchObject =  service.name.toLowerCase().match(this.nameSearch.toLowerCase()) &&
                                 service.serviceType.toLowerCase().match(this.typeSearch.toLowerCase()) &&
@@ -172,7 +172,7 @@ Vue.component("historyTrainings", {
 		},
         getHistoryOfTrainings: function () {
 			axios
-			.get('rest/users/getCustomersServices/' + this.username)
+			.get('rest/users/getHistory/' + this.username)
 			.then(response=> {this.services=response.data})
 		},
         openHome: function(){

@@ -141,6 +141,15 @@ public class UserService {
 		return userDAO.getTrainersServices(trainer);
 	}
 	
+	@GET
+	@Path("/getHistory/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Service> getHistory( @PathParam("id") String customerId,  @Context HttpServletRequest request){
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
+		return userDAO.getHistory(customerId);
+	}
+	
 	@PUT
 	@Path("/trainerCancelsTraining/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -178,4 +187,6 @@ public class UserService {
 		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
 		return userDAO.findAllTrainers();
 	}
+	
+	
 }

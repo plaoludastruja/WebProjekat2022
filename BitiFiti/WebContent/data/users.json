@@ -65,7 +65,16 @@
 		},
 		"sportsObject": null,
 		"trainingHistory": [
-			"Igranka bez prestanka"
+			{
+				"name": "Igranka bez prestanka",
+				"serviceType": "PERSONAL_TRAINING",
+				"sportObject": "Sajmiste",
+				"duration": 50,
+				"price": 0,
+				"trainer": "2022-09-09",
+				"description": "guzica",
+				"image": "components/Resources/customer.png"
+			}
 		],
 		"points": 0,
 		"customerType": null
