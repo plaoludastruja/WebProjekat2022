@@ -4,7 +4,7 @@ Vue.component("customerFee", {
 	data: function () {
 	    return {
             username: this.$route.params.username,
-            fee: [],
+            fees: [],
 	    }
 	},
 	// html bootstrap
@@ -54,7 +54,7 @@ Vue.component("customerFee", {
                                     <th>Kupi</th>
                                 </tr>
                             </thead>
-                            <tbody v-for="thisFee in filteredUsers">
+                            <tbody v-for="thisFee in fees">
                                 <tr>
                                     <td>{{thisFee.name}}</td>
                                     <td>{{thisFee.price}}</td>
@@ -112,7 +112,7 @@ Vue.component("customerFee", {
         getAllFees: function () {
 			axios
 			.get('rest/fees/')
-			.then(response=> {this.fee=response.data})
+			.then(response=> {this.fees=response.data})
 		},
         openHome: function(){
             this.$router.push("/homeCustomer/" + this.username)

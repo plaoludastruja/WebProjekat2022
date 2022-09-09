@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,6 +19,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import beans.Fee;
 import beans.Service;
 import beans.SportObject;
 import beans.User;
@@ -114,6 +116,17 @@ public class UserDAO {
 	
 	public void addTrainingToTainer(Service s) {
 		getByUsername(s.getTrainer()).addTraining(s);
+	}
+	
+	public void customerGetsFee(String customerId, Fee fee) {
+		User customer = getByUsername(customerId);
+		fee.setStatus("ACTIVE");
+		LocalDate datum = LocalDate.now();
+		int numOfDays = fee.getNumberOfDays();
+		fee.setStartDate(datum.toString());	
+		fee.setEndDate(LocalDate.now().plusDays(numOfDays).toString());
+		customer.setFee(fee);
+		saveUsers();
 	}
 	
 	public boolean editUser(User user) {

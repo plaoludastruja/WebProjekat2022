@@ -17,6 +17,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import beans.Fee;
 import beans.Product;
 import beans.Service;
 import beans.User;
@@ -149,6 +150,15 @@ public class UserService {
 		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");	
 		userDAO.deleteService(trainer, service);
 		sportObjectDAO.deleteService(service);
+	}
+	
+	@PUT
+	@Path("/customerGetsFee/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void deleteService( @PathParam("id") String customerId, Fee fee){
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");	
+		userDAO.customerGetsFee(customerId, fee);
 	}
 	
 	@GET
