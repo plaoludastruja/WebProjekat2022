@@ -109,6 +109,8 @@ public class UserDAO {
 				return false;
 			}		
 		}
+		List<String> emptyList = new ArrayList<String>();
+		user.setTrainingHistory(emptyList);
 		users.add(user);
 		saveUsers();
 		return true;
@@ -127,6 +129,18 @@ public class UserDAO {
 		fee.setEndDate(LocalDate.now().plusDays(numOfDays).toString());
 		customer.setFee(fee);
 		saveUsers();
+	}
+	
+	public void makeTrainingReservation(String customerId, Service service) {
+		User customer = getByUsername(customerId);
+		if (customer.getFee().getStatus().equals("ACTIVE") && customer.getFee().getNumberOfTrainings() > 0) {
+			List<String> history = customer.getTrainingHistory();
+			history.add(service.getName());
+			Fee fee = customer.getFee();
+			fee.setNumberOfTrainings(fee.getNumberOfDays() - 1);
+			customer.setFee(fee);
+			saveUsers();
+		}
 	}
 	
 	public boolean editUser(User user) {

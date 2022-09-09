@@ -156,9 +156,18 @@ public class UserService {
 	@Path("/customerGetsFee/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void deleteService( @PathParam("id") String customerId, Fee fee){
+	public void customerGetsFee( @PathParam("id") String customerId, Fee fee){
 		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");	
 		userDAO.customerGetsFee(customerId, fee);
+	}
+	
+	@PUT
+	@Path("/makeTrainingReservation/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void makeTrainingReservation( @PathParam("id") String customerId, Service service){
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");	
+		userDAO.makeTrainingReservation(customerId, service);
 	}
 	
 	@GET
