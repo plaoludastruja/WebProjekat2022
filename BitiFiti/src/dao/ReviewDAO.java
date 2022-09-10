@@ -53,9 +53,9 @@ public class ReviewDAO {
 		return reviewsFromOneObject;
 	}
 	
-	public void approve(String reviewComment) {
+	public void approve(Review review) {
 		for(Review r : reviews) {
-			if(r.getComment().equals(reviewComment)) {
+			if(r.getComment().equals(review.getComment())) {
 				r.setApproved(true);
 			}
 		}

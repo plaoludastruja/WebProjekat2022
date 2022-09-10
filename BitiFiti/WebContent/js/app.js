@@ -21,6 +21,7 @@ const AddPromoCodePage = {template: '<addPromoCode></addPromoCode>'}
 const SportObjectInfoCustomerPage = {template: '<sportObjectInfoCustomer></sportObjectInfoCustomer>'}
 const CustomerFeePage = {template: '<customerFee></customerFee>'}
 const HistoryTrainingsPage = {template: '<historyTrainings></historyTrainings>'}
+const AllCommentsPage = {template: '<allComments></allComments>'}
 
 // ne prelaziti
 const router = new VueRouter({
@@ -48,6 +49,7 @@ const router = new VueRouter({
 		{ path: '/sportObjectInfoCustomer/:username/:name', component: SportObjectInfoCustomerPage},
 		{ path: '/customerFee/:username', component: CustomerFeePage},
 		{ path: '/historyTrainings/:username', component: HistoryTrainingsPage},
+		{ path: '/allComments', component: AllCommentsPage},
 
 		// ne prelaziti
 	]

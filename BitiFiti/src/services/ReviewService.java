@@ -81,9 +81,9 @@ public class ReviewService {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void approve(String reviewComment, @Context HttpServletRequest request){
+	public void approve(Review review, @Context HttpServletRequest request){
 		ReviewDAO reviewDAO = (ReviewDAO)ctx.getAttribute("ReviewDAO");
-		reviewDAO.approve(reviewComment);
+		reviewDAO.approve(review);
 	}
 	
 }

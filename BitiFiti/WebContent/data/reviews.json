@@ -1,16 +1,1 @@
-[
-    {
-        "grade": 4,
-        "comment": "smece",
-        "username": "k",
-        "sportObjectName": "Sajmiste",
-        "approved": false
-    },
-    {
-        "grade": 1,
-        "comment": "smece",
-        "username": "k",
-        "sportObjectName": "Sajmiste",
-        "approved": false
-    }
-]
+[{"grade":4,"comment":"smece1","username":"k","sportObjectName":"Sajmiste","approved":true},{"grade":1,"comment":"smece2","username":"k","sportObjectName":"Sajmiste","approved":true}]

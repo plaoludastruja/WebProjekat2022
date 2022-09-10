@@ -46,6 +46,7 @@ Vue.component("addSportObject", {
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-1" role="button" @click="openAllUsersPage()">Svi korisnici</li>
+                        <li class="nav-item mx-1" role="button" @click="openComments()">Komentari</li>
                         <li class="nav-item mx-1" role="button" @click="openMyProfilePage()">Moj profil</li>
                         <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
                     </ul>
@@ -226,6 +227,9 @@ Vue.component("addSportObject", {
         },
         openAllUsersPage: function(){
             this.$router.push("/allUsers")
+        },
+        openComments: function(){
+            this.$router.push("/allComments")
         },
         addSportObject: function(){
             this.$router.push("/addSportObject")
