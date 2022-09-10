@@ -10,6 +10,15 @@ Vue.component("historyTrainings", {
             priceSearch: '',
             sportObjectSearch: '',
             services:[],
+            iscomment: true,
+            value: null,
+            review: {
+                grade: null,
+                comment: '',
+                username: '',
+                sportObjectName: '',
+                approved: false
+            },
 	    }
 	},
 	// html bootstrap
@@ -102,21 +111,49 @@ Vue.component("historyTrainings", {
                     <!-- Single item -->
                     <div class="carousel-item active">
                         <div class="container">
-                            <div class="row">
+
+                            <div v-if="iscomment" class="row">
                                 <div v-for="service in filteredServices" class="col-lg-4">
                                     <div class="card">
                                         <img v-bind:src="service.image" class="mx-auto" width="200"/>
                                         <div class="card-body">
                                             <h4 class="card-title">{{service.name}}</h4>
-                                            <h5>Sportski objekat:<p>{{service.sportObject}}<p></h5>
+                                            <h5>{{service.sportObject}}</h5>
                                             <h6>Datum:<p>{{service.trainer}}<p></h6>
                                             <h6>Cijena:<p>{{service.price}}<p></h6>
                                             <h6>Trajanje:<p>{{service.duration}}</p></h6>
                                             <h6>Tip:<p>{{service.serviceType}}</p></h6>
-                                            </div>
+                                            <button @click="next()" type="button" class="btn btn-outline-dark">Komentarisi</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div v-else class="row">
+                                <div v-for="service in filteredServices" class="col-lg-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{service.name}}</h4>
+                                            <h5>Sportski objekat:<p>{{service.sportObject}}<p></h5>
+
+                                            <div>
+                                                <label>Ocjenite</label>
+                                                <b-form-rating v-model="review.grade" variant="warning"></b-form-rating>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Dodajte komentar</label>
+                                                <textarea v-model="review.comment" class="form-control" rows="3"></textarea>
+                                            </div>
+
+
+                                            <button @click="prev()" type="button" class="btn btn-outline-dark">Vrati se</button>
+                                            <button @click="sendComment(service.sportObject)" type="button" class="btn btn-outline-warning">Komentarisi</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -187,5 +224,21 @@ Vue.component("historyTrainings", {
         openHistoryForCustomer: function(){
             this.$router.push("/historyTrainings/" + this.username)
         },
+        next: function(){
+            this.iscomment = false
+            value = 0
+        },
+        prev: function(){
+            this.iscomment = true
+            value = 0
+        },
+        sendComment: function (sportObject) {
+            this.review.sportObjectName = sportObject;
+            this.review.username = this.username;
+            
+			axios
+			.post('rest/reviews', this.review)
+			.then(this.$router.push("/historyTrainings/" + this.username))
+		},
     }
 });
