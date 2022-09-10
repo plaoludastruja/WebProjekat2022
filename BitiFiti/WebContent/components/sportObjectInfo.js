@@ -11,6 +11,7 @@ Vue.component("sportObjectInfo", {
             users: [],
             sportObject:{},
             services:[],
+            reviews: [],
 	    }
 	},
 	// html bootstrap
@@ -155,9 +156,30 @@ Vue.component("sportObjectInfo", {
                 </div>
             </section>
 
-            <section>
-            OVDE IDU KOMENTARI I OCJENE
-            </setcion>
+    <!-- tabela -->
+        <section id="scroll">
+            <div class="container px-5">
+                <h1 class="masthead-heading mb-1">Komentari i ocjene</h1>
+                <div class="row gx-5 align-items-center">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Korisničko ime</th>
+                                <th>Komentar</th>
+                                <th>Ocjena</th>
+                            </tr>
+                        </thead>
+                        <tbody v-for="review in reviews">
+                            <tr>
+                                <td>{{review.username}}</td>
+                                <td>{{review.comment}}</td>
+                                <td>{{review.grade}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
 
     <!-- Footer-->
             <footer class="py-5 bg-black mt-auto">
@@ -167,6 +189,7 @@ Vue.component("sportObjectInfo", {
 	// na pocetku
     mounted () {
         this.getSportObject();
+        this.getApprovedComments();
     },
     computed: {
         // ovo prepraviti da bude kao pretraga, sa svim ifovima u zavisnosti sta je ukucano
@@ -206,6 +229,11 @@ Vue.component("sportObjectInfo", {
 			axios
 			.get('rest/sportObjects/' + this.sportObjectName)
 			.then(response=> {this.sportObject=response.data})
+		},
+        getApprovedComments: function () {
+			axios
+			.get('rest/reviews/fromOneObject/' + this.sportObjectName)
+			.then(response=> {this.reviews=response.data})
 		},
         // TODO da se otvori da se prikaze mapa
         showMap: function(){

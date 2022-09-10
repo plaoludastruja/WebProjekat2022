@@ -60,12 +60,21 @@ public class ReviewService {
 	}
 	
 	@GET
-	@Path("/fromOneObject")
+	@Path("/fromOneObject/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Review> getAllReviews(String sportObjectName, @Context HttpServletRequest request){
+	public List<Review> getApprovedFromOneObject(@PathParam("id") String id){
 		ReviewDAO reviewDAO = (ReviewDAO)ctx.getAttribute("ReviewDAO");
-		return reviewDAO.getApprovedFromOneObject(sportObjectName);
+		return reviewDAO.getApprovedFromOneObject(id);
+	}
+
+	@GET
+	@Path("/allCommentsSportObject/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Review> getAllFromOneObject(@PathParam("id") String id){
+		ReviewDAO reviewDAO = (ReviewDAO)ctx.getAttribute("ReviewDAO");
+		return reviewDAO.getAllFromOneObject(id);
 	}
 	
 	@POST

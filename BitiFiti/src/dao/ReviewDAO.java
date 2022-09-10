@@ -43,10 +43,21 @@ public class ReviewDAO {
 		return approvedReviews;
 	}
 	
-	public List<Review> getApprovedFromOneObject(String sportObjectName){
-		List<Review> reviewsFromOneObject = getApproved();
-		for(Review r : reviewsFromOneObject) {
-			if(r.getSportObjectName().equals(sportObjectName)) {
+	public List<Review> getApprovedFromOneObject(String sportObject){
+		List<Review> reviewsFromOneObject = new ArrayList<Review>();
+		List<Review> approvedReviews = getApproved();
+		for(Review r : approvedReviews) {
+			if(r.getSportObjectName().equals(sportObject)) {
+				reviewsFromOneObject.add(r);
+			}
+		}
+		return reviewsFromOneObject;
+	}
+
+	public List<Review> getAllFromOneObject(String sportObject){
+		List<Review> reviewsFromOneObject = new ArrayList<Review>();
+		for(Review r : reviews) {
+			if(r.getSportObjectName().equals(sportObject)) {
 				reviewsFromOneObject.add(r);
 			}
 		}

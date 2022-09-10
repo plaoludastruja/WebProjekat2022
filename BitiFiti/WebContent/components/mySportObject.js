@@ -12,6 +12,7 @@ Vue.component("mySportObject", {
             users: [],
             sportObject:{},
             services:[],
+            reviews: [],
 	    }
 	},
 	// html bootstrap
@@ -174,34 +175,33 @@ Vue.component("mySportObject", {
                 </div>
             </section>
 
-
         <!-- tabela -->
-        <section id="scroll">
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center">
-                <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                        <label v-on:click="sortList('name')">Naziv</label>
-                        </th>
-                        <th v-on:click="sortList('sportObjectType')">Tip treninga</th>
-                        <th v-on:click="sortList('sportObjectType')">Tip korisnika</th>
-                        <th v-on:click="sortList('sportObjectType')">Izmjeni</th>
-                    </tr>
-                </thead>
-                <tbody v-for="service in this.sportObject.services">
-                    <tr>
-                        <td>{{service.name}}</td>
-                        <td>{{service.serviceType}}</td>
-                        <td>{{service.sportObject}}</td>
-                        <td><div class="btn btn-outline-dark rounded-pill" @click="editService(service.name)">Izmijeni</div></td>
-                    </tr>
-                </tbody>
-            </table>
+            <section id="scroll">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-1">Komentari i ocjene</h1>
+                    <div class="row gx-5 align-items-center">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Korisničko ime</th>
+                                    <th>Komentar</th>
+                                    <th>Ocjena</th>
+                                    <th>Odobren</th>
+                                </tr>
+                            </thead>
+                            <tbody v-for="review in reviews">
+                                <tr>
+                                    <td>{{review.username}}</td>
+                                    <td>{{review.comment}}</td>
+                                    <td>{{review.grade}}</td>
+                                    <td v-if="review.approved">Da</td>
+                                    <td v-else>Ne</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
     <!-- Footer-->
             <footer class="py-5 bg-black mt-auto">
@@ -212,6 +212,7 @@ Vue.component("mySportObject", {
     mounted () {
         this.getSportObject();
         this.getServices();
+        this.getAllCommentsForSportObject();
     },
     computed: {
         // ovo prepraviti da bude kao pretraga, sa svim ifovima u zavisnosti sta je ukucano
@@ -255,6 +256,11 @@ Vue.component("mySportObject", {
         getServices: function(){
             this.services = this.sportObject.services
         },
+        getAllCommentsForSportObject: function () {
+			axios
+			.get('rest/reviews/allCommentsSportObject/' + this.sportObjectName)
+			.then(response=> {this.reviews=response.data})
+		},
         openHome: function(){
             this.$router.push("/homeManager/" + this.username)
         },
