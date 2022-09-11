@@ -13,7 +13,7 @@
         "name": "DNEVNA",
         "numberOfTrainings": 1,
         "numberOfDays": 1,
-        "price": 10000.0,
+        "price": 1000.0,
         "startDate": "",
         "endDate": "",
         "status": "NOTACTIVE",

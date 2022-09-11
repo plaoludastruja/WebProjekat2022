@@ -1,12 +1,12 @@
 [
     {
-        "name": "novikod",
+        "name": "neradi",
         "expirationDate": "2022-09-10",
         "usageNumber": 0,
         "percent": 50
     },
     {
-        "name": "testkod",
+        "name": "radi",
         "expirationDate": "2022-09-20",
         "usageNumber": 42,
         "percent": 10
