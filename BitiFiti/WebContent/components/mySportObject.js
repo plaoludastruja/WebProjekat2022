@@ -107,7 +107,7 @@ Vue.component("mySportObject", {
 
                     <select class="btn btn-warning col-lg-2 mx-2 dropdown-toggle" v-model="priceSearch"
                         data-toggle="dropdown">
-                        <option class="dropdown-item" value="">Sve cijene</option>
+                        <option class="dropdown-item" value="0">Sve cijene</option>
                         <option class="dropdown-item" value="1">Besplatan</option>
                         <option class="dropdown-item" value="1">< 500</option>
                         <option class="dropdown-item" value="2">500 - 1000</option>

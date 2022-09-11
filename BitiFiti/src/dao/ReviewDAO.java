@@ -71,11 +71,34 @@ public class ReviewDAO {
 			}
 		}
 		saveReviews();
+		addGradeToSportObject(review);
 	}
 	
 	public void addReview(Review review) {
 		reviews.add(review);
 		saveReviews();
+	}
+
+	public void addGradeToSportObject(Review review) {
+		SportObject objectToGrade = SportObjectDAO.getByName(review.getSportObjectName());
+		
+		int newGrade = getGradeFromReviews(objectToGrade);
+		
+		objectToGrade.setAverageScore(newGrade);
+		
+		SportObjectDAO.saveSportObjects();
+	}
+	
+	public int getGradeFromReviews(SportObject objectToGrade) {
+		int number = 0;
+		double gradeSum = 0;
+		for(Review r : reviews) {
+			if(r.getSportObjectName().equals(objectToGrade.getName())) {
+				number++;
+				gradeSum+=r.getGrade();
+			}
+		}
+		return (int)gradeSum/number;
 	}
 	
 	

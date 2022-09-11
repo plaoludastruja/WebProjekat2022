@@ -33,5 +33,19 @@
         "username": "k",
         "sportObjectName": "Mapski Objekat",
         "approved": true
+    },
+    {
+        "grade": 5,
+        "comment": "Odlicna ocjena",
+        "username": "k",
+        "sportObjectName": "zaocjeniti",
+        "approved": true
+    },
+    {
+        "grade": 1,
+        "comment": "nako",
+        "username": "k",
+        "sportObjectName": "zaocjeniti",
+        "approved": true
     }
 ]

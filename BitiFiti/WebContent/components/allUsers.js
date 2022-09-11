@@ -91,7 +91,7 @@ Vue.component("allUsers", {
                     <table class="table">
                         <thead>
                             <tr>
-                                <th v-on:click="sortList('username')">Korisnicko ime</th>
+                                <th v-on:click="sortList('username')">Korisničko ime</th>
                                 <th v-on:click="sortList('password')">Šifra</th>
                                 <th v-on:click="sortList('firstName')">Ime</th>
                                 <th v-on:click="sortList('lastName')">Prezime</th>
