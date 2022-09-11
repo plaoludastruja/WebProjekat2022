@@ -3,6 +3,7 @@ Vue.component("addManager", {
 	// podaci
 	data: function () {
 	    return {
+            currentUser: {},
             users: [],
             user: {
 				username: '',
@@ -11,7 +12,8 @@ Vue.component("addManager", {
                 lastName: '',
                 gender: null,
                 dateOfBirth: '',
-                userType: 1
+                userType: 1,
+                fee: null
 		  	},
             greska: "",
 	    }
@@ -24,7 +26,7 @@ Vue.component("addManager", {
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
                 <div>
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/homeAdministrator/a">
+                    <a class="navbar-brand" role="button" @click="openHome()">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti
                     </a>
@@ -33,6 +35,7 @@ Vue.component("addManager", {
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-1" role="button" @click="openAllUsersPage()">Svi korisnici</li>
+                        <li class="nav-item mx-1" role="button" @click="openComments()">Komentari</li>
                         <li class="nav-item mx-1" role="button" @click="openMyProfilePage()">Moj profil</li>
                         <li class="nav-item mx-1" role="button" @click="logOut()">Odjavi se</li>
                     </ul>
@@ -44,12 +47,13 @@ Vue.component("addManager", {
         <header class="masthead text-center text-black">
             <div class="masthead-content">
                 <div class="container px-5">
-                    <h1 class="masthead-heading mb-1">Novi menadjer</h1>
+                    <h1 class="masthead-heading mb-1">Novi menadžer</h1>
                     <div class="row">
                         <div class="col-sm-12 mb-2">
                             <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
-                            <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
+                            <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadžera</a>
                             <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
+                            <a @click="addPromoCode()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj promo kod</a>
                         </div>
                     </div>
                 </div>
@@ -65,7 +69,7 @@ Vue.component("addManager", {
                                     <div class="row g-0">
                                         <div class="d-flex align-items-center">
                                             <div class="card-body p-md-5 text-black">
-                                                <h3 class="mb-3">Dodaj novom menadjera</h3>
+                                                <h3 class="mb-3">Dodaj novom menadžera</h3>
                 
                                                 <div class="row mb-0">
                                                     <div class="col-md-6 mb-2">
@@ -131,6 +135,7 @@ Vue.component("addManager", {
 	// na pocetku
     mounted () {
         this.getAllUsers();
+        this.getCurrentUser();
     },
 	// funkcije
     methods: {
@@ -144,11 +149,22 @@ Vue.component("addManager", {
 			.get('rest/users/allUsers')
 			.then(response=> {this.users=response.data})
 		},
+        getCurrentUser: function () {
+			axios
+			.get('rest/users/currentUser')
+			.then(response=> {this.currentUser=response.data})
+		},
+        openHome: function(){
+            this.$router.push("/homeAdministrator/" + this.currentUser.username)
+        },
         openMyProfilePage: function(){
-            this.$router.push("/myProfile/"+this.id)
+            this.$router.push("/myProfile/"+this.currentUser.username)
         },
         openAllUsersPage: function(){
             this.$router.push("/allUsers")
+        },
+        openComments: function(){
+            this.$router.push("/allComments")
         },
         addSportObject: function(){
             this.$router.push("/addSportObject")
@@ -158,6 +174,9 @@ Vue.component("addManager", {
         },
         addTrainer: function(){
             this.$router.push("/addTrainer")
+        },
+        addPromoCode: function(){
+            this.$router.push("/addPromoCode")
         },
         registerUser: function() {
             axios

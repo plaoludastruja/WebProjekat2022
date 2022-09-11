@@ -13,10 +13,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import beans.Service;
 import beans.SportObject;
+import dao.UserDAO;
 
 public class SportObjectDAO {
-	private List<SportObject> sportObjects;
-	private String path = "D:\\Fax\\WEB\\Projekat\\WebProjekat2022\\BitiFiti\\WebContent\\data\\sport_objects.json";
+	private static List<SportObject> sportObjects;
+	private static String path = "D:\\Fax\\WEB\\Projekat\\WebProjekat2022\\BitiFiti\\WebContent\\data\\sport_objects.json";
 	
 	public SportObjectDAO() {
 		if (sportObjects == null)
@@ -30,7 +31,7 @@ public class SportObjectDAO {
 		return sportObjects;
 	}
 	
-	public SportObject getByName(String name) {
+	public static SportObject getByName(String name) {
 		for(SportObject o : sportObjects) {
 			if(o.getName().equals(name)) {
 				return o;
@@ -48,24 +49,88 @@ public class SportObjectDAO {
 			return false;
 		sportObjects.add(o);
 		saveSportObjects();
+		String manager = o.getManager();
+		UserDAO.getByUsername(manager).setSportsObject(o.getName());
+		UserDAO.saveUsers();
 		return true;
 	}
 	
 	public boolean addNewService(Service s, String sportObjectName) {
-		for(SportObject o : sportObjects) {
-			if(o.getName().equals(sportObjectName))
+		SportObject o = getByName(sportObjectName);
+		for(Service ss : o.getServices())
+		{
+			if(ss.getName().equals(s.getName()))
 			{
-				for(Service ss : o.getServices())
-				{
-					if(ss.getName().equals(s.getName()))
-					{
-						return false;
-					}
-				}
-				o.addService(s);
+				return false;
 			}
 		}
+		List<Service> services = o.getServices();
+		services.add(s);
+		o.setServices(services);
+		//o.addService(s);
+		saveSportObjects();
+		UserDAO.getByUsername(s.getTrainer()).addTraining(s);
+		UserDAO.saveUsers();
 		return true;
+	}
+	public Service findServiceByName(String objectName, String serviceName)
+	{
+		SportObject o = getByName(objectName);
+		for(Service s : o.getServices())
+		{
+			if(s.getName().equals(serviceName))
+			{
+				return s;
+			}
+		}
+		return null;
+	}
+	
+	public void deleteService(Service service) {
+		SportObject o = getByName(service.getSportObject());
+		List<Service> services = o.getServices();
+
+		for(Service s: services)
+		{
+			if(s.getName().equals(service.getName()))
+			{
+				//List<Service> objServices = SportObjectDAO.getByName(s.getSportObject()).getServices();
+				s.setTrainer("");
+				//services.remove(s);				
+				//objServices.remove(s);
+				
+				//t.setTrainings(services);
+				//saveUsers();
+				o.setServices(services);
+				saveSportObjects();
+				//SportObjectDAO.getByName(t.getSportsObject()).setServices(objServices);
+				//SportObjectDAO.saveSportObjects();
+				return;
+			}
+
+		//services.remove(service);
+		//o.setServices(services);
+		//saveSportObjects();
+		}
+	}
+	
+	public void editService(String objectName, String serviceName, Service newService)
+	{
+		SportObject o = getByName(objectName);
+		for(Service s : o.getServices())
+		{
+			if(s.getName().equals(serviceName))
+			{
+				s.setDescription(newService.getDescription());
+				s.setDuration(newService.getDuration());
+				s.setImage(newService.getImage());
+				s.setName(newService.getName());
+				s.setPrice(newService.getPrice());
+				s.setServiceType(newService.getServiceType());
+				s.setTrainer(newService.getTrainer());
+			}
+		}
+		saveSportObjects();
 	}
 	
 	public boolean deleteSportObject(String name) {
@@ -95,7 +160,7 @@ public class SportObjectDAO {
 		}
 	}
 	
-	public void saveSportObjects() {
+	public static void saveSportObjects() {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			mapper.writeValue(Paths.get(path).toFile(), sportObjects);

@@ -15,7 +15,7 @@ Vue.component("myProfile", {
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
                 <div>
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/">
+                    <a class="navbar-brand">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti - {{username}}
                     </a>
@@ -47,7 +47,21 @@ Vue.component("myProfile", {
                                     <img v-else src="components/Resources/trainer.png" class="rounded-circle" width="150">
                                     <div class="mt-3">
                                         <h4>{{user.username}}</h4>
-                                        <p class="text-secondary mb-1">{{user.userType}}</p>
+                                        
+
+
+                                        <div v-if="user.userType === 'CUSTOMER'">
+                                            <p class="text-secondary mb-1">{{user.customerType.name}}</p>
+                                            <p>{{user.fee.name}}, {{user.fee.price}}, {{user.fee.status}}</p>
+                                        </div>
+                                        <div v-else>
+                                            <p class="text-secondary mb-1">{{user.userType}}</p>
+                                        </div>
+
+
+                                        
+
+
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +94,7 @@ Vue.component("myProfile", {
                                 <hr>
                                 <div class="row">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Datum rodjenja</h6>
+                                            <h6 class="mb-0">Datum rođenja</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">{{user.dateOfBirth}}</div>
                                 </div>

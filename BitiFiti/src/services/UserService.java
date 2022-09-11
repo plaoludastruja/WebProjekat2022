@@ -1,21 +1,29 @@
 package services;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import beans.Fee;
+import beans.Product;
+import beans.Service;
 import beans.User;
+import dao.ProductDAO;
+import dao.SportObjectDAO;
 import dao.UserDAO;
 
 @Path("users")
@@ -90,6 +98,15 @@ public class UserService {
 		request.getSession().invalidate();
 	}
 	
+//	@PUT
+//	@Path("/addSportObjectToManager")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Product getProducts(User manager) {
+//		UserDAO userDao = (UserDAO) ctx.getAttribute("userDAO");
+//		dao.addSportObject()
+//		return dao.update(id, product);
+//	}
+	
 	@GET
 	@Path("/currentUser")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -117,6 +134,62 @@ public class UserService {
 	}
 	
 	@GET
+	@Path("/trainersServices/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Service> getTrainersServices( @PathParam("id") String trainer, @Context HttpServletRequest request){
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
+		return userDAO.getTrainersServices(trainer);
+	}
+	
+	@GET
+	@Path("/getHistory/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Service> getHistory( @PathParam("id") String customerId,  @Context HttpServletRequest request){
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
+		return userDAO.getHistory(customerId);
+	}
+	
+	@PUT
+	@Path("/trainerCancelsTraining/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void deleteService( @PathParam("id") String trainer, Service service){
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
+		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");	
+		userDAO.deleteService(trainer, service);
+		sportObjectDAO.deleteService(service);
+	}
+	
+	@PUT
+	@Path("/customerGetsFee/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void customerGetsFee( @PathParam("id") String customerId, Fee fee){
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");	
+		userDAO.customerGetsFee(customerId, fee);
+	}
+
+	@PUT
+	@Path("/checkFee/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void customerChecksFee( @PathParam("id") String customerId) throws ParseException{
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");	
+		userDAO.customerChecksFee(customerId);
+	}
+	
+	@PUT
+	@Path("/makeTrainingReservation/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void makeTrainingReservation( @PathParam("id") String customerId, Service service){
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");	
+		userDAO.makeTrainingReservation(customerId, service);
+	}
+	
+	@GET
 	@Path("/trainers")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -124,4 +197,6 @@ public class UserService {
 		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");
 		return userDAO.findAllTrainers();
 	}
+	
+	
 }

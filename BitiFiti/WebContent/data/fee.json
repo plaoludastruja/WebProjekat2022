@@ -1,0 +1,22 @@
+[
+    {
+        "name": "MJESECNA",
+        "numberOfTrainings": 30,
+        "numberOfDays": 30,
+        "price": 1500.0,
+        "startDate": "",
+        "endDate": "",
+        "status": "NOTACTIVE",
+        "trainingsUsed": 0
+    },
+    {
+        "name": "DNEVNA",
+        "numberOfTrainings": 1,
+        "numberOfDays": 1,
+        "price": 1000.0,
+        "startDate": "",
+        "endDate": "",
+        "status": "NOTACTIVE",
+        "trainingsUsed": 0
+    }
+]

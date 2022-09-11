@@ -16,7 +16,7 @@ Vue.component("editMyProfile", {
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom text-bg-dark">
             <div class="container px-5">
                 <div>
-                    <a class="navbar-brand" href="http://localhost:8080/BitiFiti/#/">
+                    <a class="navbar-brand">
                         <img src="components/Resources/muscle.png" alt="logo" width="24" height="24" class="d-inline-block align-text-top">
                         BitiFiti - {{username}}
                     </a>
@@ -62,11 +62,6 @@ Vue.component("editMyProfile", {
                                     <label class="form-label">Datum rođenja</label>
                                 </div>
 
-                                <div class="form-outline mb-1">
-                                    <input v-model="user.username" type="text" class="form-control form-control-lg" />
-                                    <label class="form-label">Korisničko ime</label>
-                                </div>
-
                                 <div class="form-outline mb-0">
                                     <input v-model="user.password" type="text" class="form-control form-control-lg" />
                                     <label class="form-label">Šifra</label>
@@ -75,7 +70,7 @@ Vue.component("editMyProfile", {
                                 <div style="color: red;" id="greska">{{greska}}</div>
 
                                 <div class="d-flex justify-content-end pt-3">
-                                    <button @click="editData()" type="button" class="btn btn-warning btn-lg ms-2"></button>
+                                    <button @click="editData()" type="button" class="btn btn-warning btn-lg ms-2">Izmijeni podatke</button>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +107,7 @@ Vue.component("editMyProfile", {
         editData: function(){
             axios
 			.post('rest/users/editMyProfile', this.user)
-			//.then(response=> {this.$router.push("/myProfile/" + this.username)})
+			.then(response=> {this.$router.push("/myProfile/" + this.username)})
             .catch(err => {
                 this.greska = "Korisničko ime je zauzeto!";
             })

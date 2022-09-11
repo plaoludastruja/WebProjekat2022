@@ -15,10 +15,10 @@ public class User implements Serializable {
 	private Gender gender;
 	private String dateOfBirth;
 	private UserType userType;
-	private List<Integer> trainings;
-	private double fee; //Bice tip FEE
+	private List<Service> trainings;
+	private Fee fee; //Bice tip FEE
 	private String sportsObject;
-	private List<String> visitedSportsObjects;
+	private List<Service> trainingHistory;
 	private int points;
 	private CustomerType customerType;
 	
@@ -28,8 +28,8 @@ public class User implements Serializable {
 	
 
 	public User(String username, String password, String firstName, String lastName, Gender gender, String dateOfBirth,
-			UserType userType, List<Integer> trainings, double fee, String sportsObject,
-			List<String> visitedSportsObjects, int points, CustomerType customerType) {
+			UserType userType, List<Service> trainings, Fee fee, String sportsObject,
+			List<Service> trainingHistory, int points, CustomerType customerType) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -41,7 +41,7 @@ public class User implements Serializable {
 		this.trainings = trainings;
 		this.fee = fee;
 		this.sportsObject = sportsObject;
-		this.visitedSportsObjects = visitedSportsObjects;
+		this.trainingHistory = trainingHistory;
 		this.points = points;
 		this.customerType = customerType;
 	}
@@ -102,19 +102,19 @@ public class User implements Serializable {
 		this.userType = userType;
 	}
 
-	public List<Integer> getTrainings() {
+	public List<Service> getTrainings() {
 		return trainings;
 	}
 
-	public void setTrainings(List<Integer> trainings) {
+	public void setTrainings(List<Service> trainings) {
 		this.trainings = trainings;
 	}
 
-	public double getFee() {
+	public Fee getFee() {
 		return fee;
 	}
 
-	public void setFee(Double fee) {
+	public void setFee(Fee fee) {
 		this.fee = fee;
 	}
 
@@ -126,12 +126,12 @@ public class User implements Serializable {
 		this.sportsObject = sportsObject;
 	}
 
-	public List<String> getVisitedSportsObjects() {
-		return visitedSportsObjects;
+	public List<Service> getTrainingHistory() {
+		return trainingHistory;
 	}
 
-	public void setVisitedSportsObjects(List<String> visitedSportsObjects) {
-		this.visitedSportsObjects = visitedSportsObjects;
+	public void setTrainingHistory(List<Service> trainingHistory) {
+		this.trainingHistory = trainingHistory;
 	}
 
 	public int getPoints() {
@@ -152,6 +152,10 @@ public class User implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public void addTraining(Service s) {
+		trainings.add(s);
 	}
 
 

@@ -1,219 +1,32 @@
 [
     {
-        "name": "24h fitness",
+        "name": "BitiFiti Test",
         "sportObjectType": "GYM",
         "services": [
             {
-                "name": "Igranka bez prestanka",
+                "name": "Test Trening",
                 "serviceType": "PERSONAL_TRAINING",
-                "sportObject": {
-                    "name": null,
-                    "sportObjectType": null,
-                    "services": null,
-                    "location": null,
-                    "logo": null,
-                    "averageScore": 0.0,
-                    "startTime": null,
-                    "endTime": null,
-                    "manager": null,
-                    "working": false
-                },
-                "duration": 50,
+                "sportObject": "BitiFiti Test",
+                "duration": 60,
+                "price": 100,
                 "trainer": "t",
-                "description": "guzica",
-                "image": "components/Resources/customer.png"
-            },
-            {
-                "name": "Igranka bez prestanka1",
-                "serviceType": "PERSONAL_TRAINING",
-                "sportObject": {
-                    "name": null,
-                    "sportObjectType": null,
-                    "services": null,
-                    "location": null,
-                    "logo": null,
-                    "averageScore": 0.0,
-                    "startTime": null,
-                    "endTime": null,
-                    "manager": null,
-                    "working": false
-                },
-                "duration": 50,
-                "trainer": "t",
-                "description": "guzica",
-                "image": "components/Resources/customer.png"
-            },
-            {
-                "name": "Igranka bez prestanka2",
-                "serviceType": "PERSONAL_TRAINING",
-                "sportObject": {
-                    "name": null,
-                    "sportObjectType": null,
-                    "services": null,
-                    "location": null,
-                    "logo": null,
-                    "averageScore": 0.0,
-                    "startTime": null,
-                    "endTime": null,
-                    "manager": null,
-                    "working": false
-                },
-                "duration": 50,
-                "trainer": "trn",
-                "description": "guzica",
-                "image": "components/Resources/customer.png"
+                "description": "Testni trening",
+                "image": "components/Resources/4.png"
             }
         ],
         "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "Maksima Gorkog",
-            "streetNumber": "1312",
+            "longitude": 19.847108294802794,
+            "latitude": 45.245324505541305,
+            "streetName": "Bulevar Cara Lazara",
+            "streetNumber": "1",
             "city": "Novi Sad",
-            "zipCode": "21000"
+            "zipCode": "21102"
         },
-        "logo": "components/Resources/customer.png",
-        "averageScore": 4.0,
-        "startTime": null,
-        "endTime": null,
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "Sajmiste",
-        "sportObjectType": "POOL",
-        "services": [
-            {
-                "name": "Igranka bez prestanka",
-                "serviceType": "PERSONAL_TRAINING",
-                "sportObject": {
-                    "name": null,
-                    "sportObjectType": null,
-                    "services": null,
-                    "location": null,
-                    "logo": null,
-                    "averageScore": 0.0,
-                    "startTime": null,
-                    "endTime": null,
-                    "manager": null,
-                    "working": false
-                },
-                "duration": 50,
-                "trainer": "trn",
-                "description": "guzica",
-                "image": "components/Resources/customer.png"
-            },
-            {
-                "name": "Igranka bez prestanka1",
-                "serviceType": "PERSONAL_TRAINING",
-                "sportObject": {
-                    "name": null,
-                    "sportObjectType": null,
-                    "services": null,
-                    "location": null,
-                    "logo": null,
-                    "averageScore": 0.0,
-                    "startTime": null,
-                    "endTime": null,
-                    "manager": null,
-                    "working": false
-                },
-                "duration": 50,
-                "trainer": "trn",
-                "description": "guzica",
-                "image": "components/Resources/customer.png"
-            },
-            {
-                "name": "Igranka bez prestanka2",
-                "serviceType": "PERSONAL_TRAINING",
-                "sportObject": {
-                    "name": null,
-                    "sportObjectType": null,
-                    "services": null,
-                    "location": null,
-                    "logo": null,
-                    "averageScore": 0.0,
-                    "startTime": null,
-                    "endTime": null,
-                    "manager": null,
-                    "working": false
-                },
-                "duration": 50,
-                "trainer": "t",
-                "description": "guzica",
-                "image": "components/Resources/customer.png"
-            }
-        ],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "Maksima Gorkog",
-            "streetNumber": "1312",
-            "city": "Sajmiste",
-            "zipCode": "21000"
-        },
-        "logo": "components/Resources/trainer.png",
-        "averageScore": 3.0,
-        "startTime": null,
-        "endTime": null,
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "NonStop",
-        "sportObjectType": "SPORT_CENTER",
-        "services": [],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "Maksima Gorkog",
-            "streetNumber": "1312",
-            "city": "Teslic",
-            "zipCode": "21000"
-        },
-        "logo": "components/Resources/manager.png",
+        "logo": "components/Resources/5.png",
         "averageScore": 5.0,
-        "startTime": null,
-        "endTime": null,
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "NonStop2",
-        "sportObjectType": "SPORT_CENTER",
-        "services": [],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "Maksima Gorkog",
-            "streetNumber": "1312",
-            "city": "Teslic",
-            "zipCode": "21000"
-        },
-        "logo": "components/Resources/administrator.png",
-        "averageScore": 1.0,
-        "startTime": null,
-        "endTime": null,
-        "manager": null,
-        "working": true
-    },
-    {
-        "name": "lt89",
-        "sportObjectType": "GYM",
-        "services": [],
-        "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
-            "streetName": "",
-            "streetNumber": "",
-            "city": "",
-            "zipCode": ""
-        },
-        "logo": "components/Resources/administrator.png",
-        "averageScore": 0.0,
-        "startTime": "13:42",
-        "endTime": "12:42",
-        "manager": null,
+        "startTime": "07:00",
+        "endTime": "22:00",
+        "manager": "m",
         "working": true
     }
 ]

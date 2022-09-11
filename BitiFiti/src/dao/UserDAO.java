@@ -5,9 +5,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +23,9 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import beans.CustomerType;
+import beans.Fee;
+import beans.Service;
 import beans.SportObject;
 import beans.User;
 import enums.UserType;
@@ -25,8 +33,8 @@ import enums.UserType;
 
 public class UserDAO {
 	//private Map<String, User> users = new HashMap<>();
-	private List<User> users;
-	private String path = "D:\\Fax\\WEB\\Projekat\\WebProjekat2022\\BitiFiti\\WebContent\\data\\users.json";
+	private static List<User> users;
+	private static String path = "D:\\Fax\\WEB\\Projekat\\WebProjekat2022\\BitiFiti\\WebContent\\data\\users.json";
 	
 	
 	public UserDAO() {
@@ -64,7 +72,29 @@ public class UserDAO {
 		return trainers;
 	}
 	
-	public User getByUsername(String username) {
+	public List<Service> getTrainersServices(String trainer){
+		User t = getByUsername(trainer);
+		return t.getTrainings();
+	}
+	
+	public void deleteService(String trainer, Service service) {
+		User t = getByUsername(trainer);
+		List<Service> services = getTrainersServices(trainer);
+		
+		for(Service s: services)
+		{
+			if(s.getName().equals(service.getName()))
+			{
+				services.remove(s);
+				t.setTrainings(services);
+				saveUsers();
+				return;
+			}
+		}
+	
+	}
+	
+	public static User getByUsername(String username) {
 		for(User u : users) {
 			if(u.getUsername().equals(username)) {
 				return u;
@@ -79,9 +109,83 @@ public class UserDAO {
 				return false;
 			}		
 		}
+		List<Service> emptyList = new ArrayList<Service>();
+		user.setTrainingHistory(emptyList);
 		users.add(user);
 		saveUsers();
 		return true;
+	}
+	
+	public void addTrainingToTainer(Service s) {
+		getByUsername(s.getTrainer()).addTraining(s);
+	}
+	
+	public void customerGetsFee(String customerId, Fee fee) {
+		User customer = getByUsername(customerId);
+		fee.setStatus("ACTIVE");
+		LocalDate datum = LocalDate.now();
+		int numOfDays = fee.getNumberOfDays();
+		fee.setStartDate(datum.toString());	
+		fee.setEndDate(LocalDate.now().plusDays(numOfDays).toString());
+		if(customer.getCustomerType().getName().equals("SREBRNI"))
+		{
+			fee.setPrice(fee.getPrice() * 97 / 100);
+		}
+		if(customer.getCustomerType().getName().equals("ZLATNI"))
+		{
+			fee.setPrice(fee.getPrice() * 95 / 100);
+		}
+		customer.setFee(fee);
+		saveUsers();
+	}
+
+	public void customerChecksFee(String customerId) throws ParseException {
+		User customer = getByUsername(customerId);
+		Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(customer.getFee().getEndDate());
+		
+		if(customer.getFee().getStatus().equals("ACTIVE") &&
+			(date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().compareTo(LocalDate.now()) <= 0 ||
+			customer.getFee().getNumberOfTrainings()<=0)){
+
+			customer.getFee().setStatus("NOTACTIVE");
+			// dodati za bodove
+			int numOfPoints = customer.getPoints();
+			numOfPoints += (int) (customer.getFee().getPrice() * customer.getFee().getTrainingsUsed());		
+			customer.setPoints(numOfPoints);
+			if(customer.getPoints()>= 3000)
+			{
+				CustomerType t = new CustomerType("SREBRNI", 3, 3000);
+				customer.setCustomerType(t);
+			}
+			if(customer.getPoints()>= 4000)
+			{
+				CustomerType t = new CustomerType("ZLATNI", 5, 4000);
+				customer.setCustomerType(t);
+			}
+			saveUsers();
+		}
+		
+	}
+
+	
+	public List<Service> getHistory(String customerId){
+		User customer = getByUsername(customerId);
+		return customer.getTrainingHistory();
+	}
+	
+	public void makeTrainingReservation(String customerId, Service service) {
+		User customer = getByUsername(customerId);
+		if (customer.getFee().getStatus().equals("ACTIVE") && customer.getFee().getNumberOfTrainings() > 0) {
+			List<Service> history = customer.getTrainingHistory();
+			LocalDate datum = LocalDate.now();
+			service.setTrainer(datum.toString()); //POLJE TRENER KORISTIM ZA DATUM
+			history.add(service);
+			Fee fee = customer.getFee();
+			fee.setNumberOfTrainings(fee.getNumberOfTrainings() - 1);
+			fee.setTrainingsUsed(fee.getTrainingsUsed() + 1);
+			customer.setFee(fee);
+			saveUsers();
+		}
 	}
 	
 	public boolean editUser(User user) {
@@ -115,7 +219,7 @@ public class UserDAO {
 		}
 	}
 	
-	public void saveUsers() {
+	public static void saveUsers() {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			mapper.writeValue(Paths.get(path).toFile(), users);
