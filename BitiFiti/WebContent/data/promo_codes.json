@@ -8,13 +8,19 @@
     {
         "name": "radi",
         "expirationDate": "2022-09-20",
-        "usageNumber": 42,
+        "usageNumber": 40,
         "percent": 10
     },
     {
         "name": "datum",
         "expirationDate": "2021-02-20",
         "usageNumber": 50,
+        "percent": 10
+    },
+    {
+        "name": "test",
+        "expirationDate": "2022-12-21",
+        "usageNumber": 100,
         "percent": 10
     }
 ]

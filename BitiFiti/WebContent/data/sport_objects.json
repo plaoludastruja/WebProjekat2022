@@ -1,1 +1,32 @@
-[]
+[
+    {
+        "name": "BitiFiti Test",
+        "sportObjectType": "GYM",
+        "services": [
+            {
+                "name": "Test Trening",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "BitiFiti Test",
+                "duration": 60,
+                "price": 100,
+                "trainer": "t",
+                "description": "Testni trening",
+                "image": "components/Resources/4.png"
+            }
+        ],
+        "location": {
+            "longitude": 19.847108294802794,
+            "latitude": 45.245324505541305,
+            "streetName": "Bulevar Cara Lazara",
+            "streetNumber": "1",
+            "city": "Novi Sad",
+            "zipCode": "21102"
+        },
+        "logo": "components/Resources/5.png",
+        "averageScore": 5.0,
+        "startTime": "07:00",
+        "endTime": "22:00",
+        "manager": "m",
+        "working": true
+    }
+]

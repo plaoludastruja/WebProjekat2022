@@ -13,5 +13,100 @@
         "trainingHistory": [],
         "points": 0,
         "customerType": null
+    },
+    {
+        "username": "m",
+        "password": "m",
+        "firstName": "Boško",
+        "lastName": "Ristović",
+        "gender": "MALE",
+        "dateOfBirth": "2000-08-21",
+        "userType": "MANAGER",
+        "trainings": null,
+        "fee": null,
+        "sportsObject": "BitiFiti Test",
+        "trainingHistory": [],
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "t",
+        "password": "t",
+        "firstName": "Ratko",
+        "lastName": "Ružičić",
+        "gender": "MALE",
+        "dateOfBirth": "2000-09-30",
+        "userType": "TRAINER",
+        "trainings": [
+            {
+                "name": "Test Trening",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "BitiFiti Test",
+                "duration": 60,
+                "price": 100,
+                "trainer": "t",
+                "description": "Testni trening",
+                "image": "components/Resources/4.png"
+            }
+        ],
+        "fee": null,
+        "sportsObject": null,
+        "trainingHistory": [],
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "k",
+        "password": "k",
+        "firstName": "Sandra",
+        "lastName": "Brkić",
+        "gender": "FEMALE",
+        "dateOfBirth": "2000-05-09",
+        "userType": "CUSTOMER",
+        "trainings": null,
+        "fee": {
+            "name": "MJESECNA",
+            "numberOfTrainings": 29,
+            "numberOfDays": 30,
+            "price": 1350.0,
+            "startDate": "2022-09-11",
+            "endDate": "2022-10-11",
+            "status": "ACTIVE",
+            "trainingsUsed": 1
+        },
+        "sportsObject": null,
+        "trainingHistory": [
+            {
+                "name": "Test Trening",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "BitiFiti Test",
+                "duration": 60,
+                "price": 100,
+                "trainer": "2022-09-11",
+                "description": "Testni trening",
+                "image": "components/Resources/4.png"
+            }
+        ],
+        "points": 0,
+        "customerType": {
+            "name": "BRONZANI",
+            "discount": 0.0,
+            "requiredPoints": 0
+        }
+    },
+    {
+        "username": "ku",
+        "password": "k",
+        "firstName": "Jelena",
+        "lastName": "Batanović",
+        "gender": "FEMALE",
+        "dateOfBirth": "2000-12-21",
+        "userType": "MANAGER",
+        "trainings": null,
+        "fee": null,
+        "sportsObject": null,
+        "trainingHistory": [],
+        "points": 0,
+        "customerType": null
     }
 ]

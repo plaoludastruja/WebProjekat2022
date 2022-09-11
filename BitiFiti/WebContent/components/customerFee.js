@@ -15,7 +15,7 @@ Vue.component("customerFee", {
                 status: '',
                 trainingsUsed: 0
             },
-            promo: "",
+            promo: '',
             promoCode: {
                 name: '',
                 expirationDate: '',
@@ -145,21 +145,29 @@ Vue.component("customerFee", {
         },
         // kod usera treba da se stavi novi fee
         getFee: function (thisFee) {
-            axios
-			.get('rest/promoCode/' + this.promo)
-			.then(
-                response=> {this.promoCode=response.data;
-                    if(this.promoCode){
-                        thisFee.price = thisFee.price*(1 - this.promoCode.percent*0.01);
-                    }
-                    axios
+            if(this.promo===''){
+                axios
                     .put('rest/users/customerGetsFee/' + this.username, thisFee)
                     .then(this.$router.push("/homeCustomer/" + this.username))
-                }
-            )
-            .catch(
-                this.$router.push("/homeCustomer/" + this.username)
-            )
+            }
+            else{
+                axios
+                .get('rest/promoCode/' + this.promo)
+                .then(
+                    response=> {this.promoCode=response.data;
+                        if(this.promoCode){
+                            thisFee.price = thisFee.price*(1 - this.promoCode.percent*0.01);
+                        }
+                        axios
+                        .put('rest/users/customerGetsFee/' + this.username, thisFee)
+                        .then(this.$router.push("/homeCustomer/" + this.username))
+                    }
+                )
+                .catch(
+                    this.$router.push("/homeCustomer/" + this.username)
+                )
+            }
+            
 		},
     }
 });
