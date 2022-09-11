@@ -52,8 +52,6 @@ Vue.component("customerFee", {
             <div class="masthead-content">
                 <div class="container px-5">
                     <h1 class="masthead-heading mb-0">Moje clanarine</h1>
-                    <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
-                    <a class="btn btn-primary btn-xl rounded-pill my-1" href="#scroll">Learn More</a>
                 </div>
             </div>
         </header>
@@ -147,28 +145,19 @@ Vue.component("customerFee", {
         },
         // kod usera treba da se stavi novi fee
         getFee: function (thisFee) {
-            console.log("1 -" + thisFee.price)
             axios
 			.get('rest/promoCode/' + this.promo)
 			.then(
                 response=> {this.promoCode=response.data;
-                    console.log("2 -" + thisFee.price)
-                    console.log("3 -" + this.promoCode.percent)
                     if(this.promoCode){
                         thisFee.price = thisFee.price*(1 - this.promoCode.percent*0.01);
-                        console.log("uslo u cijenu")
-                        console.log("4 -" + thisFee.price)
                     }
-                        
-                    console.log(thisFee.price)
                     axios
                     .put('rest/users/customerGetsFee/' + this.username, thisFee)
                     .then(this.$router.push("/homeCustomer/" + this.username))
                 }
-                
             )
             .catch(
-                console.log("5 -" + thisFee.price),
                 axios
                     .put('rest/users/customerGetsFee/' + this.username, thisFee)
                     .then(this.$router.push("/homeCustomer/" + this.username))

@@ -125,34 +125,6 @@ Vue.component("homepage", {
             </div>
         </section>
 
-    <!-- tabela -->
-        <section id="scroll">
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center">
-                <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                        <label v-on:click="sortList('name')">Naziv</label>
-                        </th>
-                        <th v-on:click="sortList('sportObjectType')">Tip</th>
-                        <th v-on:click="sortList('location.city')">Lokacija</th>
-                        <th v-on:click="sortList('averageScore')">Prosječna ocjena</th>
-                    </tr>
-                </thead>
-                <tbody v-for="object in filteredSportObjects">
-                    <tr>
-                        <td>{{object.name}}</td>
-                        <td>{{object.sportObjectType}}</td>
-                        <td>{{object.location.city}}</td>
-                        <td>{{object.averageScore}}</td>
-                    </tr>
-                </tbody>
-            </table>
-                </div>
-            </div>
-        </section>
-
     <!-- Footer-->
             <footer class="py-5 bg-black mt-auto">
                 <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Đorđe & Boško doo</p></div>
