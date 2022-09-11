@@ -147,9 +147,9 @@ public class UserDAO {
 			date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().compareTo(LocalDate.now()) <= 0){
 			customer.getFee().setStatus("NOTACTIVE");
 			// dodati za bodove
-			int numOfPoints = customer.getPoints();
+			int numOfPoints = 0;
 			numOfPoints = (int) (customer.getFee().getPrice()/1000 * customer.getFee().getTrainingsUsed());		
-			customer.setPoints(numOfPoints);
+			customer.setPoints(numOfPoints + customer.getPoints());
 			if(customer.getPoints()>= 3000)
 			{
 				CustomerType t = new CustomerType("SREBRNI", 3, 3000);
