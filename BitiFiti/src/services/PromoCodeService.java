@@ -1,4 +1,5 @@
 package services;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -45,7 +46,7 @@ public class PromoCodeService {
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public PromoCode getPromoCode(@PathParam("id") String id) {
+	public PromoCode getPromoCode(@PathParam("id") String id) throws ParseException {
 		PromoCodeDAO promoCodeDAO = (PromoCodeDAO) ctx.getAttribute("promoCodeDAO");
 		return promoCodeDAO.getByName(id);
 	}

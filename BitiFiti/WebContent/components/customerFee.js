@@ -147,13 +147,20 @@ Vue.component("customerFee", {
         },
         // kod usera treba da se stavi novi fee
         getFee: function (thisFee) {
+            console.log("1 -" + thisFee.price)
             axios
 			.get('rest/promoCode/' + this.promo)
 			.then(
                 response=> {this.promoCode=response.data;
+                    console.log("2 -" + thisFee.price)
+                    console.log("3 -" + this.promoCode.percent)
                     if(this.promoCode){
                         thisFee.price = thisFee.price*(1 - this.promoCode.percent*0.01);
+                        console.log("uslo u cijenu")
+                        console.log("4 -" + thisFee.price)
                     }
+                        
+                    console.log(thisFee.price)
                     axios
                     .put('rest/users/customerGetsFee/' + this.username, thisFee)
                     .then(this.$router.push("/homeCustomer/" + this.username))
@@ -161,6 +168,7 @@ Vue.component("customerFee", {
                 
             )
             .catch(
+                console.log("5 -" + thisFee.price),
                 axios
                     .put('rest/users/customerGetsFee/' + this.username, thisFee)
                     .then(this.$router.push("/homeCustomer/" + this.username))

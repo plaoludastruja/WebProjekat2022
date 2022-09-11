@@ -54,12 +54,12 @@
         "userType": "CUSTOMER",
         "trainings": null,
         "fee": {
-            "name": "MJESECNA",
-            "numberOfTrainings": 30,
-            "numberOfDays": 30,
-            "price": 1350.0,
+            "name": "DNEVNA",
+            "numberOfTrainings": 1,
+            "numberOfDays": 1,
+            "price": 100.0,
             "startDate": "2022-09-11",
-            "endDate": "2022-10-11",
+            "endDate": "2022-09-12",
             "status": "ACTIVE",
             "trainingsUsed": 0
         },

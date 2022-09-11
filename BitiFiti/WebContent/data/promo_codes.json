@@ -10,5 +10,11 @@
         "expirationDate": "2022-09-20",
         "usageNumber": 53,
         "percent": 10
+    },
+    {
+        "name": "datum",
+        "expirationDate": "2021-02-20",
+        "usageNumber": 53,
+        "percent": 10
     }
 ]

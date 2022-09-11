@@ -2,6 +2,7 @@ package dao;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -35,13 +36,13 @@ public class PromoCodeDAO {
 		return promoCodes;
 	}
 	
-	public PromoCode getByName(String name) { 
+	public PromoCode getByName(String name) throws ParseException { 
 
 		for(PromoCode o : promoCodes) {
-			//Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(o.getExpirationDate());
-			if(o.getName().equals(name) && o.getUsageNumber() > 0 /*&& date1.toInstant()
+			Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(o.getExpirationDate());
+			if(o.getName().equals(name) && o.getUsageNumber() > 0 && date1.toInstant()
 				      .atZone(ZoneId.systemDefault())
-				      .toLocalDate().compareTo(LocalDate.now()) > 0  */) {
+				      .toLocalDate().compareTo(LocalDate.now()) > 0  ) {
 				int number = o.getUsageNumber();
 				o.setUsageNumber(number-1);
 				savePromoCodes();
