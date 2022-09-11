@@ -40,15 +40,15 @@ public class PromoCodeService {
 	public List<SportObject> findAllSportObjects(@Context HttpServletRequest request){
 		SportObjectDAO sportObjectDAO = (SportObjectDAO)ctx.getAttribute("sportObjectDAO");
 		return sportObjectDAO.getAll();
-	}
+	}*/
 
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public SportObject getSportObject(@PathParam("id") String id) {
-		SportObjectDAO sportObjectDAO = (SportObjectDAO) ctx.getAttribute("sportObjectDAO");
-		return sportObjectDAO.getByName(id);
-	}*/
+	public PromoCode getPromoCode(@PathParam("id") String id) {
+		PromoCodeDAO promoCodeDAO = (PromoCodeDAO) ctx.getAttribute("promoCodeDAO");
+		return promoCodeDAO.getByName(id);
+	}
 
 	@POST
 	@Path("/addPromoCode")

@@ -1,1 +1,14 @@
-[{"name":"novikod","expirationDate":"2022-09-10","usageNumber":10,"percent":20},{"name":"testkod","expirationDate":"2022-09-20","usageNumber":10,"percent":10}]
+[
+    {
+        "name": "novikod",
+        "expirationDate": "2022-09-10",
+        "usageNumber": 0,
+        "percent": 50
+    },
+    {
+        "name": "testkod",
+        "expirationDate": "2022-09-20",
+        "usageNumber": 53,
+        "percent": 10
+    }
+]

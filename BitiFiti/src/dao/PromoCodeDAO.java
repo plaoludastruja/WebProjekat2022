@@ -2,8 +2,12 @@ package dao;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
@@ -31,9 +35,16 @@ public class PromoCodeDAO {
 		return promoCodes;
 	}
 	
-	public PromoCode getByName(String name) {
+	public PromoCode getByName(String name) { 
+
 		for(PromoCode o : promoCodes) {
-			if(o.getName().equals(name)) {
+			//Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(o.getExpirationDate());
+			if(o.getName().equals(name) && o.getUsageNumber() > 0 /*&& date1.toInstant()
+				      .atZone(ZoneId.systemDefault())
+				      .toLocalDate().compareTo(LocalDate.now()) > 0  */) {
+				int number = o.getUsageNumber();
+				o.setUsageNumber(number-1);
+				savePromoCodes();
 				return o;
 			}
 		}

@@ -5,6 +5,23 @@ Vue.component("customerFee", {
 	    return {
             username: this.$route.params.username,
             fees: [],
+            takenFee: {
+                name: '',
+                numberOfTrainings: 0,
+                numberOfDays: 0,
+                price: 0.0,
+                startDate: '',
+                endDate: '',
+                status: '',
+                trainingsUsed: 0
+            },
+            promo: "",
+            promoCode: {
+                name: '',
+                expirationDate: '',
+                usageNumber: 0,
+                percent: 0
+            }
 	    }
 	},
 	// html bootstrap
@@ -51,6 +68,7 @@ Vue.component("customerFee", {
                                     <th v-on:click="sortList('name')">Ime članarine</th>
                                     <th v-on:click="sortList('price')">Cijena</th>
                                     <th v-on:click="sortList('numberOfTrainings')">Broj termina</th>
+                                    <th>Promo kod</th>
                                     <th>Kupi</th>
                                 </tr>
                             </thead>
@@ -59,7 +77,8 @@ Vue.component("customerFee", {
                                     <td>{{thisFee.name}}</td>
                                     <td>{{thisFee.price}}</td>
                                     <td>{{thisFee.numberOfTrainings}}</td>
-                                    <td><div class="btn btn-outline-dark rounded-pill" @click="getFee(thisFee)">Izmijeni</div></td>
+                                    <td><input v-model="promo" class="form-control" placeholder="Unesite promo kod"></td>
+                                    <td><div class="btn btn-outline-dark rounded-pill" @click="getFee(thisFee)">Potvrdi</div></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -128,9 +147,24 @@ Vue.component("customerFee", {
         },
         // kod usera treba da se stavi novi fee
         getFee: function (thisFee) {
-			axios
-			.put('rest/users/customerGetsFee/' + this.username, thisFee)
-			.then(this.$router.push("/homeCustomer/" + this.username))
+            axios
+			.get('rest/promoCode/' + this.promo)
+			.then(
+                response=> {this.promoCode=response.data;
+                    if(this.promoCode){
+                        thisFee.price = thisFee.price*(1 - this.promoCode.percent*0.01);
+                    }
+                    axios
+                    .put('rest/users/customerGetsFee/' + this.username, thisFee)
+                    .then(this.$router.push("/homeCustomer/" + this.username))
+                }
+                
+            )
+            .catch(
+                axios
+                    .put('rest/users/customerGetsFee/' + this.username, thisFee)
+                    .then(this.$router.push("/homeCustomer/" + this.username))
+            )
 		},
     }
 });
