@@ -137,6 +137,7 @@ public class UserDAO {
 		if(customer.getFee().getStatus().equals("ACTIVE") &&
 			date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().compareTo(LocalDate.now()) <= 0){
 			customer.getFee().setStatus("NOTACTIVE");
+			// dodati za bodove
 			saveUsers();
 		}
 		

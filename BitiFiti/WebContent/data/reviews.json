@@ -11,13 +11,27 @@
         "comment": "smece2",
         "username": "k",
         "sportObjectName": "Sajmiste",
-        "approved": false
+        "approved": true
     },
     {
         "grade": 5,
         "comment": "Najbolji ikad",
         "username": "k",
         "sportObjectName": "24h fitness",
+        "approved": true
+    },
+    {
+        "grade": 4,
+        "comment": "cxzcxz",
+        "username": "k",
+        "sportObjectName": "",
+        "approved": false
+    },
+    {
+        "grade": 5,
+        "comment": "Ja sam bio ocaran mapamna svaka cast odmah sam pronasao\n",
+        "username": "k",
+        "sportObjectName": "Mapski Objekat",
         "approved": true
     }
 ]

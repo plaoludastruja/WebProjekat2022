@@ -11,6 +11,8 @@ Vue.component("historyTrainings", {
             sportObjectSearch: '',
             services:[],
             iscomment: true,
+            serviceForComment: {},
+            serviceForCommentBool: true,
             value: null,
             review: {
                 grade: null,
@@ -112,9 +114,33 @@ Vue.component("historyTrainings", {
                     <div class="carousel-item active">
                         <div class="container">
 
-                            <div v-if="iscomment" class="row">
+                            <div class="row">
                                 <div v-for="service in filteredServices" class="col-lg-4">
-                                    <div class="card">
+
+
+
+
+
+                                    <div v-if="serviceForComment.name==service.name" class="card">
+                                        <div class="card-body">
+                                            <h4 class="card-title">{{service.name}}</h4>
+                                            <h5>Sportski objekat:<p>{{service.sportObject}}<p></h5>
+                                            <div>
+                                                <label>Ocjenite</label>
+                                                <b-form-rating v-model="review.grade" variant="warning"></b-form-rating>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Dodajte komentar</label>
+                                                <textarea v-model="review.comment" class="form-control" rows="3"></textarea>
+                                            </div>
+                                            <button @click="prev()" type="button" class="btn btn-outline-dark">Vrati se</button>
+                                            <button @click="sendComment(service.sportObject)" type="button" class="btn btn-outline-warning">Komentarisi</button>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div v-else class="card">
                                         <img v-bind:src="service.image" class="mx-auto" width="200"/>
                                         <div class="card-body">
                                             <h4 class="card-title">{{service.name}}</h4>
@@ -123,36 +149,13 @@ Vue.component("historyTrainings", {
                                             <h6>Cijena:<p>{{service.price}}<p></h6>
                                             <h6>Trajanje:<p>{{service.duration}}</p></h6>
                                             <h6>Tip:<p>{{service.serviceType}}</p></h6>
-                                            <button @click="next()" type="button" class="btn btn-outline-dark">Komentarisi</button>
+                                            <button @click="next(service)" type="button" class="btn btn-outline-dark">Komentarisi</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div v-else class="row">
-                                <div v-for="service in filteredServices" class="col-lg-4">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h4 class="card-title">{{service.name}}</h4>
-                                            <h5>Sportski objekat:<p>{{service.sportObject}}<p></h5>
-
-                                            <div>
-                                                <label>Ocjenite</label>
-                                                <b-form-rating v-model="review.grade" variant="warning"></b-form-rating>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>Dodajte komentar</label>
-                                                <textarea v-model="review.comment" class="form-control" rows="3"></textarea>
-                                            </div>
-
-
-                                            <button @click="prev()" type="button" class="btn btn-outline-dark">Vrati se</button>
-                                            <button @click="sendComment(service.sportObject)" type="button" class="btn btn-outline-warning">Komentarisi</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                         </div>
                     </div>
@@ -224,13 +227,13 @@ Vue.component("historyTrainings", {
         openHistoryForCustomer: function(){
             this.$router.push("/historyTrainings/" + this.username)
         },
-        next: function(){
-            this.iscomment = false
-            value = 0
+        next: function(thisService){
+            this.review = {};
+            this.serviceForComment = thisService;
         },
         prev: function(){
-            this.iscomment = true
-            value = 0
+            this.serviceForComment = {};
+            this.review = {};
         },
         sendComment: function (sportObject) {
             this.review.sportObjectName = sportObject;

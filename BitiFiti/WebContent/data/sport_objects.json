@@ -35,8 +35,8 @@
             }
         ],
         "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
+            "longitude": 19.839668,
+            "latitude": 45.23677,
             "streetName": "Maksima Gorkog",
             "streetNumber": "1312",
             "city": "Novi Sad",
@@ -235,8 +235,8 @@
             }
         ],
         "location": {
-            "longitude": 420.0,
-            "latitude": 69.0,
+            "longitude": 50.48425766397369,
+            "latitude": -105.47225778260263,
             "streetName": "Maksima Gorkog",
             "streetNumber": "1312",
             "city": "Sajmiste",
@@ -507,6 +507,55 @@
         "startTime": "18:44",
         "endTime": "16:47",
         "manager": "testmanager",
+        "working": true
+    },
+    {
+        "name": "",
+        "sportObjectType": "GYM",
+        "services": [],
+        "location": {
+            "longitude": 420.0,
+            "latitude": 69.0,
+            "streetName": "",
+            "streetNumber": "",
+            "city": "",
+            "zipCode": ""
+        },
+        "logo": "components/Resources/manager.png",
+        "averageScore": 0.0,
+        "startTime": null,
+        "endTime": null,
+        "manager": "",
+        "working": true
+    },
+    {
+        "name": "Mapski Objekat",
+        "sportObjectType": "GYM",
+        "services": [
+            {
+                "name": "mapskitrening",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "Mapski Objekat",
+                "duration": 123,
+                "price": 23,
+                "trainer": "t",
+                "description": "ima mape",
+                "image": "components/Resources/manager.png"
+            }
+        ],
+        "location": {
+            "longitude": 19.843469142817213,
+            "latitude": 45.24167105929857,
+            "streetName": "Narodnog fronta",
+            "streetNumber": "9",
+            "city": "Novi Sad City",
+            "zipCode": "21002"
+        },
+        "logo": "components/Resources/administrator.png",
+        "averageScore": 0.0,
+        "startTime": "13:30",
+        "endTime": "03:30",
+        "manager": "pi",
         "working": true
     }
 ]

@@ -27,6 +27,7 @@ Vue.component("addSportObject", {
             greska: "",
             managers: [],
             file: null,
+            mapClicked: false,
 	    }
 	},
 	// html bootstrap
@@ -136,6 +137,12 @@ Vue.component("addSportObject", {
                                                         </div>
                                                     </div>
                                                 </div>
+
+
+
+                                                <div class="col" id="map-create" style="height: 200px; width: 200px;"></div>
+
+
                 
                                                 <div class="form-outline mb-2">
                                                     <input v-model="sportObject.startTime" type="time" class="form-control form-control-lg" />
@@ -197,8 +204,9 @@ Vue.component("addSportObject", {
     mounted () {
         this.getFreeManagers();
         this.getCurrentUser();
-        
+        this.displayMap();
     },
+
 	// funkcije
     methods: {
         logOut: function () {
@@ -253,6 +261,65 @@ Vue.component("addSportObject", {
             .catch(err => {
                 this.greska = "Postoji objekat sa tim imenom!";
             })
+        },
+        displayMap: function () {
+
+            let lat = 45.2396;
+            let lon = 19.8227;
+            let map = new ol.Map({
+                layers: [
+                    new ol.layer.Tile({
+                        source: new ol.source.OSM()
+                    })
+                ],
+                view: new ol.View({
+                    center: ol.proj.fromLonLat([lon, lat]),
+                    zoom: 10
+                })
+            });
+
+            setTimeout(() => {
+                if (map) {
+                    map.setTarget("map-create");
+                    let c = document.getElementById("map-create").childNodes;
+                    c[0].style.borderRadius = '15px';
+                }
+            }, 50);
+
+            map.on('click', evt => {
+                let coord = ol.proj.toLonLat(evt.coordinate);
+                this.reverseGeocode(coord);
+                this.mapClicked = true;
+            })
+        },
+        reverseGeocode: function (coords) {
+            fetch('http://nominatim.openstreetmap.org/reverse?format=json&lon=' + coords[0] + '&lat=' + coords[1])
+                .then(function (response) {
+                    return response.json();
+                }).then(json => {
+                console.log(coords);
+                this.sportObject.location.longitude = coords[0];
+                this.sportObject.location.latitude = coords[1];
+                console.log(json.address);
+                if (json.address.city) {
+                    this.sportObject.location.city = json.address.city;
+                } else if (json.address.city_district) {
+                    this.sportObject.location.city = json.address.city_district;
+                }
+
+                if (json.address.road) {
+                    this.sportObject.location.streetName = json.address.road;
+                }
+
+                if (json.address.house_number) {
+                    this.sportObject.location.streetNumber = json.address.house_number;
+                }
+
+                if (json.address.postcode) {
+                    this.sportObject.location.zipCode = json.address.postcode;
+                }
+
+            });
         },
     }
 });
