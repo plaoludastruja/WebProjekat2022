@@ -36,7 +36,7 @@ Vue.component("sportObjectInfo", {
         </nav>
 
     <header>
-        <div class="p-5 text-center bg-image" style="background-image: url('components/Resources/manager.png'); height: 400px;">
+        <div class="p-5 text-center bg-image" style="background-image: url('components/Resources/homepage.jpg'); height: 400px;">
             <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
                 <div class="d-flex justify-content-center align-items-center h-100">
                     <div class="row">
@@ -60,14 +60,14 @@ Vue.component("sportObjectInfo", {
                                 </svg>
                             </h6>
 
-                            <button @click="showMap()" type="button" class="btn btn-warning active mt-3">
+                            <div class="btn btn-warning active mt-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                                     <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                                </svg> {{sportObject.location.streetNumber}} {{sportObject.location.streetName}} , {{sportObject.location.city}}
-                            </button>
+                                </svg> {{sportObject.location.streetName}} {{sportObject.location.streetNumber}} , {{sportObject.location.city}}
+                            </div>
                         </div>
 
-                        <div class="col" id="map-create" style="height: 200px; width: 200px;">
+                        <div class="col d-flex flex-column align-items-center" id="map-create" style="height: 230px; width: 500px;">
                         </div>
                         
                     </div>
@@ -196,7 +196,6 @@ Vue.component("sportObjectInfo", {
     mounted () {
         this.getSportObject();
         this.getApprovedComments();
-        
     },
     computed: {
         // ovo prepraviti da bude kao pretraga, sa svim ifovima u zavisnosti sta je ukucano
@@ -246,18 +245,10 @@ Vue.component("sportObjectInfo", {
 			.get('rest/reviews/fromOneObject/' + this.sportObjectName)
 			.then(response=> {this.reviews=response.data})
 		},
-        // TODO da se otvori da se prikaze mapa
-        showMap: function(){
-			this.$router.push("/map/" + sportObjectName);
-		},
         displayMap: function(){
             //display map
 			let lon = this.sportObject.location.longitude;
 			let lat = this.sportObject.location.latitude;
-            console.log('aaaa');
-            console.log(this.sportObject.location);
-            console.log(lon);
-            console.log(lat);
 			
             let map = new ol.Map({
                 layers: [

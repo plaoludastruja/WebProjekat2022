@@ -37,7 +37,7 @@ Vue.component("editService", {
         <header class="masthead text-center text-black">
             <div class="masthead-content">
                 <div class="container px-5">
-                    <h1 class="masthead-heading mb-1">Dodaj Novi Trening</h1>
+                    <h1 class="masthead-heading mb-1">Dodaj novi trening</h1>
                     <div class="row">
                         <div class="col-sm-12 mb-2">
                             <a @click="addServicePage()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj trening</a>
@@ -107,7 +107,7 @@ Vue.component("editService", {
                                                 <div style="color: red;" id="greska">{{greska}}</div>
         
                                                 <div class="d-flex justify-content-end pt-3">
-                                                    <button @click="editServiceInfo()" type="button" class="btn btn-warning btn-lg ms-2">Dodaj</button>
+                                                    <button @click="editServiceInfo()" type="button" class="btn btn-warning btn-lg ms-2">Izmijeni</button>
                                                 </div>
                                             </div>
                                         </div>

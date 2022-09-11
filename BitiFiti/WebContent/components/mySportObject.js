@@ -52,7 +52,7 @@ Vue.component("mySportObject", {
         </header>
 
         <header>
-        <div class="p-5 text-center bg-image" style="background-image: url('components/Resources/manager.png'); height: 400px;">
+        <div class="p-5 text-center bg-image" style="background-image: url('components/Resources/homepage.jpg'); height: 400px;">
             <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
                 <div class="d-flex justify-content-center align-items-center h-100">
                     <div class="row">
@@ -75,11 +75,15 @@ Vue.component("mySportObject", {
                                 </svg>
                             </h6>
 
-                            <button @click="showMap()" type="button" class="btn btn-warning active mt-3">
+                            <div class="btn btn-warning active mt-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                                </svg> {{sportObject.location.streetNumber}} {{sportObject.location.streetName}} , {{sportObject.location.city}}
-                            </button>
+                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                                </svg> {{sportObject.location.streetName}} {{sportObject.location.streetNumber}} , {{sportObject.location.city}}
+                            </div>
+                        </div>
+
+                        <div class="col d-flex flex-column align-items-center" id="map-create" style="height: 230px; width: 500px;">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -164,7 +168,7 @@ Vue.component("mySportObject", {
                                                 <h6>Cijena<p>{{service.price}}<p></h6>
                                                 <h6>Trajanje:<p>{{service.duration}}</p></h6>
                                                 <h6>Tip:<p>{{service.serviceType}}</p></h6>
-                                                <button @click="editService(service.name)" type="button" class="btn btn-outline-dark">Pregledaj</button>
+                                                <button @click="editService(service.name)" type="button" class="btn btn-outline-dark">Izmijeni</button>
                                             </div>
                                         </div>
                                     </div>
@@ -251,7 +255,8 @@ Vue.component("mySportObject", {
         getSportObject: function () {
 			axios
 			.get('rest/sportObjects/' + this.sportObjectName)
-			.then(response=> {this.sportObject=response.data})
+			.then(response=> {this.sportObject=response.data;
+                this.displayMap();})
 		},
         getServices: function(){
             this.services = this.sportObject.services
@@ -276,5 +281,30 @@ Vue.component("mySportObject", {
         editService: function(serviceName){
             this.$router.push("/editService/" + this.sportObjectName + "/" + serviceName)
         },
+        displayMap: function(){
+            //display map
+			let lon = this.sportObject.location.longitude;
+			let lat = this.sportObject.location.latitude;
+			
+            let map = new ol.Map({
+                layers: [
+                    new ol.layer.Tile({
+                        source: new ol.source.OSM()
+                    })
+                ],
+                view: new ol.View({
+                    center: ol.proj.fromLonLat([lon, lat]),
+                    zoom: 18
+                })
+            });
+
+            setTimeout(() => {
+                if (map) {
+                    map.setTarget("map-create");
+                    let c = document.getElementById("map-create").childNodes;
+                    c[0].style.borderRadius = '15px';
+                }
+            }, 50);
+        }
     }
 });

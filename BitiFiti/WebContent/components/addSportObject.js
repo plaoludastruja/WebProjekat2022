@@ -10,8 +10,8 @@ Vue.component("addSportObject", {
                 sportObjectType: 0,
                 services: [],
                 location: {
-                    longitude: 420.0,
-                    latitude: 69.0,
+                    longitude: 0.0,
+                    latitude: 0.0,
                     streetName: '',
                     streetNumber: '',
                     city: '',
@@ -98,25 +98,29 @@ Vue.component("addSportObject", {
                                                 </div>
 
                                                 <div class="row mb-0">
-                                                    <div class="col-md-4 mb-2">
+                                                    <div class="col-md-8 mb-2">
                                                         <div class="form-outline">
                                                             <input v-model="sportObject.location.streetName" type="text" class="form-control form-control-lg" />
                                                             <label class="form-label">Ulica</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2 mb-2">
+                                                    <div class="col-md-4 mb-2">
                                                         <div class="form-outline">
                                                             <input v-model="sportObject.location.streetNumber" type="text" class="form-control form-control-lg" />
                                                             <label class="form-label">Broj</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4 mb-2">
+                                                </div>
+
+                                                <div class="row mb-0">
+                                                
+                                                    <div class="col-md-8 mb-2">
                                                         <div class="form-outline">
                                                             <input v-model="sportObject.location.city" type="text" class="form-control form-control-lg" />
                                                             <label class="form-label">Grad</label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-2 mb-2">
+                                                    <div class="col-md-4 mb-2">
                                                         <div class="form-outline">
                                                             <input v-model="sportObject.location.zipCode" type="text" class="form-control form-control-lg" />
                                                             <label class="form-label">ZipCode</label>
@@ -140,7 +144,7 @@ Vue.component("addSportObject", {
 
 
 
-                                                <div class="col" id="map-create" style="height: 200px; width: 200px;"></div>
+                                                <div class="col mb-2" id="map-create" style="height: 200px;"></div>
 
 
                 

@@ -64,11 +64,15 @@ Vue.component("sportObjectInfoCustomer", {
                                 </svg>
                             </h6>
 
-                            <button @click="showMap()" type="button" class="btn btn-warning active mt-3">
+                            <div class="btn btn-warning active mt-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                                 </svg> {{sportObject.location.streetNumber}} {{sportObject.location.streetName}} , {{sportObject.location.city}}
-                            </button>
+                            </div>
+                        </div>
+
+                        <div class="col d-flex flex-column align-items-center" id="map-create" style="height: 230px; width: 500px;">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -234,16 +238,13 @@ Vue.component("sportObjectInfoCustomer", {
         getSportObject: function () {
 			axios
 			.get('rest/sportObjects/' + this.sportObjectName)
-			.then(response=> {this.sportObject=response.data})
+			.then(response=> {this.sportObject=response.data;
+                this.displayMap();})
 		},
         getApprovedComments: function () {
 			axios
 			.get('rest/reviews/fromOneObject/' + this.sportObjectName)
 			.then(response=> {this.reviews=response.data})
-		},
-        // TODO da se otvori da se prikaze mapa
-        showMap: function(){
-			this.$router.push("/map/" + sportObjectName);
 		},
         openHome: function(){
             this.$router.push("/homeCustomer/" + this.username)
@@ -263,5 +264,30 @@ Vue.component("sportObjectInfoCustomer", {
 			.put('rest/users/makeTrainingReservation/' + this.username, service)
 			.then(this.$router.push("/historyTrainings/" + this.username))
 		},
+        displayMap: function(){
+            //display map
+			let lon = this.sportObject.location.longitude;
+			let lat = this.sportObject.location.latitude;
+			
+            let map = new ol.Map({
+                layers: [
+                    new ol.layer.Tile({
+                        source: new ol.source.OSM()
+                    })
+                ],
+                view: new ol.View({
+                    center: ol.proj.fromLonLat([lon, lat]),
+                    zoom: 18
+                })
+            });
+
+            setTimeout(() => {
+                if (map) {
+                    map.setTarget("map-create");
+                    let c = document.getElementById("map-create").childNodes;
+                    c[0].style.borderRadius = '15px';
+                }
+            }, 50);
+        }
     }
 });

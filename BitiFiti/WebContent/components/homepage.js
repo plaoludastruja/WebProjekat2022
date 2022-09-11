@@ -32,17 +32,6 @@ Vue.component("homepage", {
                 </div>
             </nav>
 
-    <!-- Header-->
-            <header class="masthead text-center text-black">
-                <div class="masthead-content">
-                    <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">Najbolji sajt na svijetu</h1>
-                        <h2 class="masthead-subheading mb-0">Šala, ovo je smeće, ne znam da li će raditi išta</h2>
-                        <a class="btn btn-primary btn-xl rounded-pill my-1" href="#scroll">Learn More</a>
-                    </div>
-                </div>
-            </header>
-
     <!-- pretraga -->
         <section class="bg-dark py-4">
             <div class="container">
