@@ -63,7 +63,7 @@ Vue.component("addSportObject", {
                     <div class="row">
                         <div class="col-sm-12 mb-2">
                             <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
-                            <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
+                            <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menažera</a>
                             <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
                             <a @click="addPromoCode()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj promo kod</a>
                         </div>
@@ -162,10 +162,10 @@ Vue.component("addSportObject", {
                                                     <div class="col-md-8 mb-2">
                                                         <div class="form-outline mb-2">
                                                             <select class="form-select" v-model="sportObject.manager">
-                                                                <option disabled>Nema mendjera</option>
+                                                                <option disabled>Nema mendžera</option>
                                                                 <option v-for="manager in managers" :value="manager.username">{{manager.firstName}} {{manager.lastName}}</option>
                                                             </select>
-                                                            <label class="form-label">Izaberite menadjera</label>
+                                                            <label class="form-label">Izaberite menadžera</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 mb-2">
@@ -174,7 +174,7 @@ Vue.component("addSportObject", {
                                                                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                                             </svg>
                                                         </div>
-                                                        <label class="form-label">Dodaj menadjera</label>
+                                                        <label class="form-label">Dodaj menadžera</label>
                                                     </div>
                                                 </div>
 

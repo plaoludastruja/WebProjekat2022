@@ -47,11 +47,11 @@ Vue.component("addManager", {
         <header class="masthead text-center text-black">
             <div class="masthead-content">
                 <div class="container px-5">
-                    <h1 class="masthead-heading mb-1">Novi menadjer</h1>
+                    <h1 class="masthead-heading mb-1">Novi menadžer</h1>
                     <div class="row">
                         <div class="col-sm-12 mb-2">
                             <a @click="addSportObject()" class="btn btn-outline-dark rounded-pill" target="__blank">Dodaj sportski objekat</a>
-                            <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadjera</a>
+                            <a @click="addManager()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj menadžera</a>
                             <a @click="addTrainer()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj trenera</a>
                             <a @click="addPromoCode()" class="btn btn-outline-dark rounded-pill" target="__blank" >Dodaj promo kod</a>
                         </div>
@@ -69,7 +69,7 @@ Vue.component("addManager", {
                                     <div class="row g-0">
                                         <div class="d-flex align-items-center">
                                             <div class="card-body p-md-5 text-black">
-                                                <h3 class="mb-3">Dodaj novom menadjera</h3>
+                                                <h3 class="mb-3">Dodaj novom menadžera</h3>
                 
                                                 <div class="row mb-0">
                                                     <div class="col-md-6 mb-2">
