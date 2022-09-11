@@ -1,5 +1,6 @@
 package services;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -168,6 +169,15 @@ public class UserService {
 	public void customerGetsFee( @PathParam("id") String customerId, Fee fee){
 		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");	
 		userDAO.customerGetsFee(customerId, fee);
+	}
+
+	@PUT
+	@Path("/checkFee/{id}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public void customerChecksFee( @PathParam("id") String customerId) throws ParseException{
+		UserDAO userDAO = (UserDAO)ctx.getAttribute("userDAO");	
+		userDAO.customerChecksFee(customerId);
 	}
 	
 	@PUT

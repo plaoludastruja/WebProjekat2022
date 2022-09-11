@@ -135,6 +135,7 @@ Vue.component("homeCustomer", {
 	// na pocetku
     mounted () {
         this.getAllSportObject();
+        this.checkFee();
     },
     computed: {
         // ovo prepraviti da bude kao pretraga, sa svim ifovima u zavisnosti sta je ukucano
@@ -171,6 +172,10 @@ Vue.component("homeCustomer", {
 			axios
 			.get('rest/sportObjects/')
 			.then(response=> {this.sportObjects=response.data})
+		},
+        checkFee: function () {
+			axios
+			.put('rest/users/checkFee/' + this.username)
 		},
         openHome: function(){
             this.$router.push("/homeCustomer/" + this.username)

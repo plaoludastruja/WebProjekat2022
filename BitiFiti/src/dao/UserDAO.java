@@ -5,10 +5,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,14 +84,9 @@ public class UserDAO {
 		{
 			if(s.getName().equals(service.getName()))
 			{
-				//List<Service> objServices = SportObjectDAO.getByName(s.getSportObject()).getServices();
-				services.remove(s);				
-				//objServices.remove(s);
-				
+				services.remove(s);
 				t.setTrainings(services);
 				saveUsers();
-				//SportObjectDAO.getByName(t.getSportsObject()).setServices(objServices);
-				//SportObjectDAO.saveSportObjects();
 				return;
 			}
 		}
@@ -130,6 +129,19 @@ public class UserDAO {
 		customer.setFee(fee);
 		saveUsers();
 	}
+
+	public void customerChecksFee(String customerId) throws ParseException {
+		User customer = getByUsername(customerId);
+		Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(customer.getFee().getEndDate());
+		
+		if(customer.getFee().getStatus().equals("ACTIVE") &&
+			date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().compareTo(LocalDate.now()) <= 0){
+			customer.getFee().setStatus("NOTACTIVE");
+			saveUsers();
+		}
+		
+	}
+
 	
 	public List<Service> getHistory(String customerId){
 		User customer = getByUsername(customerId);
