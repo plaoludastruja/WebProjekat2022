@@ -150,7 +150,14 @@ public class UserDAO {
 			customer.getFee().setStatus("NOTACTIVE");
 			// dodati za bodove
 			int numOfPoints = customer.getPoints();
-			numOfPoints += (int) (customer.getFee().getPrice() * customer.getFee().getTrainingsUsed());		
+			if(customer.getFee().getTrainingsUsed() > customer.getFee().getNumberOfTrainings() / 3)
+			{
+				numOfPoints += (int) (customer.getFee().getPrice() / 100 * customer.getFee().getTrainingsUsed());	
+			}
+			else
+			{
+				numOfPoints -= (int) (customer.getFee().getPrice() / 4);
+			}
 			customer.setPoints(numOfPoints);
 			if(customer.getPoints()>= 3000)
 			{

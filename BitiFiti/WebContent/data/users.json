@@ -65,14 +65,14 @@
         "userType": "CUSTOMER",
         "trainings": null,
         "fee": {
-            "name": "MJESECNA",
-            "numberOfTrainings": 29,
-            "numberOfDays": 30,
-            "price": 1350.0,
-            "startDate": "2022-09-11",
-            "endDate": "2022-10-11",
-            "status": "ACTIVE",
-            "trainingsUsed": 1
+            "name": "DNEVNA",
+            "numberOfTrainings": 1,
+            "numberOfDays": 1,
+            "price": 1000.0,
+            "startDate": "2021-09-11",
+            "endDate": "2021-09-12",
+            "status": "NOTACTIVE",
+            "trainingsUsed": 0
         },
         "sportsObject": null,
         "trainingHistory": [
@@ -87,7 +87,7 @@
                 "image": "components/Resources/4.png"
             }
         ],
-        "points": 0,
+        "points": 1100,
         "customerType": {
             "name": "BRONZANI",
             "discount": 0.0,
