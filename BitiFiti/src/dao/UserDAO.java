@@ -144,11 +144,13 @@ public class UserDAO {
 		Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(customer.getFee().getEndDate());
 		
 		if(customer.getFee().getStatus().equals("ACTIVE") &&
-			date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().compareTo(LocalDate.now()) <= 0){
+			(date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().compareTo(LocalDate.now()) <= 0 ||
+			customer.getFee().getNumberOfTrainings()<=0)){
+
 			customer.getFee().setStatus("NOTACTIVE");
 			// dodati za bodove
 			int numOfPoints = customer.getPoints();
-			numOfPoints = (int) (customer.getFee().getPrice()/1000 * customer.getFee().getTrainingsUsed());		
+			numOfPoints += (int) (customer.getFee().getPrice() * customer.getFee().getTrainingsUsed());		
 			customer.setPoints(numOfPoints);
 			if(customer.getPoints()>= 3000)
 			{

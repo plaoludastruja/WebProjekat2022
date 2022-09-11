@@ -158,9 +158,7 @@ Vue.component("customerFee", {
                 }
             )
             .catch(
-                axios
-                    .put('rest/users/customerGetsFee/' + this.username, thisFee)
-                    .then(this.$router.push("/homeCustomer/" + this.username))
+                this.$router.push("/homeCustomer/" + this.username)
             )
 		},
     }

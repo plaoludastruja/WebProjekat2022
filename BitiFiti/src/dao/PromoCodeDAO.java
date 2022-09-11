@@ -40,7 +40,9 @@ public class PromoCodeDAO {
 
 		for(PromoCode o : promoCodes) {
 			Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(o.getExpirationDate());
-			if(o.getName().equals(name) && o.getUsageNumber() > 0 && date1.toInstant()
+			if(o.getName().equals(name) &&
+			o.getUsageNumber() > 0
+			&& date1.toInstant()
 				      .atZone(ZoneId.systemDefault())
 				      .toLocalDate().compareTo(LocalDate.now()) > 0  ) {
 				int number = o.getUsageNumber();

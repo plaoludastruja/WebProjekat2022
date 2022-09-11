@@ -408,5 +408,285 @@
         "trainingHistory": [],
         "points": 0,
         "customerType": null
+    },
+    {
+        "username": "aa",
+        "password": "aa",
+        "firstName": "ima",
+        "lastName": "tip",
+        "gender": "FEMALE",
+        "dateOfBirth": "2022-09-07",
+        "userType": "CUSTOMER",
+        "trainings": null,
+        "fee": {
+            "name": null,
+            "numberOfTrainings": 0,
+            "numberOfDays": 0,
+            "price": 0.0,
+            "startDate": null,
+            "endDate": null,
+            "status": null,
+            "trainingsUsed": 0
+        },
+        "sportsObject": null,
+        "trainingHistory": [],
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "aaa",
+        "password": "aaa",
+        "firstName": "sad",
+        "lastName": "tip",
+        "gender": "MALE",
+        "dateOfBirth": "2022-09-08",
+        "userType": "CUSTOMER",
+        "trainings": null,
+        "fee": {
+            "name": null,
+            "numberOfTrainings": 0,
+            "numberOfDays": 0,
+            "price": 0.0,
+            "startDate": null,
+            "endDate": null,
+            "status": null,
+            "trainingsUsed": 0
+        },
+        "sportsObject": null,
+        "trainingHistory": [],
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "r",
+        "password": "r",
+        "firstName": "radi",
+        "lastName": "pls",
+        "gender": "FEMALE",
+        "dateOfBirth": "2022-09-06",
+        "userType": "CUSTOMER",
+        "trainings": null,
+        "fee": {
+            "name": null,
+            "numberOfTrainings": 0,
+            "numberOfDays": 0,
+            "price": 0.0,
+            "startDate": null,
+            "endDate": null,
+            "status": null,
+            "trainingsUsed": 0
+        },
+        "sportsObject": null,
+        "trainingHistory": [],
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "sa",
+        "password": "sa",
+        "firstName": "sa",
+        "lastName": "as",
+        "gender": "MALE",
+        "dateOfBirth": "2022-09-01",
+        "userType": "CUSTOMER",
+        "trainings": null,
+        "fee": {
+            "name": "DNEVNA",
+            "numberOfTrainings": 0,
+            "numberOfDays": 1,
+            "price": 10000.0,
+            "startDate": "2022-09-11",
+            "endDate": "2022-09-12",
+            "status": "NOTACTIVE",
+            "trainingsUsed": 1
+        },
+        "sportsObject": null,
+        "trainingHistory": [
+            {
+                "name": "Igranka bez prestanka",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "24h fitness",
+                "duration": 50,
+                "price": 0,
+                "trainer": "2022-09-11",
+                "description": "guzica",
+                "image": "components/Resources/customer.png"
+            },
+            {
+                "name": "Igranka bez prestanka",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "24h fitness",
+                "duration": 50,
+                "price": 0,
+                "trainer": "2022-09-11",
+                "description": "guzica",
+                "image": "components/Resources/customer.png"
+            },
+            {
+                "name": "Senzualna masaza",
+                "serviceType": "MASSAGE",
+                "sportObject": "",
+                "duration": 69,
+                "price": 0,
+                "trainer": "2022-09-11",
+                "description": "Dodje kurva i masira te",
+                "image": "components/Resources/muscle.png"
+            },
+            {
+                "name": "zajelenu",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "Sajmiste",
+                "duration": 10,
+                "price": 0,
+                "trainer": "2022-09-11",
+                "description": "zajelenu",
+                "image": "components/Resources/customer.png"
+            },
+            {
+                "name": "zaratka",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "Sajmiste",
+                "duration": 10,
+                "price": 1000,
+                "trainer": "2022-09-11",
+                "description": "moze se otkazati",
+                "image": "components/Resources/trainer.png"
+            }
+        ],
+        "points": 10100,
+        "customerType": {
+            "name": "ZLATNI",
+            "discount": 5.0,
+            "requiredPoints": 4000
+        }
+    },
+    {
+        "username": "as",
+        "password": "as",
+        "firstName": "sad",
+        "lastName": "sda",
+        "gender": "MALE",
+        "dateOfBirth": "2022-08-31",
+        "userType": "CUSTOMER",
+        "trainings": null,
+        "fee": {
+            "name": "DNEVNA",
+            "numberOfTrainings": 1,
+            "numberOfDays": 1,
+            "price": 8550.0,
+            "startDate": "2022-09-11",
+            "endDate": "2022-09-12",
+            "status": "ACTIVE",
+            "trainingsUsed": 0
+        },
+        "sportsObject": null,
+        "trainingHistory": [
+            {
+                "name": "sadradikod starih clanova",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "Sajmiste",
+                "duration": 0,
+                "price": 0,
+                "trainer": "2022-09-11",
+                "description": "",
+                "image": "components/Resources/trainer.png"
+            }
+        ],
+        "points": 10000,
+        "customerType": {
+            "name": "ZLATNI",
+            "discount": 5.0,
+            "requiredPoints": 4000
+        }
+    },
+    {
+        "username": "menadzertest",
+        "password": "test",
+        "firstName": "r",
+        "lastName": "r",
+        "gender": "FEMALE",
+        "dateOfBirth": "2022-08-30",
+        "userType": "MANAGER",
+        "trainings": null,
+        "fee": null,
+        "sportsObject": "testsportskiobjekat",
+        "trainingHistory": [],
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "trenertest",
+        "password": "test",
+        "firstName": "ratko",
+        "lastName": "r",
+        "gender": "MALE",
+        "dateOfBirth": "2022-08-30",
+        "userType": "TRAINER",
+        "trainings": [
+            {
+                "name": "testtreningizmjena",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "testsportskiobjekat",
+                "duration": 10,
+                "price": 100,
+                "trainer": "trenertest",
+                "description": "testopis",
+                "image": "components/Resources/manager.png"
+            },
+            {
+                "name": "das",
+                "serviceType": "SAUNA",
+                "sportObject": "testsportskiobjekat",
+                "duration": 0,
+                "price": 0,
+                "trainer": "trenertest",
+                "description": "dsa",
+                "image": "components/Resources/manager.png"
+            }
+        ],
+        "fee": null,
+        "sportsObject": null,
+        "trainingHistory": [],
+        "points": 0,
+        "customerType": null
+    },
+    {
+        "username": "kupactest",
+        "password": "test",
+        "firstName": "te",
+        "lastName": "te",
+        "gender": "MALE",
+        "dateOfBirth": "2022-08-30",
+        "userType": "CUSTOMER",
+        "trainings": null,
+        "fee": {
+            "name": "DNEVNA",
+            "numberOfTrainings": 1,
+            "numberOfDays": 1,
+            "price": 8550.0,
+            "startDate": "2022-09-11",
+            "endDate": "2022-09-12",
+            "status": "ACTIVE",
+            "trainingsUsed": 0
+        },
+        "sportsObject": null,
+        "trainingHistory": [
+            {
+                "name": "das",
+                "serviceType": "SAUNA",
+                "sportObject": "testsportskiobjekat",
+                "duration": 0,
+                "price": 0,
+                "trainer": "2022-09-11",
+                "description": "dsa",
+                "image": "components/Resources/manager.png"
+            }
+        ],
+        "points": 10000,
+        "customerType": {
+            "name": "ZLATNI",
+            "discount": 5.0,
+            "requiredPoints": 4000
+        }
     }
 ]

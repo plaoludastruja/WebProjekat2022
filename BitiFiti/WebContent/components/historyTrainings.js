@@ -241,7 +241,7 @@ Vue.component("historyTrainings", {
             
 			axios
 			.post('rest/reviews', this.review)
-			.then(this.$router.push("/historyTrainings/" + this.username))
+			.then(this.$router.go())
 		},
     }
 });

@@ -119,7 +119,7 @@ Vue.component("allComments", {
         approve: function (review) {
 			axios
 			.put('rest/reviews', review)
-			.then(this.$router.push("/allComments"))
+			.then(this.$router.go())
 		},
     }
 });

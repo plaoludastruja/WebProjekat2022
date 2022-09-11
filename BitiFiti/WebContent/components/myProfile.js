@@ -47,7 +47,21 @@ Vue.component("myProfile", {
                                     <img v-else src="components/Resources/trainer.png" class="rounded-circle" width="150">
                                     <div class="mt-3">
                                         <h4>{{user.username}}</h4>
-                                        <p class="text-secondary mb-1">{{user.userType}}</p>
+                                        
+
+
+                                        <div v-if="user.userType === 'CUSTOMER'">
+                                            <p class="text-secondary mb-1">{{user.customerType.name}}</p>
+                                            <p>{{user.fee.name}}, {{user.fee.price}}, {{user.fee.status}}</p>
+                                        </div>
+                                        <div v-else>
+                                            <p class="text-secondary mb-1">{{user.userType}}</p>
+                                        </div>
+
+
+                                        
+
+
                                     </div>
                                 </div>
                             </div>

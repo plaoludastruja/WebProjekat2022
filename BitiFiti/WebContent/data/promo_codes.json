@@ -8,13 +8,13 @@
     {
         "name": "testkod",
         "expirationDate": "2022-09-20",
-        "usageNumber": 53,
+        "usageNumber": 42,
         "percent": 10
     },
     {
         "name": "datum",
         "expirationDate": "2021-02-20",
-        "usageNumber": 53,
+        "usageNumber": 50,
         "percent": 10
     }
 ]

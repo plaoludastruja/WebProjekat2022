@@ -46,9 +46,13 @@ public class PromoCodeService {
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public PromoCode getPromoCode(@PathParam("id") String id) throws ParseException {
+	public Response getPromoCode(@PathParam("id") String id) throws ParseException {
 		PromoCodeDAO promoCodeDAO = (PromoCodeDAO) ctx.getAttribute("promoCodeDAO");
-		return promoCodeDAO.getByName(id);
+		//return promoCodeDAO.getByName(id);
+		if(promoCodeDAO.getByName(id)==null) {
+			return Response.status(400).entity("Promo kod ne postoji").build();
+		}
+		return Response.status(200).entity(promoCodeDAO.getByName(id)).build();
 	}
 
 	@POST

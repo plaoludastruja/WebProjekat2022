@@ -9,6 +9,11 @@ Vue.component("register", {
                 gender: null,
                 dateOfBirth: '',
                 userType: 3,
+                customerType: {
+                    name: 'BRONZANI',
+                    discount: 0.0,
+                    requiredPoints: 0
+                },
                 fee: {}
 		  	},
             greska: "",

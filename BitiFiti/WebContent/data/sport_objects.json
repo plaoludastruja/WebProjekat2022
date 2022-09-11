@@ -587,5 +587,55 @@
         "endTime": "21:14",
         "manager": "priv",
         "working": true
+    },
+    {
+        "name": "testsportskiobjekat",
+        "sportObjectType": "GYM",
+        "services": [
+            {
+                "name": "testtreningizmjena",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "testsportskiobjekat",
+                "duration": 10,
+                "price": 100,
+                "trainer": "trenertest",
+                "description": "testopis",
+                "image": "components/Resources/manager.png"
+            },
+            {
+                "name": "otkazitreneru",
+                "serviceType": "PERSONAL_TRAINING",
+                "sportObject": "testsportskiobjekat",
+                "duration": 123,
+                "price": 122,
+                "trainer": "",
+                "description": "re",
+                "image": "components/Resources/customer.png"
+            },
+            {
+                "name": "das",
+                "serviceType": "SAUNA",
+                "sportObject": "testsportskiobjekat",
+                "duration": 0,
+                "price": 0,
+                "trainer": "trenertest",
+                "description": "dsa",
+                "image": "components/Resources/manager.png"
+            }
+        ],
+        "location": {
+            "longitude": 19.839096213333775,
+            "latitude": 45.24782976279096,
+            "streetName": "Brace Ribnikar",
+            "streetNumber": "1",
+            "city": "Novi Sad City",
+            "zipCode": "21000"
+        },
+        "logo": "components/Resources/administrator.png",
+        "averageScore": 4.0,
+        "startTime": "19:01",
+        "endTime": "23:01",
+        "manager": "menadzertest",
+        "working": true
     }
 ]
