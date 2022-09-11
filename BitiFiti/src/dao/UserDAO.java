@@ -23,6 +23,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import beans.CustomerType;
 import beans.Fee;
 import beans.Service;
 import beans.SportObject;
@@ -126,6 +127,14 @@ public class UserDAO {
 		int numOfDays = fee.getNumberOfDays();
 		fee.setStartDate(datum.toString());	
 		fee.setEndDate(LocalDate.now().plusDays(numOfDays).toString());
+		if(customer.getCustomerType().getName().equals("SREBRNI"))
+		{
+			fee.setPrice(fee.getPrice() * 97 / 100);
+		}
+		if(customer.getCustomerType().getName().equals("ZLATNI"))
+		{
+			fee.setPrice(fee.getPrice() * 95 / 100);
+		}
 		customer.setFee(fee);
 		saveUsers();
 	}
@@ -138,6 +147,19 @@ public class UserDAO {
 			date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().compareTo(LocalDate.now()) <= 0){
 			customer.getFee().setStatus("NOTACTIVE");
 			// dodati za bodove
+			int numOfPoints = customer.getPoints();
+			numOfPoints = (int) (customer.getFee().getPrice()/1000 * customer.getFee().getTrainingsUsed());		
+			customer.setPoints(numOfPoints);
+			if(customer.getPoints()>= 3000)
+			{
+				CustomerType t = new CustomerType("SREBRNI", 3, 3000);
+				customer.setCustomerType(t);
+			}
+			if(customer.getPoints()>= 4000)
+			{
+				CustomerType t = new CustomerType("ZLATNI", 5, 4000);
+				customer.setCustomerType(t);
+			}
 			saveUsers();
 		}
 		
@@ -158,6 +180,7 @@ public class UserDAO {
 			history.add(service);
 			Fee fee = customer.getFee();
 			fee.setNumberOfTrainings(fee.getNumberOfTrainings() - 1);
+			fee.setTrainingsUsed(fee.getTrainingsUsed() + 1);
 			customer.setFee(fee);
 			saveUsers();
 		}
